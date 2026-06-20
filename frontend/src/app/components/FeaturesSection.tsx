@@ -5,7 +5,7 @@ export default function FeaturesSection() {
     {
       icon: <Leaf size={28} />,
       title: "Crafted for Comfort and Style",
-      desc: "At MARC Salon Furniture, every piece is carefully crafted to combine exceptional comfort with sophisticated style, ensuring lasting quality and professionalism.",
+      desc: "At SalonChairWala, every piece is carefully crafted to combine exceptional comfort with sophisticated style, ensuring lasting quality and professionalism.",
     },
     {
       icon: <Brush size={28} />,
