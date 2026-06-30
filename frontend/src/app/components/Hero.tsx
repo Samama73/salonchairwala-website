@@ -10,15 +10,13 @@ export default function Hero() {
   const loopImages = [...images, ...images];
 
   return (
-    <section className="relative min-h-[80vh] flex items-center justify-center text-white overflow-hidden">
+    <section className="relative min-h-[90vh] flex items-center justify-center text-white overflow-hidden">
 
       {/* Slider */}
       <div className="absolute inset-0 overflow-hidden">
-
         <div className="flex w-max animate-slide">
-
           {loopImages.map((img, index) => (
-            <div key={index} className="w-screen h-[80vh] flex-shrink-0">
+            <div key={index} className="w-screen h-[90vh] flex-shrink-0">
               <img
                 src={img}
                 alt="hero slide"
@@ -26,50 +24,47 @@ export default function Hero() {
               />
             </div>
           ))}
-
         </div>
-
       </div>
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/65"></div>
+      {/* Light Overlay */}
+      <div className="absolute inset-0 bg-black/35"></div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+      <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
 
-        <p className="uppercase tracking-[0.3em] text-red-400 mb-4">
-          Premium Salon Furniture
+        <p className="uppercase tracking-[0.3em] text-red-400 mb-4 text-sm md:text-base">
+          India's Trusted Salon Furniture Brand
         </p>
 
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-          Design Your Salon
-          <br />
-          Like a Luxury Brand
+        <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
+          Premium Salon Furniture
         </h1>
 
-        <p className="text-xl text-gray-200 mb-10">
-          High-end salon chairs, backwash units, pedicure stations and modern furniture
-          crafted for professionals who value comfort, style, and long-lasting quality.
+        <p className="text-lg md:text-xl text-gray-200 mb-8">
+          Build for Comfort. Designed for Style.
         </p>
 
         <div className="flex flex-wrap justify-center gap-4">
 
           <a
             href="#products"
-            className="bg-red-600 hover:bg-red-700 px-8 py-4 rounded-lg transition"
+            className="bg-red-600 hover:bg-red-700 px-8 py-4 rounded-lg transition font-medium"
           >
-            Explore Products
+            Explore Collection
           </a>
 
           <a
             href="https://wa.me/919403891146"
             target="_blank"
-            className="border border-white px-8 py-4 rounded-lg hover:bg-white hover:text-black transition"
+            rel="noopener noreferrer"
+            className="border border-white px-8 py-4 rounded-lg hover:bg-white hover:text-black transition font-medium"
           >
-            Get Quote
+            WhatsApp Us
           </a>
 
         </div>
+
       </div>
 
       {/* Animation */}
