@@ -8,9 +8,10 @@ import InstagramSection from "./components/InstagramSection";
 import Testimonials from "./components/Testimonials";
 import Footer from "./components/Footer";
 import FloatingWhatsapp from "./components/FloatingWhatsapp";
-
-// 👉 NEW SECTION IMPORT
 import FeaturesSection from "./components/FeaturesSection";
+
+// 👉 Next.js ka Image component import kiya hai fast loading ke liye
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -19,12 +20,23 @@ export default function Home() {
       <Hero />
       <Categories />
 
+    {/* 📸 FULL WIDTH BANNER */}
+      <section className="w-full">
+        <Image 
+          src="/products/fullsetup.png" 
+          alt="Premium Salon Furniture Collection" 
+          width={1920} 
+          height={800} 
+          className="w-full h-auto object-cover" // <-- rounded-xl aur shadow hata diya hai taaki edges flush rahein
+          priority 
+        />
+      </section>
+
       <BestSellers />
 
-      {/* ⭐ NEW FEATURES SECTION (Screenshot wala) */}
-      <FeaturesSection />
-
       <FeaturedProducts />
+
+      <FeaturesSection />
       <HappyClients />
       <InstagramSection />
       <Testimonials />

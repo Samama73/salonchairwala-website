@@ -137,7 +137,7 @@ export default function ReadyToMovePage() {
            • Ready To Ship •
           </span>
           <h1 className="text-4xl md:text-5xl font-extrabold mt-6 text-gray-900 tracking-tight">
-            Ready To Move Products
+            Ready To Order Products
           </h1>
           <p className="text-gray-600 mt-4 text-base md:text-lg max-w-2xl mx-auto font-medium">
             Premium salon equipment with fast delivery & professional build quality.

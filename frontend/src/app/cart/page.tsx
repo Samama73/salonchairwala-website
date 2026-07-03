@@ -36,6 +36,7 @@ export default function CartPage() {
   const sgst = Math.round(baseAmount * 0.09);
   const transport = baseAmount > 0 ? 1000 : 0;
   const finalAmount = baseAmount + cgst + sgst + transport - discount;
+  const itemCount = cart.reduce((sum: number, item: any) => sum + (item.quantity || 1), 0);
 
   const isFormValid = customer.name && customer.email && customer.phone.length >= 10 && customer.address;
 
@@ -145,131 +146,544 @@ export default function CartPage() {
 
   const applyCoupon = () => {
     const code = coupon.trim().toUpperCase();
-    if (code === "SAVE10") { setDiscount(baseAmount * 0.1); setMsg("🎉 10% discount applied"); }
-    else if (code === "WELCOME5") { setDiscount(baseAmount * 0.05); setMsg("🎉 5% discount applied"); }
-    else if (code === "FLAT500") { setDiscount(500); setMsg("🎉 ₹500 discount applied"); }
-    else { setDiscount(0); setMsg("❌ Invalid coupon"); }
+    if (code === "SAVE10") { setDiscount(baseAmount * 0.1); setMsg("10% discount applied"); }
+    else if (code === "WELCOME5") { setDiscount(baseAmount * 0.05); setMsg("5% discount applied"); }
+    else if (code === "FLAT500") { setDiscount(500); setMsg("₹500 discount applied"); }
+    else { setDiscount(0); setMsg("Invalid coupon code"); }
   };
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 py-12 px-4">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10">
-        
-        {/* LEFT SIDE */}
-        <div className="md:col-span-2 space-y-6">
-          <h1 className="text-4xl font-bold text-gray-900">Your Cart</h1>
-          
-          <div className="bg-white p-6 rounded-2xl border shadow-sm space-y-4">
-            <h3 className="font-bold text-lg">Delivery Information</h3>
-            <input type="text" className="w-full border p-2 rounded-lg" placeholder="Full Name" value={customer.name} onChange={(e) => setCustomer({...customer, name: e.target.value})} />
-            <input type="email" className="w-full border p-2 rounded-lg" placeholder="Email Address" value={customer.email} onChange={(e) => setCustomer({...customer, email: e.target.value})} />
-            <input type="tel" className="w-full border p-2 rounded-lg" placeholder="Phone Number" value={customer.phone} onChange={(e) => setCustomer({...customer, phone: e.target.value})} />
-            <input type="text" className="w-full border p-2 rounded-lg" placeholder="Pin Code" value={customer.pinCode} onChange={(e) => setCustomer({...customer, pinCode: e.target.value})} />
-            <textarea className="w-full border p-2 rounded-lg" placeholder="Full Address" value={customer.address} onChange={(e) => setCustomer({...customer, address: e.target.value})} />
+  // ---------- EMPTY CART ----------
+  if (cart.length === 0) {
+    return (
+      <div className="min-h-screen bg-[#FAFAFA] relative overflow-hidden flex flex-col">
+        <div className="relative z-10 h-2 w-full bg-gradient-to-r from-[#1A1A1A] via-[#B30000] to-[#1A1A1A]" />
+        <div className="absolute top-2 left-0 right-0 bottom-0 pointer-events-none overflow-hidden">
+          <svg
+            className="absolute inset-0 w-full h-full"
+            style={{ filter: "blur(60px)", opacity: 0.55 }}
+            viewBox="0 0 1200 900"
+            preserveAspectRatio="xMidYMid slice"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect width="1200" height="900" fill="#FAFAFA" />
+            <circle cx="980" cy="80" r="260" fill="#B30000" opacity="0.35" />
+            <circle cx="120" cy="380" r="220" fill="#1A1A1A" opacity="0.18" />
+            <ellipse cx="700" cy="760" rx="320" ry="200" fill="#B30000" opacity="0.20" />
+            <circle cx="1080" cy="650" r="180" fill="#1A1A1A" opacity="0.12" />
+            <ellipse cx="300" cy="80" rx="240" ry="140" fill="#1A1A1A" opacity="0.10" />
+          </svg>
+          <div className="absolute inset-0 bg-[#FAFAFA]/70" />
+        </div>
+        <div className="flex-1 flex items-center justify-center px-4 relative">
+        <div className="text-center max-w-sm relative">
+          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border border-[#E5E5E5] bg-white shadow-sm">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" strokeWidth="1.5">
+              <circle cx="9" cy="21" r="1" />
+              <circle cx="19" cy="21" r="1" />
+              <path d="M2.5 3h2l2.7 12.4a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.6L21.5 8H6" />
+            </svg>
           </div>
+          <p className="font-mono text-xs tracking-widest text-[#8A8A8A] uppercase mb-2">Order · Empty</p>
+          <h1 className="text-2xl font-semibold text-[#1A1A1A] mb-2">Your cart has nothing in it</h1>
+          <p className="text-sm text-[#6B6B6B] mb-6">Items you add to your cart will show up here, ready for checkout.</p>
+          <a href="/" className="inline-flex items-center justify-center rounded-lg bg-[#1A1A1A] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#B30000] transition-colors shadow-sm">
+            Continue shopping
+          </a>
+        </div>
+        </div>
+      </div>
+    );
+  }
 
-          {/* Items List */}
-          {cart.map((item: any, i: number) => (
-            <div key={i} className="bg-white border rounded-2xl p-5 shadow-sm flex justify-between items-center">
-              <div>
-                <h2 className="font-semibold">{item.name}</h2>
-                <div className="flex items-center gap-3">
-                  <button onClick={() => updateQuantity(item.name, (item.quantity || 1) - 1)} className="w-8 h-8 rounded-full bg-gray-100">-</button>
-                  <span>{item.quantity}</span>
-                  <button onClick={() => updateQuantity(item.name, (item.quantity || 1) + 1)} className="w-8 h-8 rounded-full bg-gray-100">+</button>
+  return (
+    <div className="min-h-screen bg-[#FAFAFA] relative overflow-hidden">
+      {/* TOP BRAND STRIP */}
+      <div className="relative z-10 h-2 w-full bg-gradient-to-r from-[#1A1A1A] via-[#B30000] to-[#1A1A1A]" />
+
+      {/* BLURRED ABSTRACT BACKGROUND IMAGE */}
+      <div className="absolute top-2 left-0 right-0 bottom-0 pointer-events-none overflow-hidden">
+        <svg
+          className="absolute inset-0 w-full h-full"
+          style={{ filter: "blur(60px)", opacity: 0.55 }}
+          viewBox="0 0 1200 900"
+          preserveAspectRatio="xMidYMid slice"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect width="1200" height="900" fill="#FAFAFA" />
+          <circle cx="980" cy="80" r="260" fill="#B30000" opacity="0.35" />
+          <circle cx="120" cy="380" r="220" fill="#1A1A1A" opacity="0.18" />
+          <ellipse cx="700" cy="760" rx="320" ry="200" fill="#B30000" opacity="0.20" />
+          <circle cx="1080" cy="650" r="180" fill="#1A1A1A" opacity="0.12" />
+          <ellipse cx="300" cy="80" rx="240" ry="140" fill="#1A1A1A" opacity="0.10" />
+        </svg>
+        {/* soft white wash so foreground cards stay readable */}
+        <div className="absolute inset-0 bg-[#FAFAFA]/70" />
+      </div>
+
+
+      <div className="py-10 px-4 sm:py-14 relative">
+      <div className="max-w-6xl mx-auto relative">
+
+        {/* PAGE HEADER */}
+        <div className="mb-10 flex items-end justify-between border-b border-[#E5E5E5] pb-6">
+          <div>
+            <p className="font-mono text-xs tracking-widest text-[#8A8A8A] uppercase mb-2">
+              Order · {itemCount} {itemCount === 1 ? "item" : "items"}
+            </p>
+            <div className="flex items-center gap-3">
+              <h1 className="text-4xl sm:text-5xl font-bold text-[#1A1A1A] tracking-tight">Your Cart</h1>
+              <span className="hidden sm:block w-10 h-[3px] bg-[#B30000] rounded-full mb-2" />
+            </div>
+          </div>
+          <button
+            onClick={clearCart}
+            className="text-xs text-[#8A8A8A] underline underline-offset-2 hover:text-[#B30000] transition-colors"
+          >
+            Clear cart
+          </button>
+        </div>
+
+
+        {/* PROGRESS STRIP */}
+        <div className="flex items-center gap-2 mb-8 -mt-2">
+          <ProgressStep label="Cart" active complete />
+          <ProgressLine />
+         <ProgressStep label="Details" active={!!isFormValid} complete={!!isFormValid} />
+          <ProgressLine />
+          <ProgressStep label="Payment" active={showQR} complete={false} />
+        </div>
+
+        <div className="grid lg:grid-cols-3 gap-8">
+
+          {/* LEFT SIDE */}
+          <div className="lg:col-span-2 space-y-6">
+
+            {/* Delivery Information */}
+            <div className="bg-white rounded-2xl border border-[#E5E5E5] shadow-sm p-6 hover:shadow-md transition-shadow duration-200">
+              <div className="flex items-center gap-3 mb-5">
+                <StepBadge n={1} />
+                <h3 className="font-semibold text-[#1A1A1A]">Delivery Information</h3>
+              </div>
+              <div className="grid sm:grid-cols-2 gap-4">
+                <Field label="Full Name" required>
+                  <input
+                    type="text"
+                    className="field-input"
+                    placeholder="e.g. Rohan Sharma"
+                    value={customer.name}
+                    onChange={(e) => setCustomer({ ...customer, name: e.target.value })}
+                  />
+                </Field>
+                <Field label="Email Address" required>
+                  <input
+                    type="email"
+                    className="field-input"
+                    placeholder="you@example.com"
+                    value={customer.email}
+                    onChange={(e) => setCustomer({ ...customer, email: e.target.value })}
+                  />
+                </Field>
+                <Field label="Phone Number" required>
+                  <input
+                    type="tel"
+                    className="field-input"
+                    placeholder="10-digit mobile number"
+                    value={customer.phone}
+                    onChange={(e) => setCustomer({ ...customer, phone: e.target.value })}
+                  />
+                </Field>
+                <Field label="Pin Code">
+                  <input
+                    type="text"
+                    className="field-input"
+                    placeholder="e.g. 400001"
+                    value={customer.pinCode}
+                    onChange={(e) => setCustomer({ ...customer, pinCode: e.target.value })}
+                  />
+                </Field>
+                <div className="sm:col-span-2">
+                  <Field label="Full Address" required>
+                    <textarea
+                      className="field-input min-h-[84px] resize-none"
+                      placeholder="House / street / area / city"
+                      value={customer.address}
+                      onChange={(e) => setCustomer({ ...customer, address: e.target.value })}
+                    />
+                  </Field>
                 </div>
               </div>
-              <div className="text-right">
-                <p className="font-bold">₹{item.price * (item.quantity || 1)}</p>
-                <button onClick={() => removeFromCart(item.name)} className="text-red-500 text-sm">Remove</button>
+            </div>
+
+            {/* Items List */}
+            <div className="bg-white rounded-2xl border border-[#E5E5E5] shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200">
+              <div className="flex items-center gap-3 px-6 pt-6 pb-2">
+                <StepBadge n={2} />
+                <h3 className="font-semibold text-[#1A1A1A]">Items</h3>
+              </div>
+              <div className="divide-y divide-[#F0F0F0]">
+                {cart.map((item: any, i: number) => (
+                  <div key={i} className="flex items-center justify-between gap-4 px-6 py-5 hover:bg-[#FAFAFA] transition-colors">
+                    <div className="min-w-0">
+                      <h2 className="font-medium text-[#1A1A1A] truncate">{item.name}</h2>
+                      <p className="font-mono text-xs text-[#8A8A8A] mt-0.5">₹{item.price} / unit</p>
+                      <div className="flex items-center gap-1 mt-3">
+                        <button
+                          onClick={() => updateQuantity(item.name, (item.quantity || 1) - 1)}
+                          className="h-7 w-7 rounded-md border border-[#DDDDDD] text-[#1A1A1A] hover:border-[#1A1A1A] active:scale-90 transition-all"
+                          aria-label="Decrease quantity"
+                        >
+                          −
+                        </button>
+                        <span className="w-9 text-center font-mono text-sm">{item.quantity}</span>
+                        <button
+                          onClick={() => updateQuantity(item.name, (item.quantity || 1) + 1)}
+                          className="h-7 w-7 rounded-md border border-[#DDDDDD] text-[#1A1A1A] hover:border-[#1A1A1A] active:scale-90 transition-all"
+                          aria-label="Increase quantity"
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                    <div className="text-right shrink-0">
+                      <p className="font-mono font-bold text-lg text-[#1A1A1A]">₹{item.price * (item.quantity || 1)}</p>
+                      <button
+                        onClick={() => removeFromCart(item.name)}
+                        className="text-xs text-[#B30000] hover:underline mt-2"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
-        </div>
+          </div>
 
-        {/* RIGHT SIDE (Order Summary) */}
-        <div className="sticky top-20 h-fit">
-          <div className="bg-white border rounded-3xl shadow-xl p-6">
-            <h2 className="text-xl font-bold mb-5">Order Summary</h2>
-            <div className="space-y-3 text-sm">
-              <div className="flex justify-between"><span className="text-gray-600">Product Total</span><span>₹{baseAmount}</span></div>
-              <div className="flex justify-between"><span className="text-gray-600">CGST (9%)</span><span>₹{cgst}</span></div>
-              <div className="flex justify-between"><span className="text-gray-600">SGST (9%)</span><span>₹{sgst}</span></div>
-              <div className="flex justify-between"><span className="text-gray-600">Transport</span><span>₹{transport}</span></div>
-              <hr className="my-2" />
-              <input value={coupon} onChange={(e) => setCoupon(e.target.value)} placeholder="Enter coupon" className="w-full border rounded-xl p-2 text-sm" />
-              <button onClick={applyCoupon} className="w-full bg-black text-white py-2 rounded-xl">Apply Coupon</button>
-              {msg && <p className="text-xs text-gray-500">{msg}</p>}
-              <div className="flex justify-between text-green-600"><span>Discount</span><span>- ₹{discount}</span></div>
-              <div className="flex justify-between text-lg font-bold text-gray-900"><span>Final Amount</span><span>₹{finalAmount}</span></div>
+          {/* RIGHT SIDE — Order Summary (receipt style) */}
+          <div className="lg:sticky lg:top-10 h-fit">
+            <div className="bg-white border border-[#E5E5E5] rounded-2xl shadow-md overflow-hidden">
+              <div className="h-1.5 bg-gradient-to-r from-[#1A1A1A] via-[#B30000] to-[#1A1A1A]" />
+              <div className="p-6">
+              <div className="flex items-center gap-3 mb-5">
+                <StepBadge n={3} />
+                <h2 className="font-semibold text-[#1A1A1A]">Order Summary</h2>
+              </div>
+
+              <div className="space-y-2.5 text-sm font-mono">
+                <ReceiptRow label="Product Total" value={`₹${baseAmount}`} />
+                <ReceiptRow label="CGST (9%)" value={`₹${cgst}`} />
+                <ReceiptRow label="SGST (9%)" value={`₹${sgst}`} />
+                <ReceiptRow label="Transport" value={`₹${transport}`} />
+              </div>
+
+              <div className="my-4 border-t border-dashed border-[#E0E0E0]" />
+
+              <div className="space-y-2">
+                <div className="flex gap-2">
+                  <input
+                    value={coupon}
+                    onChange={(e) => setCoupon(e.target.value)}
+                    placeholder="Coupon code"
+                    className="field-input flex-1 !py-2 text-sm uppercase tracking-wide"
+                  />
+                  <button
+                    onClick={applyCoupon}
+                    className="px-4 rounded-lg bg-[#1A1A1A] text-white text-sm font-medium hover:bg-[#B30000] transition-colors"
+                  >
+                    Apply
+                  </button>
+                </div>
+                {msg && (
+                  <p className={`text-xs ${msg.startsWith("Invalid") ? "text-[#B30000]" : "text-[#1A1A1A]"}`}>
+                    {msg}
+                  </p>
+                )}
+              </div>
+
+              <div className="my-4 border-t border-dashed border-[#E0E0E0]" />
+
+              <div className="space-y-2.5 text-sm font-mono">
+                <ReceiptRow label="Discount" value={`− ₹${discount}`} valueClass="text-[#B30000]" />
+              </div>
+
+              <div className="mt-4 pt-4 border-t-2 border-[#1A1A1A] flex items-baseline justify-between">
+                <span className="text-sm font-medium text-[#1A1A1A]">Final Amount</span>
+                <span className="text-3xl font-bold font-mono text-[#1A1A1A]">₹{finalAmount}</span>
+              </div>
+
+              <button
+                disabled={!isFormValid || loading}
+                onClick={handlePaymentFlow}
+                className={`mt-6 w-full py-3.5 rounded-xl text-white text-sm font-medium transition-all flex items-center justify-center gap-2 ${
+                  !isFormValid || loading
+                    ? "bg-[#D4D4D4] cursor-not-allowed"
+                    : "bg-[#1A1A1A] hover:bg-[#B30000] hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0"
+                }`}
+              >
+                {loading ? (
+                  "Processing…"
+                ) : (
+                  <>
+                    <LockIcon />
+                    Pay &amp; Place Order
+                  </>
+                )}
+              </button>
+              {!isFormValid && (
+                <p className="mt-2 text-xs text-center text-[#8A8A8A]">
+                  Complete delivery information above to continue
+                </p>
+              )}
+              <p className="mt-3 flex items-center justify-center gap-1.5 text-[10px] tracking-wide text-[#8A8A8A] uppercase font-mono">
+                <LockIcon size={11} />
+                Secured checkout
+              </p>
+              </div>
             </div>
-            
-            <button disabled={!isFormValid || loading} onClick={handlePaymentFlow} className={`mt-6 w-full py-3 rounded-2xl text-white ${!isFormValid ? "bg-gray-400" : "bg-black"}`}>
-              {loading ? "Processing..." : "Pay & Place Order"}
-            </button>
+
+            {/* TRUST BADGES */}
+            <div className="mt-5 grid grid-cols-3 gap-2">
+              <TrustBadge icon={<ShieldIcon />} label="Secure Payment" />
+              <TrustBadge icon={<TruckIcon />} label="Fast Delivery" />
+              <TrustBadge icon={<BadgeCheckIcon />} label="Verified Orders" />
+            </div>
           </div>
         </div>
-
+      </div>
       </div>
 
       {/* QR PAYMENT MODAL */}
       {showQR && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 px-4 overflow-y-auto">
-          <div className="bg-white rounded-3xl p-6 max-w-sm w-full text-center space-y-4 my-8">
-            <h2 className="text-xl font-bold">Scan & Pay</h2>
-            <p className="text-sm text-gray-600">Order ID: {currentOrderId}</p>
-
-            {/* 👇 Apna QR code image yahan rakho (public folder me daal ke path daal dena) */}
-            <img src="/SCW_QR_Code.png" alt="Payment QR Code" className="w-56 h-56 mx-auto border rounded-xl" />
-
-            <p className="text-2xl font-bold">₹{finalAmount}</p>
-            <p className="text-xs text-gray-500">Upar diye QR ko scan karke payment karein.</p>
-
-            <hr />
-
-            {/* UTR Input - mandatory */}
-            <div className="text-left space-y-1">
-              <label className="text-sm font-semibold text-gray-700">UTR / Transaction ID *</label>
-              <input
-                type="text"
-                value={utr}
-                onChange={(e) => { setUtr(e.target.value); setUtrError(""); }}
-                placeholder="e.g. 123456789012"
-                className="w-full border p-2 rounded-lg text-sm"
-              />
-              <p className="text-xs text-gray-400">Yeh number aapke UPI app ke payment success screen ya history me milega</p>
-              {utrError && <p className="text-xs text-red-500">{utrError}</p>}
-            </div>
-
-            {/* Screenshot upload - optional */}
-            <div className="text-left space-y-1">
-              <label className="text-sm font-semibold text-gray-700">Payment Screenshot (optional)</label>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleScreenshotUpload}
-                className="w-full text-sm"
-              />
-              {screenshotName && <p className="text-xs text-green-600">✓ {screenshotName} attached</p>}
-            </div>
-
-            <button
-              onClick={handleConfirmPayment}
-              disabled={confirming}
-              className="w-full bg-black text-white py-3 rounded-2xl"
-            >
-              {confirming ? "Submitting..." : "Submit Payment Details"}
-            </button>
+        <div className="fixed inset-0 bg-[#1A1A1A]/70 flex items-center justify-center z-50 px-4 overflow-y-auto py-8">
+          <div className="bg-white rounded-2xl max-w-sm w-full text-center my-auto relative border border-[#E5E5E5] shadow-xl">
 
             <button
               onClick={() => setShowQR(false)}
-              className="w-full text-sm text-gray-500 underline"
+              className="absolute right-4 top-4 h-8 w-8 rounded-full flex items-center justify-center text-[#8A8A8A] hover:bg-[#F5F5F5] hover:text-[#B30000] transition-colors"
+              aria-label="Close"
             >
-              Cancel
+              ✕
             </button>
+
+            <div className="px-6 pt-7 pb-5 border-b border-dashed border-[#E0E0E0]">
+              <p className="font-mono text-[10px] tracking-widest text-[#8A8A8A] uppercase mb-1">Scan &amp; Pay</p>
+              <p className="font-mono text-sm text-[#1A1A1A]">{currentOrderId}</p>
+            </div>
+
+            <div className="px-6 py-6 space-y-4">
+              <img
+                src="/SCW_QR_Code.png"
+                alt="Payment QR Code"
+                className="w-52 h-52 mx-auto border border-[#E5E5E5] rounded-xl p-2"
+              />
+
+              <div>
+                <p className="text-3xl font-semibold font-mono text-[#1A1A1A]">₹{finalAmount}</p>
+                <p className="text-xs text-[#8A8A8A] mt-1">Scan the QR above with any UPI app to pay</p>
+              </div>
+
+              <div className="border-t border-dashed border-[#E0E0E0] pt-4 text-left space-y-4">
+                <Field label="UTR / Transaction ID" required>
+                  <input
+                    type="text"
+                    value={utr}
+                    onChange={(e) => { setUtr(e.target.value); setUtrError(""); }}
+                    placeholder="e.g. 123456789012"
+                    className="field-input"
+                  />
+                  <p className="text-[11px] text-[#8A8A8A] mt-1">
+                    Found on your UPI app's payment success screen or history
+                  </p>
+                  {utrError && <p className="text-xs text-[#B30000] mt-1">{utrError}</p>}
+                </Field>
+
+                <Field label="Payment Screenshot (optional)">
+                  <label className="flex items-center justify-center gap-2 border border-dashed border-[#DDDDDD] rounded-lg py-3 text-sm text-[#8A8A8A] cursor-pointer hover:border-[#1A1A1A] hover:text-[#1A1A1A] transition-colors">
+                    <UploadIcon />
+                    {screenshotName ? "Change file" : "Choose file"}
+                    <input type="file" accept="image/*" onChange={handleScreenshotUpload} className="hidden" />
+                  </label>
+                  {screenshotName && (
+                    <p className="text-xs text-[#1A1A1A] mt-1.5">✓ {screenshotName} attached</p>
+                  )}
+                </Field>
+              </div>
+
+              <button
+                onClick={handleConfirmPayment}
+                disabled={confirming}
+                className="w-full bg-[#1A1A1A] text-white py-3.5 rounded-xl text-sm font-medium hover:bg-[#B30000] transition-colors disabled:opacity-60"
+              >
+                {confirming ? "Submitting…" : "Submit Payment Details"}
+              </button>
+
+              <button
+                onClick={() => setShowQR(false)}
+                className="w-full text-sm text-[#8A8A8A] hover:text-[#1A1A1A] transition-colors"
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
       )}
+
+      <style jsx global>{`
+        .field-input {
+          width: 100%;
+          border: 1px solid #dddddd;
+          border-radius: 0.5rem;
+          padding: 0.6rem 0.75rem;
+          font-size: 0.875rem;
+          color: #1a1a1a;
+          background: #fff;
+          transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+        .field-input::placeholder {
+          color: #b0b0b0;
+        }
+        .field-input:focus {
+          outline: none;
+          border-color: #1a1a1a;
+          box-shadow: 0 0 0 3px rgba(179, 0, 0, 0.08);
+        }
+      `}</style>
     </div>
+  );
+}
+
+// ---------- small helpers ----------
+
+function Field({
+  label,
+  required,
+  children,
+}: {
+  label: string;
+  required?: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <label className="block">
+      <span className="block text-xs font-medium text-[#6B6B6B] mb-1.5">
+        {label}
+        {required && <span className="text-[#B30000]"> *</span>}
+      </span>
+      {children}
+    </label>
+  );
+}
+
+function ReceiptRow({
+  label,
+  value,
+  valueClass = "text-[#1A1A1A]",
+}: {
+  label: string;
+  value: string;
+  valueClass?: string;
+}) {
+  return (
+    <div className="flex justify-between items-baseline">
+      <span className="text-[#8A8A8A]">{label}</span>
+      <span className={valueClass}>{value}</span>
+    </div>
+  );
+}
+
+function LockIcon({ size = 14 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <rect x="4" y="10" width="16" height="10" rx="2" />
+      <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+    </svg>
+  );
+}
+
+function UploadIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <path d="M12 16V4M12 4l-4 4M12 4l4 4" />
+      <path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" />
+    </svg>
+  );
+}
+
+function StepBadge({ n }: { n: number }) {
+  return (
+    <span className="flex items-center justify-center h-7 w-7 rounded-full bg-[#1A1A1A] text-white text-xs font-mono font-semibold shrink-0">
+      {n}
+    </span>
+  );
+}
+
+function ProgressStep({
+  label,
+  active,
+  complete,
+}: {
+  label: string;
+  active?: boolean;
+  complete?: boolean;
+}) {
+  return (
+    <div className="flex items-center gap-2">
+      <span
+        className={`h-2.5 w-2.5 rounded-full transition-colors ${
+          complete ? "bg-[#B30000]" : active ? "bg-[#1A1A1A]" : "bg-[#DDDDDD]"
+        }`}
+      />
+      <span
+        className={`text-xs font-mono uppercase tracking-wide ${
+          active || complete ? "text-[#1A1A1A]" : "text-[#B0B0B0]"
+        }`}
+      >
+        {label}
+      </span>
+    </div>
+  );
+}
+
+
+
+function ProgressLine() {
+  return <span className="flex-1 h-px bg-[#E0E0E0] max-w-[40px]" />;
+}
+
+function TrustBadge({ icon, label }: { icon: React.ReactNode; label: string }) {
+  return (
+    <div className="flex flex-col items-center gap-1.5 text-center bg-white border border-[#E5E5E5] rounded-xl py-3 px-2 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
+      <span className="text-[#B30000]">{icon}</span>
+      <span className="text-[10px] font-mono uppercase tracking-wide text-[#6B6B6B] leading-tight">{label}</span>
+    </div>
+  );
+}
+
+function ShieldIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z" />
+      <path d="M9 12l2 2 4-4" />
+    </svg>
+  );
+}
+
+function TruckIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <path d="M3 7h11v9H3z" />
+      <path d="M14 10h4l3 3v3h-7z" />
+      <circle cx="7" cy="18" r="1.6" />
+      <circle cx="17.5" cy="18" r="1.6" />
+    </svg>
+  );
+}
+
+function BadgeCheckIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <path d="M12 2l2.4 1.4 2.7-.4 1.2 2.4 2.4 1.2-.4 2.7L21.7 12l-1.4 2.3.4 2.7-2.4 1.2-1.2 2.4-2.7-.4L12 22l-2.4-1.4-2.7.4-1.2-2.4-2.4-1.2.4-2.7L2.3 12l1.4-2.3-.4-2.7 2.4-1.2 1.2-2.4 2.7.4L12 2z" />
+      <path d="M9 12l2 2 4-4" />
+    </svg>
   );
 }

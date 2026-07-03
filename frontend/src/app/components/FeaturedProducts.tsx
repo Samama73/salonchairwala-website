@@ -14,12 +14,14 @@ const products = [
     description:
       "Precision-built styling chair with balanced comfort and long-term structural durability.",
     image: "/products/royaldiamond.png",
+    dispatch: true,
   },
   {
     name: "Golden Mayur",
     description:
       "High-grade salon chair featuring reinforced frame and premium finish for luxury setups.",
     image: "/products/mayur.png",
+    dispatch: true,
   },
   {
     name: "SLIXA BUBBLY",
@@ -32,6 +34,7 @@ const products = [
     description:
       "Multi-layer cushioned seating system designed for enhanced client comfort and support.",
     image: "/products/luxurylayer.png",
+    dispatch: true,
   },
   {
     name: "FULL DUCK",
@@ -50,6 +53,7 @@ const products = [
     description:
       "Minimalist salon chair with refined finishing and modern ergonomic design structure.",
     image: "/products/luxa.png",
+    dispatch: true,
   },
   {
     name: "EDEN",
@@ -75,6 +79,34 @@ const products = [
       "Top-tier salon chair offering maximum durability, comfort, and premium professional finish.",
     image: "/products/goldend.png",
   },
+  {
+    name: "BLACK TROLLEY",
+    description:
+      "Durable multi-tier salon trolley designed for effortless mobility and smart storage, ensuring smooth workflow and maximum efficiency in professional salon setups.",
+    image: "/products/kostech.png",
+    dispatch: true,
+  },
+  {
+    name: "WHITE TROLLEY",
+    description:
+      "Stylish multi-tier salon trolley offering smooth mobility and optimized storage, built to enhance efficiency and workflow in professional salon spaces.",
+    image: "/products/white.png",
+    dispatch: true,
+  },
+  {
+    name: "FACIAL STEAMER",
+    description:
+      "High-performance facial steamer designed for deep pore purification, skin hydration, and rejuvenation, ideal for professional salon and spa treatments.",
+    image: "/products/steamr.png",
+    dispatch: true,
+  },
+  {
+  name: "HAIR STEAMER",
+    description:
+      "High-performance hair steamer designed for deep conditioning, enhanced moisture retention, and professional hair treatment results in salon use.",
+    image: "/products/hstreamer.png",
+    dispatch: true,
+  }
 ];
 
 export default function FeaturedProducts() {
@@ -106,14 +138,20 @@ export default function FeaturedProducts() {
           {products.map((product) => (
             <div
               key={product.name}
-              className="group relative rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 flex flex-col h-full"
+              className="group relative rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-[0_10px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.15)] transition-all duration-500 hover:-translate-y-3 flex flex-col h-full"
             >
 
               {/* glow overlay */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-red-500/10 via-transparent to-black/10 pointer-events-none" />
 
               {/* IMAGE */}
-              <div className="relative h-80 flex items-center justify-center bg-gray-50 overflow-hidden p-4">
+              <div className="relative h-80 flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden p-4 border-b border-gray-100">
+                  {product.dispatch && (
+                      <div className="absolute top-4 right-4 z-10 flex items-center gap-1 rounded-full bg-gradient-to-r from-green-600 to-green-500 px-3 py-1 text-[10px] font-semibold tracking-wide text-white shadow-lg">
+                         <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+                          READY FOR DISPATCH
+                      </div>
+                    )}
                 <Image
                   src={product.image}
                   alt={product.name}
@@ -131,6 +169,27 @@ export default function FeaturedProducts() {
 
                 <p className="mt-2 text-sm text-gray-500 leading-relaxed">
                   {product.description}
+                  <a
+                      href={`https://wa.me/919403891146?text=${encodeURIComponent(
+                        `Hello Team,
+
+                    I am interested in the following product:
+
+                    Product: ${product.name}
+
+                    Please share:
+                    • Price
+                    • Available Colours
+                    • Delivery Time
+
+                    Thank you.`
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-6 inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-red-600 to-red-500 px-5 py-3 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-red-500/40 active:scale-[0.98]"
+                    >
+                      Get Quote →
+                    </a>
                 </p>
               </div>
 
