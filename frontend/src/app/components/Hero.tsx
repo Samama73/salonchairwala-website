@@ -4,14 +4,14 @@ import { useEffect, useRef, useState } from "react";
 
 export default function Hero() {
   const images = [
-    "/products/1.png",
-    "/products/2.png",
-    "/products/3.png",
-    "/products/4.png",
-    "/products/5.png",
-    "/products/6.png",
-    "/products/7.png",
-    "/products/8.png",
+    "/products/1.webp",
+    "/products/2.webp",
+    "/products/3.webp",
+    "/products/4.webp",
+    "/products/5.webp",
+    "/products/6.webp",
+    "/products/7.webp",
+    "/products/8.webp",
   ];
 
   const n = images.length;
@@ -121,8 +121,9 @@ export default function Hero() {
         />
       </div>
 
-      {/* Top Text Content */}
-      <div className="absolute top-8 md:top-10 z-10 w-full px-6 text-center pointer-events-none">
+    {/* Top Text Content */}
+      {/* top-4 md:top-6 se ye thoda aur upar shift ho jayega aur z-20 se animation ke upar rahega */}
+      <div className="absolute top-4 md:top-6 z-20 w-full px-6 text-center pointer-events-none">
         <p className="uppercase tracking-[0.3em] text-red-400 mb-2 md:mb-4 text-xs md:text-sm font-semibold">
           New Arrivals
         </p>

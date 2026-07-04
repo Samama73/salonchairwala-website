@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { useCart } from "@/context/CartContext";
+import { getRecommendations } from "@/lib/productData";
 
 export default function CartPage() {
-  const { cart, removeFromCart, clearCart, updateQuantity } = useCart();
+  const { cart, removeFromCart, clearCart, updateQuantity, addToCart } = useCart();
   const [mounted, setMounted] = useState(false);
   const [coupon, setCoupon] = useState("");
   const [discount, setDiscount] = useState(0);
@@ -37,6 +38,9 @@ export default function CartPage() {
   const transport = baseAmount > 0 ? 1000 : 0;
   const finalAmount = baseAmount + cgst + sgst + transport - discount;
   const itemCount = cart.reduce((sum: number, item: any) => sum + (item.quantity || 1), 0);
+
+  // 🆕 Cart items ke hisaab se recommended add-on products
+  const recommendations = getRecommendations(cart.map((item: any) => item.name));
 
   const isFormValid = customer.name && customer.email && customer.phone.length >= 10 && customer.address;
 
@@ -357,6 +361,32 @@ export default function CartPage() {
                 ))}
               </div>
             </div>
+
+            {/* 🆕 Customers who bought this also bought */}
+            {recommendations.length > 0 && (
+              <div className="bg-white rounded-2xl border border-[#E5E5E5] shadow-sm p-6 hover:shadow-md transition-shadow duration-200">
+                <h3 className="font-semibold text-[#1A1A1A] mb-4">Customers who bought this also bought</h3>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {recommendations.map((rec) => (
+                    <div
+                      key={rec.name}
+                      className="flex items-center justify-between gap-3 border border-[#F0F0F0] rounded-xl p-3 hover:border-[#DDDDDD] transition-colors"
+                    >
+                      <div className="min-w-0">
+                        <p className="font-medium text-sm text-[#1A1A1A] truncate">{rec.name}</p>
+                        <p className="font-mono text-sm text-[#8A8A8A] mt-0.5">₹{rec.price.toLocaleString("en-IN")}</p>
+                      </div>
+                      <button
+                        onClick={() => addToCart({ name: rec.name, price: rec.price })}
+                        className="text-xs font-medium bg-[#1A1A1A] text-white px-3 py-2 rounded-lg hover:bg-[#B30000] transition-colors whitespace-nowrap shrink-0"
+                      >
+                        + Add
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* RIGHT SIDE — Order Summary (receipt style) */}

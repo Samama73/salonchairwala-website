@@ -23,7 +23,7 @@ export default function Home() {
     {/* 📸 FULL WIDTH BANNER */}
       <section className="w-full">
         <Image 
-          src="/products/fullsetup.png" 
+          src="/products/fullsetup.webp" 
           alt="Premium Salon Furniture Collection" 
           width={1920} 
           height={800} 

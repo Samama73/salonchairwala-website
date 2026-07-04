@@ -1,200 +1,109 @@
 "use client";
 
 import Image from "next/image";
-
-const products = [
-  {
-    name: "Bubbly Salon Chair",
-    description:
-      "Hydraulic salon chair engineered for daily professional use with ergonomic seating support.",
-    image: "/products/bubbly.png",
-  },
-  {
-    name: "Royal Diamond",
-    description:
-      "Precision-built styling chair with balanced comfort and long-term structural durability.",
-    image: "/products/royaldiamond.png",
-    dispatch: true,
-  },
-  {
-    name: "Golden Mayur",
-    description:
-      "High-grade salon chair featuring reinforced frame and premium finish for luxury setups.",
-    image: "/products/mayur.png",
-    dispatch: true,
-  },
-  {
-    name: "SLIXA BUBBLY",
-    description:
-      "Comfort-focused salon chair designed for extended usage with stable hydraulic mechanism.",
-    image: "/products/slixabubbly.png",
-  },
-  {
-    name: "LUXURY LAYER",
-    description:
-      "Multi-layer cushioned seating system designed for enhanced client comfort and support.",
-    image: "/products/luxurylayer.png",
-    dispatch: true,
-  },
-  {
-    name: "FULL DUCK",
-    description:
-      "Robust salon chair built with industrial-grade materials for consistent professional performance.",
-    image: "/products/fullduck.png",
-  },
-  {
-    name: "BEAST ROBUST",
-    description:
-      "Heavy-duty salon chair engineered for high-usage environments with maximum stability.",
-    image: "/products/beast.png",
-  },
-  {
-    name: "LUXA",
-    description:
-      "Minimalist salon chair with refined finishing and modern ergonomic design structure.",
-    image: "/products/luxa.png",
-    dispatch: true,
-  },
-  {
-    name: "EDEN",
-    description:
-      "Ultra-premium salon chair with advanced hydraulic system and luxury-grade cushioning.",
-    image: "/products/eden.png",
-  },
-  {
-    name: "SOFA",
-    description:
-      "Designed for modern salons with sleek design and enhanced client comfort support.",
-    image: "/products/sofa.png",
-  },
-  {
-    name: "DIVA D",
-    description:
-      "Compact yet powerful salon chair ideal for urban salon setups with space optimization.",
-    image: "/products/divad.png",
-  },
-  {
-    name: "GOLDEN D",
-    description:
-      "Top-tier salon chair offering maximum durability, comfort, and premium professional finish.",
-    image: "/products/goldend.png",
-  },
-  {
-    name: "BLACK TROLLEY",
-    description:
-      "Durable multi-tier salon trolley designed for effortless mobility and smart storage, ensuring smooth workflow and maximum efficiency in professional salon setups.",
-    image: "/products/kostech.png",
-    dispatch: true,
-  },
-  {
-    name: "WHITE TROLLEY",
-    description:
-      "Stylish multi-tier salon trolley offering smooth mobility and optimized storage, built to enhance efficiency and workflow in professional salon spaces.",
-    image: "/products/white.png",
-    dispatch: true,
-  },
-  {
-    name: "FACIAL STEAMER",
-    description:
-      "High-performance facial steamer designed for deep pore purification, skin hydration, and rejuvenation, ideal for professional salon and spa treatments.",
-    image: "/products/steamr.png",
-    dispatch: true,
-  },
-  {
-  name: "HAIR STEAMER",
-    description:
-      "High-performance hair steamer designed for deep conditioning, enhanced moisture retention, and professional hair treatment results in salon use.",
-    image: "/products/hstreamer.png",
-    dispatch: true,
-  }
-];
+import { useCart } from "@/context/CartContext";
+import { allProducts } from "@/lib/productData";
 
 export default function FeaturedProducts() {
+  const { cart, addToCart, removeFromCart } = useCart();
+
   return (
     <section
       id="products"
       className="py-28 bg-gradient-to-b from-white via-gray-50 to-white"
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
         {/* HEADER */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-16">
           <p className="text-red-600 font-semibold uppercase tracking-[0.35em] text-xs">
             Featured Collection
           </p>
 
-          <h2 className="text-4xl md:text-5xl font-bold mt-4 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mt-3 sm:mt-4 tracking-tight">
             Crafted for Professionals
           </h2>
 
-          <p className="text-gray-500 mt-5 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-gray-500 mt-4 sm:mt-5 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
             Explore our premium salon chairs designed for ergonomic comfort, durability, and long-term professional usage.
           </p>
         </div>
 
         {/* GRID */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-9">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-9">
 
-          {products.map((product) => (
-            <div
-              key={product.name}
-              className="group relative rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-[0_10px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.15)] transition-all duration-500 hover:-translate-y-3 flex flex-col h-full"
-            >
+          {allProducts.map((product) => {
+            const cartItem = cart.find((item: any) => item.name === product.name);
 
-              {/* glow overlay */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-red-500/10 via-transparent to-black/10 pointer-events-none" />
+            return (
+              <div
+                key={product.name}
+                className="group relative rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-[0_10px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.15)] transition-all duration-500 hover:-translate-y-2 sm:hover:-translate-y-3 flex flex-col h-full"
+              >
+                {/* glow overlay */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-red-500/10 via-transparent to-black/10 pointer-events-none" />
 
-              {/* IMAGE */}
-              <div className="relative h-80 flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden p-4 border-b border-gray-100">
+                {/* IMAGE CONTAINER */}
+                <div className="relative h-40 sm:h-64 lg:h-80 flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden p-3 sm:p-4 border-b border-gray-100">
                   {product.dispatch && (
-                      <div className="absolute top-4 right-4 z-10 flex items-center gap-1 rounded-full bg-gradient-to-r from-green-600 to-green-500 px-3 py-1 text-[10px] font-semibold tracking-wide text-white shadow-lg">
-                         <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
-                          READY FOR DISPATCH
-                      </div>
-                    )}
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  width={420}
-                  height={420}
-                  className="object-contain max-h-full w-auto mx-auto transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
+                    <div className="absolute top-2 right-2 sm:top-4 sm:right-4 z-10 flex items-center gap-1 rounded-full bg-gradient-to-r from-green-600 to-green-500 px-2 py-1 sm:px-3 sm:py-1 text-[8px] sm:text-[10px] font-semibold tracking-wide text-white shadow-lg">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+                      <span className="hidden sm:inline">READY FOR DISPATCH</span>
+                      <span className="inline sm:hidden">DISPATCH</span>
+                    </div>
+                  )}
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    width={420}
+                    height={420}
+                    className="object-scale-down h-full w-full transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
 
-              {/* CONTENT */}
-              <div className="p-6">
-                <h3 className="font-semibold text-lg text-gray-900 group-hover:text-red-600 transition">
-                  {product.name}
-                </h3>
+                {/* CONTENT */}
+                <div className="p-3 sm:p-6 flex flex-col flex-1">
+                  <h3 className="font-semibold text-sm sm:text-lg text-gray-900 group-hover:text-red-600 transition truncate sm:whitespace-normal">
+                    {product.name}
+                  </h3>
 
-                <p className="mt-2 text-sm text-gray-500 leading-relaxed">
-                  {product.description}
-                  <a
-                      href={`https://wa.me/919403891146?text=${encodeURIComponent(
-                        `Hello Team,
+                  <p className="mt-1 sm:mt-2 text-[11px] sm:text-sm text-gray-500 leading-relaxed flex-1 line-clamp-2 sm:line-clamp-none">
+                    {product.description}
+                  </p>
 
-                    I am interested in the following product:
+                  <p className="mt-2 sm:mt-3 text-base sm:text-xl font-extrabold text-gray-900">
+                    ₹{product.price.toLocaleString("en-IN")}
+                  </p>
 
-                    Product: ${product.name}
-
-                    Please share:
-                    • Price
-                    • Available Colours
-                    • Delivery Time
-
-                    Thank you.`
-                      )}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-6 inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-red-600 to-red-500 px-5 py-3 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-red-500/40 active:scale-[0.98]"
+                  {cartItem ? (
+                    <div className="mt-3 sm:mt-4 flex items-center justify-center gap-3 bg-gray-50 p-1.5 rounded-lg sm:rounded-xl border border-gray-200">
+                      <button
+                        onClick={() => removeFromCart(product.name)}
+                        className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center bg-white rounded-md shadow-sm hover:bg-gray-100 transition active:scale-95 text-gray-700"
+                      >
+                        −
+                      </button>
+                      <span className="font-bold text-sm w-5 text-center">{cartItem.quantity}</span>
+                      <button
+                        onClick={() => addToCart({ name: product.name, price: product.price })}
+                        className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center bg-white rounded-md shadow-sm hover:bg-gray-100 transition active:scale-95 text-gray-700"
+                      >
+                        +
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() => addToCart({ name: product.name, price: product.price })}
+                      className="mt-3 sm:mt-6 inline-flex w-full items-center justify-center rounded-lg sm:rounded-xl bg-gradient-to-r from-red-600 to-red-500 px-3 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-red-500/40 active:scale-[0.98]"
                     >
-                      Get Quote →
-                    </a>
-                </p>
-              </div>
+                      Add to Cart
+                    </button>
+                  )}
+                </div>
 
-            </div>
-          ))}
+              </div>
+            );
+          })}
 
         </div>
 

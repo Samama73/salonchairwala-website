@@ -13,8 +13,8 @@ const colorSetups = [
     price: 72000,
     description: "A complete premium salon setup designed to deliver exceptional comfort, elegant aesthetics, and long-lasting performance for modern professional salons.",
     colors: [
-      { name: "Persian Green", images: ["/products/setup1.2.png", "/products/setup1.1.png", "/products/setup1.png"] },
-      { name: "Dark Green", images: ["/products/setup2.png", "/products/setup2.1.png", "/products/setup2.2.png"] },
+      { name: "Persian Green", images: ["/products/setup1.2.webp", "/products/setup1.1.webp", "/products/setup1.webp"] },
+      { name: "Dark Green", images: ["/products/setup2.webp", "/products/setup2.1.webp", "/products/setup2.2.webp"] },
     ],
   },
   {
@@ -23,8 +23,8 @@ const colorSetups = [
     price: 5200,
     description: "Premium tempered glass trolley designed to keep your salon essentials organized while adding a clean, modern, and professional touch to your workspace.",
     colors: [
-      { name: "Black", images: ["/products/btrolley.png"] },
-      { name: "White", images: ["/products/wtrolley.png"] },
+      { name: "Black", images: ["/products/btrolley.webp"] },
+      { name: "White", images: ["/products/wtrolley.webp"] },
     ],
   },
 ];
@@ -36,28 +36,28 @@ const singleProducts = [
     originalPrice: 18500,
     price: 15000,
     description: "Luxury styling chair crafted with premium upholstery, superior comfort, and a durable hydraulic base for a refined salon experience.",
-    image: "/products/rdiamond.png",
+    image: "/products/rdiamond.webp",
   },
   {
     name: "Golden Mayur",
     originalPrice: 26000,
     price: 22000,
     description: "An elegant premium salon chair featuring luxurious craftsmanship, exceptional comfort, and a sophisticated finish that enhances every salon interior.",
-    image: "/products/gmayur.png",
+    image: "/products/gmayur.webp",
   },
   {
     name: "Facial Steamer",
     originalPrice: 4500,
     price: 3600,
     description: "Professional facial steamer engineered to deliver deep hydration, effective cleansing, and salon-quality skincare treatments with consistent performance.",
-    image: "/products/steamer.png",
+    image: "/products/steamer.webp",
   },
   {
     name: "Hair Dryer Hood",
     originalPrice: 5800,
     price: 4500,
     description: "Professional hood dryer designed for fast, even, and comfortable drying, making every styling session more efficient and convenient.",
-    image: "/products/hairdryer.png",
+    image: "/products/hairdryer.webp",
   },
 ];
 
