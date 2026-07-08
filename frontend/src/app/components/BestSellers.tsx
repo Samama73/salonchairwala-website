@@ -11,7 +11,7 @@ const products = [
   },
   {
     name: "Golden Nest",
-    image: "/products/seller2.webp",
+    image: "/products/goldennest.webp",
     description:
       "A perfect blend of sophistication and durability. Golden Nest offers exceptional comfort, premium finishing, and a modern aesthetic that enhances the overall salon experience.",
   },
@@ -22,20 +22,20 @@ const products = [
       "Inspired by timeless luxury, Golden Mayur combines elegant styling with ergonomic comfort. Designed to elevate both client satisfaction and salon interiors.",
   },
   {
-    name: "Beauty",
-    image: "/products/seller4.webp",
+    name: "Royal Diamond",
+    image: "/products/royaldiamond.webp",
     description:
-      "Crafted for modern salons, Beauty delivers a sleek appearance, superior comfort, and reliable performance, making it an ideal choice for everyday professional use.",
+      "Crafted for modern salons, Royal Diamond delivers a sleek appearance, superior comfort, and reliable performance, making it an ideal choice for everyday professional use.",
   },
   {
-    name: "Diamond Duck",
-    image: "/products/seller5.webp",
+    name: "Luxury Layer",
+    image: "/products/luxurylayer.webp",
     description:
-      "Built with precision and premium materials, Diamond Duck offers a refined look, exceptional durability, and a comfortable seating experience for clients and professionals alike.",
+      "Built with precision and premium materials, Luxury Layer offers a refined look, exceptional durability, and a comfortable seating experience for clients and professionals alike.",
   },
   {
-    name: "Bridal Salon Chair",
-    image: "/products/seller3.webp",
+    name: "Golden D",
+    image: "/products/goldend.webp",
     description:
       "Specially designed for bridal and premium beauty services, this chair combines luxurious comfort with an elegant presence, creating a truly premium experience for every client.",
   },
@@ -55,19 +55,19 @@ export default function BestSellers() {
           </h2>
         </div>
 
-        {/* Mobile Layout (FIXED: 2-Column Grid to reduce scroll) */}
+        {/* Mobile Layout (FIXED: Symmetric grid to remove trailing empty space) */}
         <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:hidden">
           {products.map((product, index) => (
             <div
               key={product.name}
               onClick={() => setSelectedProduct(product)}
               className={`bg-white rounded-2xl shadow-sm hover:shadow-md transition duration-300 p-3 sm:p-4 cursor-pointer flex flex-col ${
-                index === 0 ? "col-span-2" : "col-span-1"
+                index === 0 || index === 5 ? "col-span-2" : "col-span-1"
               }`}
             >
               <div 
                 className={`${
-                  index === 0 ? "h-64 sm:h-72" : "h-40 sm:h-48"
+                  index === 0 || index === 5 ? "h-64 sm:h-72" : "h-40 sm:h-48"
                 } w-full rounded-xl overflow-hidden flex items-center justify-center bg-gray-50/50`}
               >
                 {product.video ? (
@@ -90,7 +90,7 @@ export default function BestSellers() {
 
               <h3 
                 className={`mt-3 text-center font-semibold ${
-                  index === 0 ? "text-lg" : "text-sm sm:text-base leading-tight"
+                  index === 0 || index === 5 ? "text-lg" : "text-sm sm:text-base leading-tight"
                 }`}
               >
                 {product.name}

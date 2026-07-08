@@ -7,12 +7,12 @@ export type Product = {
 };
 
 export const allProducts: Product[] = [
-  { name: "Bubbly Salon Chair", price: 18000, description: "Hydraulic salon chair engineered for daily professional use with ergonomic seating support.", image: "/products/bubbly.webp" },
-  { name: "Royal Diamond", price: 15000, description: "Precision-built styling chair with balanced comfort and long-term structural durability.", image: "/products/royaldiamond.webp", dispatch: true },
-  { name: "Golden Mayur", price: 22000, description: "High-grade salon chair featuring reinforced frame and premium finish for luxury setups.", image: "/products/mayur.webp", dispatch: true },
-  { name: "SLIXA BUBBLY", price: 27000, description: "Comfort-focused salon chair designed for extended usage with stable hydraulic mechanism.", image: "/products/slixabubbly.webp" },
+  { name: "BUBBLY", price: 18000, description: "Hydraulic salon chair engineered for daily professional use with ergonomic seating support.", image: "/products/bubbly.webp" },
+  { name: "ROYAL DIAMOND", price: 15000, description: "Precision-built styling chair with balanced comfort and long-term structural durability.", image: "/products/royaldiamond.webp", dispatch: true },
+{ name: "GOLDEN MAYUR", price: 22000, description: "High-grade salon chair featuring reinforced frame and premium finish for luxury setups.", image: "/products/mayur.webp", dispatch: true },
+  { name: "QUEEN", price: 18000, description: "Comfort-focused salon chair designed for extended usage with stable hydraulic mechanism.", image: "/products/queen.webp" },
   { name: "LUXURY LAYER", price: 23000, description: "Multi-layer cushioned seating system designed for enhanced client comfort and support.", image: "/products/luxurylayer.webp", dispatch: true },
-  { name: "FULL DUCK", price: 18000, description: "Robust salon chair built with industrial-grade materials for consistent professional performance.", image: "/products/fullduck.webp" },
+  { name: "MAHARAJA", price: 28000, description: "Robust salon chair built with industrial-grade materials for consistent professional performance.", image: "/products/maharaja.webp" },
   { name: "BEAST ROBUST", price: 65000, description: "Heavy-duty salon chair engineered for high-usage environments with maximum stability.", image: "/products/beast.webp" },
   { name: "LUXA", price: 18000, description: "Minimalist salon chair with refined finishing and modern ergonomic design structure.", image: "/products/luxa.webp", dispatch: true },
   { name: "EDEN", price: 28000, description: "Ultra-premium salon chair with advanced hydraulic system and luxury-grade cushioning.", image: "/products/eden.webp" },
