@@ -15,7 +15,7 @@ export default function Navbar() {
         {/* Logo + Brand */}
         <Link href="/" className="flex items-center gap-2 group">
           <img
-            src="/products/logo.png"
+            src="/products/logo.webp"
             alt="Salon Chair Wala Logo"
             className="h-16 md:h-14 w-auto transition-transform duration-300 group-hover:scale-105"
           />
