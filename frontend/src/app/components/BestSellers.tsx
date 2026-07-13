@@ -5,7 +5,7 @@ import { useState } from "react";
 const products = [
   {
     name: "Ultimate Maharaja",
-    video: "/products/mahraja.mp4",
+    video: "/products/maharaja.mp4",
     description:
       "Experience unmatched luxury with a chair designed to make a statement. Featuring premium upholstery, superior comfort, and a regal design, the Ultimate Maharaja is perfect for high-end salons seeking elegance and prestige.",
   },
