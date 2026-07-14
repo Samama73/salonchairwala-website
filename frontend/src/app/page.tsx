@@ -22,15 +22,15 @@ export default function Home() {
       <Hero />
       <Categories />
 
-      {/* 🚀 READY TO ORDER CTA BLOCK - Boss ki requirement ke hisaab se */}
-      <section className="w-full px-4 py-6 md:py-8 flex justify-center items-center bg-white">
-        <Link 
-          href="/readytomove" 
-          className="w-full max-w-2xl bg-black text-white py-3 md:py-4 rounded-xl text-center font-bold text-lg md:text-xl shadow-lg hover:bg-gray-800 transition-all duration-300"
-        >
-          Ready to Order? Click Here
-        </Link>
-      </section>
+    {/* 🚀 READY TO ORDER CTA BLOCK - Rich Leaf Green */}
+        <section className="flex justify-center bg-white px-4 py-6 md:py-8">
+          <Link 
+            href="/readytomove" 
+            className="w-full max-w-2xl bg-[#1E7A46] text-white py-3 md:py-4 rounded-xl text-center font-bold text-lg md:text-xl shadow-lg transition-all duration-300 hover:bg-[#155C33] hover:scale-105 active:scale-95"
+          >
+            Ready to Order? Click Here
+          </Link>
+        </section>
 
       {/* 📸 FULL WIDTH BANNER */}
       <section className="w-full">
