@@ -82,7 +82,7 @@ export type ComboSetup = {
 export const comboSetups: ComboSetup[] = [
   {
     name: "Styling + Backwash Combo",
-    items: ["ROYAL DIAMOND", "DIAMOND DUCK (Shampoo)"],
+    items: ["ROYAL DIAMOND", "DIAMOND DUCK"],
     bundlePrice: 38000,
     description: "Our best-selling styling chair paired with a modern backwash unit, creating a complete two-station salon solution designed for comfort, functionality, and a premium client experience.",
     image: "/products/stylingbackwash.webp",
@@ -96,7 +96,7 @@ export const comboSetups: ComboSetup[] = [
   },
   {
     name: "Everyday Salon Combo",
-    items: ["BUBBLY", "FULL DUCK WHITE (Shampoo)"],
+    items: ["BUBBLY", "FULL DUCK WHITE"],
     bundlePrice: 32000,
     description: "A versatile styling chair paired with an ergonomic zero-gravity backwash lounger, designed to deliver exceptional comfort and reliable performance every day.",
     image: "/products/everydaycombo.webp",
@@ -110,14 +110,14 @@ export const comboSetups: ComboSetup[] = [
   },
   {
     name: "Accent Golden Waiting Duo",
-    items: ["GOLDEN MAYUR (Shampoo)", "GOLDEN NEST"],
+    items: ["GOLDEN MAYUR", "GOLDEN NEST"],
     bundlePrice: 42000,
     description: "A pair of elegantly crafted accent chairs, perfect for creating a welcoming waiting area or a refined manicure lounge.",
     image: "/products/goldencombo.webp",
   },
   {
     name: "Compact Studio Combo",
-    items: ["DIVA D", "EDEN (Shampoo)"],
+    items: ["DIVA D", "EDEN"],
     bundlePrice: 36000,
     description: "Designed for compact salon interiors, this elegant combination of a styling chair and wave-pattern backwash unit delivers exceptional functionality with a refined aesthetic.",
     image: "/products/compact.webp",
