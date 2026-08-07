@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useCart } from "@/context/CartContext";
+import ShareButton from "./ShareButton";
 
 type Props = {
   name: string;
@@ -102,6 +103,9 @@ export default function ProductCard({
           </div>
         )}
 
+        <div className="flex justify-end">
+          <ShareButton title={name} text={`Check out ${name} at Salon Chair Wala`} />
+        </div>
         <div className="mt-auto pt-4 flex items-end justify-between">
           <div>
             <p className="text-sm text-gray-400 font-medium mb-1">Price</p>

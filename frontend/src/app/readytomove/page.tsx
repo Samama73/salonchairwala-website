@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { allProducts, comboSetups, getComboOriginalPrice } from "@/lib/productData";
+import ShareButton from "../components/ShareButton";
 
 // 🟢 Color-Switcher wale Complete Setups
 const colorSetups = [
@@ -223,6 +224,10 @@ export default function ReadyToMovePage() {
                     </div>
                   </div>
 
+                  <div className="flex justify-end">
+                    <ShareButton title={setup.name} text={`Check out ${setup.name} at Salon Chair Wala`} />
+                  </div>
+
                   <div className="mt-auto pt-2 sm:pt-4 flex items-end justify-between">
                     <div>
                       <p className="text-[10px] sm:text-sm text-gray-400 font-medium mb-0.5 sm:mb-1">Price</p>
@@ -318,6 +323,10 @@ export default function ReadyToMovePage() {
                         </ul>
                       </div>
 
+                      <div className="flex justify-end">
+                        <ShareButton title={combo.name} text={`Check out ${combo.name} at Salon Chair Wala`} />
+                      </div>
+
                       <div className="mt-auto pt-2 sm:pt-4 flex items-end justify-between">
                         <div>
                           <p className="text-[10px] sm:text-sm text-gray-400 font-medium mb-0.5 sm:mb-1">Combo Price</p>
@@ -402,6 +411,10 @@ export default function ReadyToMovePage() {
                     <div className="p-4 flex flex-col gap-2">
                       <h3 className="text-sm font-bold text-gray-900 leading-snug truncate">{p.name}</h3>
                       <p className="text-lg font-extrabold text-gray-900">₹{p.price.toLocaleString("en-IN")}</p>
+
+                      <div className="flex justify-end -mt-1">
+                        <ShareButton title={p.name} text={`Check out ${p.name} at Salon Chair Wala`} />
+                      </div>
 
                       {cartItem ? (
                         <div className="flex items-center justify-between gap-2 bg-gray-50 p-1 rounded-lg border border-gray-200">

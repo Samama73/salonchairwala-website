@@ -1,5 +1,6 @@
 "use client";
 
+import { sendGAEvent } from "@/lib/gtag";
 import {
   createContext,
   useContext,
@@ -60,10 +61,27 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
       return [...prev, { ...item, quantity: 1 }];
     });
+
+    // 📊 GA4 EVENT
+    sendGAEvent("add_to_cart", {
+      currency: "INR",
+      value: item.price,
+      items: [{ item_name: item.name, price: item.price }],
+    });
   };
 
   const removeFromCart = (name: string) => {
-    setCart((prev) => prev.filter((item) => item.name !== name));
+    setCart((prev) => {
+      const removed = prev.find((p) => p.name === name);
+      if (removed) {
+        sendGAEvent("remove_from_cart", {
+          currency: "INR",
+          value: removed.price,
+          items: [{ item_name: removed.name, price: removed.price }],
+        });
+      }
+      return prev.filter((item) => item.name !== name);
+    });
   };
 
   const clearCart = () => {

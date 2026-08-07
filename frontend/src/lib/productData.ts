@@ -28,7 +28,7 @@ export const allProducts: Product[] = [
   { name: "SLIXA BUBBLY", price: 28000, description: "Premium backwash unit combined with a spa-style reclining lounger and electronically controlled footrest.", image: "/products/slixabubbly.webp", category: "Shampoo Chairs" },
   { name: "MAHARAJA", price: 28000, description: "Vibrant orange backwash station with electronic reclining footrest and diamond-quilted stitching.", image: "/products/maharaja.webp", category: "Shampoo Chairs" },
   { name: "EDEN", price: 28000, description: "Calming beige backwash station with electronic reclining footrest and premium ceramic basin.", image: "/products/eden.webp", category: "Shampoo Chairs" },
-  { name: "GOLDEN MAYUR", price: 28000, description: "Emerald green backwash unit with polished gold details and a deep tilting ceramic basin.", image: "/products/mayur.webp", category: "Shampoo Chairs" },
+  { name: "GOLDEN MAYURR", price: 28000, description: "Emerald green backwash unit with polished gold details and a deep tilting ceramic basin.", image: "/products/mayur.webp", category: "Shampoo Chairs" },
   { name: "ROYAL DELUXE", price: 23000, description: "Jade green backwash unit with polished chrome open-frame armrests and a deep tilting ceramic basin.", image: "/products/royaldeluxe.webp", category: "Shampoo Chairs" },
   { name: "LUXURY LAYER", price: 23000, description: "Sapphire blue backwash unit with diamond-quilted stitching and a premium tilting ceramic basin.", image: "/products/luxurylayer.webp", category: "Shampoo Chairs" },
   { name: "FULL DUCK WHITE", price: 18000, description: "Futuristic one-piece fiberglass backwash lounger in white with mustard cushioning for a zero-gravity feel.", image: "/products/fullduck.webp", category: "Shampoo Chairs" },

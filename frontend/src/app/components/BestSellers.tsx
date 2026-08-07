@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ShareButton from "@/app/components/ShareButton";
 
 const products = [
   {
@@ -37,7 +38,7 @@ const products = [
     name: "Golden D",
     image: "/products/goldend.webp",
     description:
-      "Specially designed for bridal and premium beauty services, this chair combines luxurious comfort with an elegant presence, creating a truly premium experience for every client.",
+      "Specially designed for bridal and beauty services, this chair combines luxurious comfort with an elegant presence, creating a truly premium experience for every client.",
   },
 ];
 
@@ -55,7 +56,7 @@ export default function BestSellers() {
           </h2>
         </div>
 
-        {/* Mobile Layout (FIXED: Symmetric grid to remove trailing empty space) */}
+        {/* Mobile Layout */}
         <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:hidden">
           {products.map((product, index) => (
             <div
@@ -230,6 +231,11 @@ export default function BestSellers() {
             <p className="text-gray-600 text-center leading-relaxed text-sm">
               {selectedProduct.description}
             </p>
+
+            {/* ShareButton added inside the modal */}
+            <div className="mt-5 flex justify-center">
+              <ShareButton title={selectedProduct.name} text={`Check out ${selectedProduct.name} at Salon Chair Wala`} />
+            </div>
           </div>
         </div>
       )}

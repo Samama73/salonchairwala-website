@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { useCart } from "@/context/CartContext";
 import { allProducts } from "@/lib/productData";
+import ShareButton from "@/app/components/ShareButton";
 
 // 👇 BOSS APPROVED: Fixed Accessories List (Direct Image Path Control)
 // Yahan aap apna image path directly edit kar sakte ho
@@ -123,6 +124,11 @@ export default function FeaturedProducts() {
                     ₹{product.price.toLocaleString("en-IN")}
                   </p>
 
+                  {/* Share Button Block */}
+                  <div className="mt-2 flex justify-end">
+                    <ShareButton title={product.name} text={`Check out ${product.name} at Salon Chair Wala`} />
+                  </div>
+
                   {cartItem ? (
                     <div className="mt-3 sm:mt-4 flex items-center justify-center gap-3 bg-gray-50 p-1.5 rounded-lg sm:rounded-xl border border-gray-200">
                       <button
@@ -143,7 +149,7 @@ export default function FeaturedProducts() {
                     <button
                       onClick={() => handleFeaturedAddToCart(product)}
                       className="mt-3 sm:mt-6 inline-flex w-full items-center justify-center rounded-lg sm:rounded-xl bg-gradient-to-r from-red-600 to-red-500 px-3 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-red-500/30 active:scale-[0.98]"
-                    >
+                    > 
                       Add to Cart
                     </button>
                   )}

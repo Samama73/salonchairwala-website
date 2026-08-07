@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useCart } from "@/context/CartContext";
 import { getRecommendations } from "@/lib/productData";
+import { sendGAEvent } from "@/lib/gtag";
 
 export default function CartPage() {
   const { cart, removeFromCart, clearCart, updateQuantity, addToCart } = useCart();
@@ -79,6 +80,12 @@ export default function CartPage() {
         body: JSON.stringify(initialOrderData),
       });
       setCurrentOrderId(orderId);
+      sendGAEvent("begin_checkout", {
+        currency: "INR",
+        value: finalAmount,
+        items: cart.map((item: any) => ({ item_name: item.name, price: item.price, quantity: item.quantity || 1 })),
+      });
+      setShowQR(true);
       setShowQR(true);
     } catch (error) {
       alert("Error saving initial order. Please try again.");
@@ -134,6 +141,16 @@ export default function CartPage() {
         mode: "no-cors",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updateData),
+      });
+      sendGAEvent("purchase", {
+        currency: "INR",
+        value: finalAmount,
+        transaction_id: currentOrderId,
+        items: cart.map((item: any) => ({
+          item_name: item.name,
+          price: item.price,
+          quantity: item.quantity || 1,
+        })),
       });
       alert("Payment details submit ho gayi! Verify hone ke baad order confirm hoga.");
       setShowQR(false);
