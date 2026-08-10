@@ -37,8 +37,8 @@ export default function Footer() {
             </p>
 
             <p className="text-gray-500 italic mt-6 leading-relaxed">
-              "Our focus is to deliver functional, durable, and design-driven furniture solutions
-              that enhance the professional salon experience."
+              &quot;Our focus is to deliver functional, durable, and design-driven furniture solutions
+              that enhance the professional salon experience.&quot;
             </p>
           </div>
 

@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { useState } from "react";
 import Image from "next/image";
@@ -6,6 +7,7 @@ import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { allProducts, comboSetups, getComboOriginalPrice } from "@/lib/productData";
 import ShareButton from "../components/ShareButton";
+import { sendGAEvent } from "@/lib/gtag";
 
 // 🟢 Color-Switcher wale Complete Setups
 const colorSetups = [
@@ -65,9 +67,9 @@ export default function ReadyToMovePage() {
   );
 
   return (
-    <section className="min-h-screen bg-[#fafafa] py-12 font-sans">
+    <section className="min-h-screen bg-amber-50/30 py-12 font-sans">
       {/* 🎟 PERFECT INFINITE COUPON TICKER */}
-      <div className="overflow-hidden bg-black text-white py-2.5 mb-12 shadow-sm">
+      <div className="overflow-hidden bg-red-900 text-white py-2.5 mb-12 shadow-sm">
         <div className="ticker">
           <div className="ticker-track text-xs sm:text-sm">
             <span>🎟 SAVE10 - 10% OFF</span>
@@ -90,7 +92,7 @@ export default function ReadyToMovePage() {
 
       {/* 🛒 FLOATING CART */}
       <Link href="/cart">
-        <div className="fixed bottom-6 right-6 bg-black text-white px-6 py-3.5 rounded-full shadow-2xl hover:scale-105 hover:bg-gray-900 transition-all z-50 font-semibold tracking-wide flex items-center gap-2 border border-gray-800">
+        <div className="fixed bottom-6 right-6 bg-red-900 text-white px-6 py-3.5 rounded-full shadow-2xl hover:scale-105 hover:bg-red-950 transition-all z-50 font-semibold tracking-wide flex items-center gap-2 border border-red-800">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
             <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
           </svg>
@@ -101,7 +103,7 @@ export default function ReadyToMovePage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* HERO */}
         <div className="text-center mb-16">
-          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold tracking-wide bg-gray-900 text-white uppercase ring-1 ring-inset ring-gray-800">
+          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold tracking-wide bg-red-900 text-white uppercase ring-1 ring-inset ring-red-800">
             • Ready To Ship •
           </span>
           <h1 className="text-4xl md:text-5xl font-extrabold mt-6 text-gray-900 tracking-tight">
@@ -129,6 +131,12 @@ export default function ReadyToMovePage() {
             return (
               <div
                 key={setup.name}
+                onClick={() =>
+                  sendGAEvent("select_item", {
+                    item_list_name: "Complete Setups",
+                    items: [{ item_name: itemName }],
+                  })
+                }
                 className="group bg-white border border-gray-200/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
               >
                 <div className="w-full bg-[#f4f5f7] flex flex-col items-center relative">
@@ -264,7 +272,7 @@ export default function ReadyToMovePage() {
                     ) : (
                       <button
                         onClick={() => addToCart({ name: itemName, price: setup.price })}
-                        className="bg-black text-white px-3 py-1.5 text-xs sm:px-8 sm:py-3.5 sm:text-base rounded-lg sm:rounded-xl font-bold hover:bg-gray-800 hover:shadow-lg transition-all duration-200 active:scale-95"
+                        className="bg-red-900 text-white px-3 py-1.5 text-xs sm:px-8 sm:py-3.5 sm:text-base rounded-lg sm:rounded-xl font-bold hover:bg-red-950 hover:shadow-lg transition-all duration-200 active:scale-95"
                       >
                         Add to Cart
                       </button>
@@ -291,6 +299,12 @@ export default function ReadyToMovePage() {
                 return (
                   <div
                     key={combo.name}
+                    onClick={() =>
+                      sendGAEvent("select_item", {
+                        item_list_name: "Combo Setups",
+                        items: [{ item_name: combo.name }],
+                      })
+                    }
                     className="group bg-white border border-gray-200/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
                   >
                     {/* SINGLE CUSTOM COMBO IMAGE */}
@@ -363,7 +377,7 @@ export default function ReadyToMovePage() {
                         ) : (
                           <button
                             onClick={() => addToCart({ name: combo.name, price: combo.bundlePrice })}
-                            className="bg-black text-white px-3 py-1.5 text-xs sm:px-8 sm:py-3.5 sm:text-base rounded-lg sm:rounded-xl font-bold hover:bg-gray-800 hover:shadow-lg transition-all duration-200 active:scale-95"
+                            className="bg-red-900 text-white px-3 py-1.5 text-xs sm:px-8 sm:py-3.5 sm:text-base rounded-lg sm:rounded-xl font-bold hover:bg-red-950 hover:shadow-lg transition-all duration-200 active:scale-95"
                           >
                             Add to Cart
                           </button>
@@ -391,6 +405,12 @@ export default function ReadyToMovePage() {
                 return (
                   <div
                     key={p.name}
+                    onClick={() =>
+                      sendGAEvent("select_item", {
+                        item_list_name: "Furnishings",
+                        items: [{ item_name: p.name }],
+                      })
+                    }
                     className="group bg-white border border-gray-200/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col"
                   >
                     <div className="h-40 sm:h-48 w-full bg-[#f4f5f7] flex items-center justify-center p-2 relative">
@@ -402,7 +422,7 @@ export default function ReadyToMovePage() {
                         className="object-contain w-full h-full drop-shadow-md group-hover:scale-105 transition-transform duration-500"
                       />
                       {p.dispatch && (
-                        <span className="absolute top-2 left-2 inline-flex items-center rounded-full bg-black/85 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-white">
+                        <span className="absolute top-2 left-2 inline-flex items-center rounded-full bg-red-900/85 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-white">
                           Dispatch Ready
                         </span>
                       )}
@@ -439,7 +459,7 @@ export default function ReadyToMovePage() {
                       ) : (
                         <button
                           onClick={() => addToCart({ name: p.name, price: p.price })}
-                          className="bg-black text-white py-2 rounded-lg font-semibold text-xs hover:bg-gray-800 transition-all active:scale-95"
+                          className="bg-red-900 text-white py-2 rounded-lg font-semibold text-xs hover:bg-red-950 transition-all active:scale-95"
                         >
                           Add to Cart
                         </button>
@@ -479,7 +499,7 @@ export default function ReadyToMovePage() {
                     </span>
                     <button
                       onClick={() => removeFromCart(item.name)}
-                      className="text-gray-300 hover:text-red-500 transition-colors p-1"
+                      className="text-gray-300 hover:text-red-900 transition-colors p-1"
                       title="Remove from Cart"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
@@ -519,7 +539,7 @@ export default function ReadyToMovePage() {
             <div className="mt-10 mb-10 rounded-3xl border border-gray-200 bg-white p-8 shadow-lg">
               <div className="flex flex-col gap-6">
                 <div>
-                  <span className="inline-flex items-center rounded-full bg-black px-4 py-1 text-xs font-bold uppercase tracking-widest text-white">
+                  <span className="inline-flex items-center rounded-full bg-red-900 px-4 py-1 text-xs font-bold uppercase tracking-widest text-white">
                     Recommended Add-On
                   </span>
                 </div>
@@ -549,7 +569,7 @@ export default function ReadyToMovePage() {
 
                   <button
                     onClick={() => addToCart({ name: "Glass Trolley - Black", price: 5200 })}
-                    className="rounded-xl bg-black px-8 py-3.5 font-bold text-white transition-all duration-300 hover:bg-gray-800 hover:scale-[1.02] active:scale-95"
+                    className="rounded-xl bg-red-900 px-8 py-3.5 font-bold text-white transition-all duration-300 hover:bg-red-950 hover:scale-[1.02] active:scale-95"
                   >
                     + Add Glass Trolley
                   </button>

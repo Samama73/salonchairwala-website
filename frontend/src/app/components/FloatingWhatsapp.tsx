@@ -1,5 +1,5 @@
 'use client'; // Next.js App Router ke liye zaroori hai
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 
 // 1. TypeScript ko batane ke liye ki window par 'gtag' exist karta hai

@@ -73,7 +73,7 @@ export default function Hero() {
 
       {/* Top Text Content */}
       <div className="absolute top-4 md:top-6 z-20 w-full px-6 text-center pointer-events-none">
-        <p className="uppercase tracking-[0.3em] text-red-400 mb-2 md:mb-4 text-xs md:text-sm font-semibold">
+        <p className="uppercase tracking-[0.3em] text-red-800 mb-2 md:mb-4 text-xs md:text-sm font-semibold">
           New Arrivals
         </p>
       </div>
@@ -101,7 +101,7 @@ export default function Hero() {
       <div className="absolute bottom-14 md:bottom-16 left-0 right-0 z-20 flex items-center justify-between px-3 md:px-12 w-full">
         <a
           href="#products"
-          className="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 text-white px-4 py-2.5 md:px-8 md:py-4 rounded-xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 font-medium shadow-[0_0_20px_rgba(220,38,38,0.4)] text-[13px] md:text-base whitespace-nowrap flex items-center justify-center gap-1.5"
+          className="bg-gradient-to-r from-red-900 to-red-800 hover:from-red-950 hover:to-red-900 text-white px-4 py-2.5 md:px-8 md:py-4 rounded-xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 font-medium shadow-[0_0_20px_rgba(127,29,29,0.4)] text-[13px] md:text-base whitespace-nowrap flex items-center justify-center gap-1.5"
         >
           <span>→</span> Explore Collection
         </a>
@@ -125,7 +125,7 @@ export default function Hero() {
             onClick={() => setActiveIndex(i)}
             className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
               i === activeIndex
-                ? "bg-red-500 scale-[1.8] shadow-[0_0_10px_rgba(239,68,68,0.8)]"
+                ? "bg-red-900 scale-[1.8] shadow-[0_0_10px_rgba(127,29,29,0.8)]"
                 : "bg-white/30 hover:bg-white/60"
             }`}
           />

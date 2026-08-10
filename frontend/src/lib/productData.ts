@@ -10,7 +10,7 @@ export type Product = {
 export const allProducts: Product[] = [
   // ============ SALON CHAIRS (Styling Chairs) ============
   { name: "BUBBLY", price: 18000, description: "Hydraulic salon chair engineered for daily professional use with ergonomic seating support.", image: "/products/bubbly.webp", category: "Salon Chairs" },
-  { name: "ROYAL DIAMOND", price: 15000, description: "Precision-built styling chair with balanced comfort and long-term structural durability.", image: "/products/royaldiamond.webp", category: "Salon Chairs", dispatch: true },
+  { name: "ROYAL DIAMOND", price: 18000, description: "Precision-built styling chair with balanced comfort and long-term structural durability.", image: "/products/royaldiamond.webp", category: "Salon Chairs", dispatch: true },
   { name: "DIAMOND", price: 14000, description: "Warm DIAMOND brown upholstery with subtle sparkle button accents and a comfortable, adjustable headrest.", image: "/products/diamond.webp", category: "Salon Chairs" },
   { name: "GOLDEN MAYUR", price: 22000, description: "High-grade salon chair featuring reinforced frame and premium finish for luxury setups.", image: "/products/mayur.webp", category: "Salon Chairs", dispatch: true },
   { name: "BRIDAL", price: 45000, description: "Creamy ivory upholstery with gold accents, full recline, and integrated footrest for a true masterpiece barbershop chair.", image: "/products/seller3.webp", category: "Salon Chairs" },

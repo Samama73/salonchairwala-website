@@ -28,12 +28,12 @@ export default function FeaturesSection() {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-white to-gray-50">
+    <section className="py-16 md:py-24 bg-gradient-to-b from-white to-amber-50/40">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
 
         {/* Heading */}
         <div className="text-center mb-10 md:mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-red-900 font-elegant">
             Why Choose Us?
           </h2>
 

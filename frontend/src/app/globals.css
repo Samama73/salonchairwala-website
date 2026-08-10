@@ -17,3 +17,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+ /* Elegant serif for feature headings (Artklim-style) */
+ .font-elegant {
+   font-family: var(--font-playfair), serif;
+ }

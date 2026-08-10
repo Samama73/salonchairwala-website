@@ -19,17 +19,17 @@ const reels = [
 
 export default function InstagramSection() {
   return (
-    <section className="py-16 md:py-24 bg-gray-50 overflow-hidden">
+    <section className="py-16 md:py-24 bg-amber-50/50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
 
         {/* Heading */}
         <div className="text-center mb-10 md:mb-14">
 
-          <p className="text-red-600 font-semibold uppercase tracking-[0.3em] text-xs md:text-sm">
+          <p className="text-red-900 font-semibold uppercase tracking-[0.3em] text-xs md:text-sm">
             Follow Our Journey
           </p>
 
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-2 md:mt-3">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-2 md:mt-3 font-elegant">
             On Instagram
           </h2>
 
@@ -69,7 +69,7 @@ export default function InstagramSection() {
               gap-2 md:gap-3
               bg-gradient-to-r
               from-pink-500
-              via-red-500
+              via-red-800
               to-yellow-500
               text-white
               px-6 py-3 md:px-8 md:py-4

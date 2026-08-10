@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useEffect, useState } from "react";
 import { useCart } from "@/context/CartContext";
 import { getRecommendations } from "@/lib/productData";
 import { sendGAEvent } from "@/lib/gtag";
+import Link from "next/link";
 
 export default function CartPage() {
   const { cart, removeFromCart, clearCart, updateQuantity, addToCart } = useCart();
@@ -28,6 +30,7 @@ export default function CartPage() {
   const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbyS8F_JBfYgIGzpAI39KaV8rkfBBdcDWjMur-VEeGRxoBMF2FOMzYObIk-wXOnFMeXQmA/exec";
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
@@ -207,9 +210,9 @@ export default function CartPage() {
           <p className="font-mono text-xs tracking-widest text-[#8A8A8A] uppercase mb-2">Order · Empty</p>
           <h1 className="text-2xl font-semibold text-[#1A1A1A] mb-2">Your cart has nothing in it</h1>
           <p className="text-sm text-[#6B6B6B] mb-6">Items you add to your cart will show up here, ready for checkout.</p>
-          <a href="/" className="inline-flex items-center justify-center rounded-lg bg-[#1A1A1A] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#B30000] transition-colors shadow-sm">
+          <Link href="/" className="inline-flex items-center justify-center rounded-lg bg-[#1A1A1A] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#B30000] transition-colors shadow-sm">
             Continue shopping
-          </a>
+          </Link>
         </div>
         </div>
       </div>
@@ -539,7 +542,7 @@ export default function CartPage() {
                     className="field-input"
                   />
                   <p className="text-[11px] text-[#8A8A8A] mt-1">
-                    Found on your UPI app's payment success screen or history
+                    Found on your UPI app&apos;s payment success screen or history
                   </p>
                   {utrError && <p className="text-xs text-[#B30000] mt-1">{utrError}</p>}
                 </Field>

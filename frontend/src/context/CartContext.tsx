@@ -25,27 +25,28 @@ type CartContextType = {
 
 const CartContext = createContext<CartContextType | null>(null);
 
-export function CartProvider({ children }: { children: ReactNode }) {
-  const [cart, setCart] = useState<CartItem[]>([]);
-  const [loaded, setLoaded] = useState(false);
+function getInitialCart(): CartItem[] {
+  if (typeof window === "undefined") return [];
 
-  useEffect(() => {
+  try {
     const stored = localStorage.getItem("cart");
+    if (!stored) return [];
 
-    if (stored) {
-      try {
-        const parsed = JSON.parse(stored);
-        if (Array.isArray(parsed)) setCart(parsed);
-      } catch {}
-    }
+    const parsed = JSON.parse(stored);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
 
-    setLoaded(true);
-  }, []);
+export function CartProvider({ children }: { children: ReactNode }) {
+  // ✅ Lazy initializer reads localStorage once, during first render —
+  // no setState call inside an effect needed for the initial load.
+  const [cart, setCart] = useState<CartItem[]>(getInitialCart);
 
   useEffect(() => {
-    if (!loaded) return;
     localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart, loaded]);
+  }, [cart]);
 
   const addToCart = (item: CartItem) => {
     setCart((prev) => {

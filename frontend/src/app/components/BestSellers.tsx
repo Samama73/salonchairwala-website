@@ -1,6 +1,8 @@
 "use client";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { useState } from "react";
+import { sendGAEvent } from "@/lib/gtag";   // 👈 NEW
 import ShareButton from "@/app/components/ShareButton";
 
 const products = [
@@ -46,12 +48,12 @@ export default function BestSellers() {
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-amber-50/40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         
         {/* Heading */}
         <div className="text-center mb-10 lg:mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold uppercase tracking-wide">
+          <h2 className="text-3xl lg:text-4xl font-bold uppercase tracking-wide text-red-900 font-elegant">
             Our Best Sellers
           </h2>
         </div>
@@ -61,7 +63,13 @@ export default function BestSellers() {
           {products.map((product, index) => (
             <div
               key={product.name}
-              onClick={() => setSelectedProduct(product)}
+              onClick={() => {
+                sendGAEvent("select_item", {
+                  item_list_name: "Best Sellers",
+                  items: [{ item_name: product.name }],
+                });
+                setSelectedProduct(product);
+              }}
               className={`bg-white rounded-2xl shadow-sm hover:shadow-md transition duration-300 p-3 sm:p-4 cursor-pointer flex flex-col ${
                 index === 0 || index === 5 ? "col-span-2" : "col-span-1"
               }`}
@@ -106,7 +114,13 @@ export default function BestSellers() {
           {/* Left Featured Product (Ultimate Maharaja) */}
           <div className="lg:col-span-2">
             <div
-              onClick={() => setSelectedProduct(products[0])}
+              onClick={() => {
+                sendGAEvent("select_item", {
+                  item_list_name: "Best Sellers",
+                  items: [{ item_name: products[0].name }],
+                });
+                setSelectedProduct(products[0]);
+              }}
               className="bg-white rounded-3xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300 h-full p-6 cursor-pointer flex flex-col"
             >
               <div className="flex-1 min-h-[400px] w-full rounded-2xl overflow-hidden flex items-center justify-center bg-gray-50/50">
@@ -141,7 +155,13 @@ export default function BestSellers() {
             {products.slice(1, 5).map((product) => (
               <div
                 key={product.name}
-                onClick={() => setSelectedProduct(product)}
+                onClick={() => {
+                sendGAEvent("select_item", {
+                  item_list_name: "Best Sellers",
+                  items: [{ item_name: product.name }],
+                });
+                setSelectedProduct(product);
+              }}
                 className="bg-white rounded-3xl shadow-md hover:shadow-lg hover:-translate-y-2 transition duration-300 p-4 cursor-pointer flex flex-col"
               >
                 <div className="h-48 w-full rounded-xl overflow-hidden flex items-center justify-center bg-gray-50/50">
@@ -160,7 +180,13 @@ export default function BestSellers() {
 
             {/* Product 6 */}
             <div
-              onClick={() => setSelectedProduct(products[5])}
+              onClick={() => {
+                sendGAEvent("select_item", {
+                  item_list_name: "Best Sellers",
+                  items: [{ item_name: products[5].name }],
+                });
+                setSelectedProduct(products[5]);
+              }}
               className="col-span-2 bg-white rounded-3xl shadow-md hover:shadow-lg hover:-translate-y-2 transition duration-300 p-5 cursor-pointer flex flex-col"
             >
               <div className="h-56 w-full rounded-2xl overflow-hidden flex items-center justify-center bg-gray-50/50">

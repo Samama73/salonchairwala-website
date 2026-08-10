@@ -23,15 +23,15 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="py-16 md:py-24 bg-white overflow-hidden">
+    <section id="testimonials" className="py-16 md:py-24 bg-amber-50/40 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
 
         {/* Heading */}
         <div className="text-center mb-10 md:mb-16">
-          <p className="text-red-600 font-semibold uppercase tracking-[0.2em] text-xs md:text-sm">
+          <p className="text-red-900 font-semibold uppercase tracking-[0.2em] text-xs md:text-sm">
             Testimonials
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-3 md:mt-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-3 md:mt-4 font-elegant">
             Trusted By Salon Professionals
           </h2>
         </div>
@@ -48,12 +48,12 @@ export default function Testimonials() {
               <img
                 src={testimonial.image}
                 alt={testimonial.name}
-                className="w-24 h-24 md:w-36 md:h-36 rounded-full object-cover border-4 border-red-100 shadow-lg mx-auto mb-6"
+                className="w-24 h-24 md:w-36 md:h-36 rounded-full object-cover border-4 border-red-200 shadow-lg mx-auto mb-6"
               />
 
               {/* Review */}
               <p className="text-gray-600 mb-6 italic text-sm md:text-base">
-                "{testimonial.review}"
+                &quot;{testimonial.review}&quot;
               </p>
 
               {/* Name & City */}

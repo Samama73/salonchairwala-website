@@ -9,7 +9,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false); // Mobile menu toggle ke liye state
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-2xl border-b border-white/20 shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300">
+    <nav className="sticky top-0 z-50 bg-amber-50/80 backdrop-blur-2xl border-b border-white/20 shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300">
       <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
 
         {/* Logo + Brand */}
@@ -32,36 +32,44 @@ export default function Navbar() {
 
         {/* DESKTOP MENU (Hidden on Mobile) */}
         <div className="hidden md:flex items-center gap-8 text-sm font-medium">
-          <a href="#" className="relative after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-red-600 after:transition-all after:duration-300 hover:text-red-600 hover:after:w-full">
+          <a href="#" className="relative after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-red-900 after:transition-all after:duration-300 hover:text-red-900 hover:after:w-full">
             Home
           </a>
-          <a href="#products" className="relative after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-red-600 after:transition-all after:duration-300 hover:text-red-600 hover:after:w-full">
+          <a href="#products" className="relative after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-red-900 after:transition-all after:duration-300 hover:text-red-900 hover:after:w-full">
             Products
           </a>
+
+          {/* Setups (NEW) */}
+          <Link
+            href="/setups"
+            className="relative after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-red-900 after:transition-all after:duration-300 hover:text-red-900 hover:after:w-full"
+          >
+            Setups
+          </Link>
 
           {/* Ready to Move */}
           <Link
             href="/readytomove"
-            className="px-5 py-2 rounded-full bg-gradient-to-r from-red-600 to-red-500 text-white shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+            className="px-5 py-2 rounded-full bg-gradient-to-r from-red-900 to-red-800 text-white shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
           >
             Ready to Order
           </Link>
 
-          <a href="#testimonials" className="relative after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-red-600 after:transition-all after:duration-300 hover:text-red-600 hover:after:w-full">
+          <a href="#testimonials" className="relative after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-red-900 after:transition-all after:duration-300 hover:text-red-900 hover:after:w-full">
             Testimonials
           </a>
-          <a href="#contact" className="relative after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-red-600 after:transition-all after:duration-300 hover:text-red-600 hover:after:w-full">
+          <a href="#contact" className="relative after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-red-900 after:transition-all after:duration-300 hover:text-red-900 hover:after:w-full">
             Contact
           </a>
 
           {/* CART BUTTON */}
           <Link
             href="/cart"
-            className="relative px-4 py-2 rounded-full border border-gray-200 hover:border-red-600 hover:text-red-600 transition-all duration-300"
+            className="relative px-4 py-2 rounded-full border border-gray-200 hover:border-red-900 hover:text-red-900 transition-all duration-300"
           >
             🛒 Cart
             {cart.length > 0 && (
-              <span className="absolute -top-2 -right-3 bg-red-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+              <span className="absolute -top-2 -right-3 bg-red-900 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
                 {cart.length}
               </span>
             )}
@@ -97,9 +105,18 @@ export default function Navbar() {
             Products
           </Link>
 
+          {/* Setups (NEW) */}
+          <Link 
+            href="/setups" 
+            className="px-6 py-4 border-b border-gray-50 hover:bg-gray-50"
+            onClick={() => setIsOpen(false)}
+          >
+            Setups
+          </Link>
+
           <Link 
             href="/readytomove" 
-            className="px-6 py-4 border-b border-gray-50 hover:bg-gray-50 text-red-600 font-bold"
+            className="px-6 py-4 border-b border-gray-50 hover:bg-gray-50 text-red-900 font-bold"
             onClick={() => setIsOpen(false)}
           >
             Ready to Order
@@ -128,7 +145,7 @@ export default function Navbar() {
           >
             <span>🛒 Cart</span>
             {cart.length > 0 && (
-              <span className="bg-red-600 text-white text-xs w-6 h-6 flex items-center justify-center rounded-full">
+              <span className="bg-red-900 text-white text-xs w-6 h-6 flex items-center justify-center rounded-full">
                 {cart.length}
               </span>
             )}

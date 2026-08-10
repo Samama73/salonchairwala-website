@@ -1,8 +1,10 @@
 "use client";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { useState } from "react";
 import Image from "next/image";
 import { useCart } from "@/context/CartContext";
+import { sendGAEvent } from "@/lib/gtag";   // 👈 NEW
 import { allProducts } from "@/lib/productData";
 import ShareButton from "@/app/components/ShareButton";
 
@@ -59,17 +61,17 @@ export default function FeaturedProducts() {
   return (
     <section
       id="products"
-      className="py-28 bg-gradient-to-b from-white via-gray-50 to-white overflow-hidden relative"
+      className="py-28 bg-gradient-to-b from-amber-50/40 via-white to-amber-50/40 overflow-hidden relative"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
         {/* HEADER */}
         <div className="text-center mb-10 sm:mb-16">
-          <p className="text-red-600 font-semibold uppercase tracking-[0.35em] text-xs">
+          <p className="text-red-900 font-semibold uppercase tracking-[0.35em] text-xs">
             Featured Collection
           </p>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mt-3 sm:mt-4 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mt-3 sm:mt-4 tracking-tight font-elegant">
             Crafted for Professionals
           </h2>
 
@@ -87,15 +89,21 @@ export default function FeaturedProducts() {
             return (
               <div
                 key={product.name}
-                className="group relative rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-[0_8px_25px_rgba(0,0,0,0.05)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.12)] hover:border-red-500/30 transition-all duration-300 ease-out hover:-translate-y-3 flex flex-col h-full"
+                onClick={() =>
+                  sendGAEvent("select_item", {
+                    item_list_name: "Featured Products",
+                    items: [{ item_name: product.name, price: product.price }],
+                  })
+                }
+                className="group relative rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-[0_8px_25px_rgba(0,0,0,0.05)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.12)] hover:border-red-900/30 transition-all duration-300 ease-out hover:-translate-y-3 flex flex-col h-full"
               >
                 {/* Red subtle glow overlay */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-red-500/[0.04] via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-red-900/[0.04] via-transparent to-transparent pointer-events-none" />
 
                 {/* IMAGE CONTAINER */}
                 <div className="relative h-44 sm:h-64 lg:h-80 flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden p-3 sm:p-4 border-b border-gray-50">
                   {product.dispatch && (
-                    <div className="absolute top-2 right-2 sm:top-4 sm:right-4 z-10 flex items-center gap-1 rounded-full bg-gradient-to-r from-green-600 to-green-500 px-2 py-1 sm:px-3 sm:py-1 text-[8px] sm:text-[10px] font-semibold tracking-wide text-white shadow-md">
+                    <div className="absolute top-2 right-2 sm:top-4 sm:right-4 z-10 flex items-center gap-1 rounded-full bg-gradient-to-r from-red-900 to-red-800 px-2 py-1 sm:px-3 sm:py-1 text-[8px] sm:text-[10px] font-semibold tracking-wide text-white shadow-md">
                       <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
                       <span className="hidden sm:inline">READY FOR DISPATCH</span>
                       <span className="inline sm:hidden">DISPATCH</span>
@@ -112,7 +120,7 @@ export default function FeaturedProducts() {
 
                 {/* CONTENT */}
                 <div className="p-4 sm:p-6 flex flex-col flex-1">
-                  <h3 className="font-bold text-sm sm:text-lg text-gray-900 group-hover:text-red-600 transition-colors duration-200 truncate sm:whitespace-normal">
+                  <h3 className="font-bold text-sm sm:text-lg text-gray-900 group-hover:text-red-900 transition-colors duration-200 truncate sm:whitespace-normal">
                     {product.name}
                   </h3>
 
@@ -148,7 +156,7 @@ export default function FeaturedProducts() {
                   ) : (
                     <button
                       onClick={() => handleFeaturedAddToCart(product)}
-                      className="mt-3 sm:mt-6 inline-flex w-full items-center justify-center rounded-lg sm:rounded-xl bg-gradient-to-r from-red-600 to-red-500 px-3 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-red-500/30 active:scale-[0.98]"
+                      className="mt-3 sm:mt-6 inline-flex w-full items-center justify-center rounded-lg sm:rounded-xl bg-gradient-to-r from-red-900 to-red-800 px-3 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-red-900/30 active:scale-[0.98]"
                     > 
                       Add to Cart
                     </button>
@@ -224,7 +232,7 @@ export default function FeaturedProducts() {
                     {activeRecommendations.map((rec) => (
                       <div 
                         key={rec.name} 
-                        className="group flex gap-4 items-center bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:border-red-500/20 transition-all duration-300"
+                        className="group flex gap-4 items-center bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:border-red-900/20 transition-all duration-300"
                       >
                         <div className="h-20 w-20 bg-gray-50 rounded-lg flex items-center justify-center overflow-hidden p-1 relative">
                           <Image 
@@ -237,7 +245,7 @@ export default function FeaturedProducts() {
                         </div>
                         
                         <div className="flex-1 min-w-0">
-                          <h4 className="font-bold text-sm text-gray-900 truncate group-hover:text-red-600 transition-colors duration-200">{rec.name}</h4>
+                          <h4 className="font-bold text-sm text-gray-900 truncate group-hover:text-red-900 transition-colors duration-200">{rec.name}</h4>
                           <p className="text-sm text-gray-900 font-extrabold mt-1">
                             ₹{rec.price.toLocaleString("en-IN")}
                           </p>
@@ -265,7 +273,7 @@ export default function FeaturedProducts() {
             <div className="p-6 bg-white border-t border-gray-100 shadow-[0_-10px_30px_rgba(0,0,0,0.02)]">
               <button 
                 onClick={() => setIsDrawerOpen(false)}
-                className="w-full bg-gray-950 text-white py-4 rounded-xl font-bold text-sm tracking-widest uppercase hover:bg-red-600 transition-all duration-300 shadow-md active:scale-[0.99]"
+                className="w-full bg-gray-950 text-white py-4 rounded-xl font-bold text-sm tracking-widest uppercase hover:bg-red-900 transition-all duration-300 shadow-md active:scale-[0.99]"
               >
                 Continue Shopping
               </button>

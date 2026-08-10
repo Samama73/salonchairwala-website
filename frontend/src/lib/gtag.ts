@@ -1,5 +1,6 @@
 // frontend/src/lib/gtag.ts
 // Chhota helper — GA4 ko custom events bhejne ke liye
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 declare global {
   interface Window {

@@ -10,17 +10,17 @@ const videos = [
 
 export default function HappyClients() {
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+    <section className="py-16 md:py-24 bg-gradient-to-b from-white to-amber-50/40 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
 
         {/* Heading */}
         <div className="text-center mb-10 md:mb-14">
 
-          <p className="text-red-600 font-semibold uppercase tracking-[0.3em] text-xs md:text-sm">
+          <p className="text-red-900 font-semibold uppercase tracking-[0.3em] text-xs md:text-sm">
             Client Stories
           </p>
 
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-2 md:mt-3">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-red-900 mt-2 md:mt-3">
             Happy Clients
           </h2>
 
