@@ -3,10 +3,14 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { sendGAEvent } from "@/lib/gtag";   // 👈 NEW
 import { allProducts } from "@/lib/productData";
 import ShareButton from "@/app/components/ShareButton";
+
+// 👉 Home page pe sirf itne products dikhenge, baaki /categories page pe milenge
+const HOMEPAGE_PRODUCT_LIMIT = 8;
 
 // 👇 BOSS APPROVED: Fixed Accessories List (Direct Image Path Control)
 // Yahan aap apna image path directly edit kar sakte ho
@@ -58,20 +62,23 @@ export default function FeaturedProducts() {
   // Live render mein recommendations calculate honge
   const activeRecommendations = getAccessoriesRecommendations();
 
+  // 👉 Home page pe overload na ho isliye limited products, poori list /categories pe
+  const homepageProducts = allProducts.slice(0, HOMEPAGE_PRODUCT_LIMIT);
+
   return (
     <section
       id="products"
-      className="py-28 bg-gradient-to-b from-amber-50/40 via-white to-amber-50/40 overflow-hidden relative"
+      className="py-28 bg-[linear-gradient(180deg,#FF993380_0%,white_35%,white_65%,#13880880_100%)] overflow-hidden relative"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
         {/* HEADER */}
         <div className="text-center mb-10 sm:mb-16">
-          <p className="text-red-900 font-semibold uppercase tracking-[0.35em] text-xs">
+          <p className="font-semibold uppercase tracking-[0.35em] text-xs bg-[linear-gradient(90deg,#FF9933_0%,#FF9933_33%,#0d47a1_50%,#138808_67%,#138808_100%)] bg-clip-text text-transparent">
             Featured Collection
           </p>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mt-3 sm:mt-4 tracking-tight font-elegant">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mt-3 sm:mt-4 tracking-tight bg-[linear-gradient(90deg,#FF9933_0%,#FF9933_33%,#0d47a1_50%,#138808_67%,#138808_100%)] bg-clip-text text-transparent font-elegant">
             Crafted for Professionals
           </h2>
 
@@ -83,7 +90,7 @@ export default function FeaturedProducts() {
         {/* GRID */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-9">
 
-          {allProducts.map((product) => {
+          {homepageProducts.map((product) => {
             const cartItem = cart.find((item: any) => item.name === product.name);
 
             return (
@@ -167,6 +174,19 @@ export default function FeaturedProducts() {
             );
           })}
 
+        </div>
+
+        {/* 👉 EXPLORE ALL CATEGORIES CTA */}
+        <div className="flex justify-center mt-12 sm:mt-16">
+          <Link
+            href="/categories"
+            className="inline-flex items-center gap-2 rounded-full border-2 border-red-900 text-red-900 px-8 py-3.5 font-semibold text-sm sm:text-base hover:bg-red-900 hover:text-white transition-all duration-300 shadow-sm hover:shadow-lg active:scale-95"
+          >
+            Explore All Categories
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </Link>
         </div>
       </div>
 

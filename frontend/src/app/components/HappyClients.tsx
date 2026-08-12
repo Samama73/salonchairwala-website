@@ -10,17 +10,17 @@ const videos = [
 
 export default function HappyClients() {
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-white to-amber-50/40 overflow-hidden">
+    <section className="py-16 md:py-24 bg-[#FF9933]/50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
 
         {/* Heading */}
         <div className="text-center mb-10 md:mb-14">
 
-          <p className="text-red-900 font-semibold uppercase tracking-[0.3em] text-xs md:text-sm">
+          <p className="text-[#138808] font-semibold uppercase tracking-[0.3em] text-xs md:text-sm">
             Client Stories
           </p>
 
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-red-900 mt-2 md:mt-3">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-[linear-gradient(90deg,#FF9933_0%,#FF9933_33%,#0d47a1_50%,#138808_67%,#138808_100%)] bg-clip-text text-transparent mt-2 md:mt-3">
             Happy Clients
           </h2>
 
@@ -36,7 +36,7 @@ export default function HappyClients() {
           {videos.map((video, index) => (
             // Mobile par width 85% taaki next video ka thoda sa hissa dikhe (swipe hint)
             <div key={index} className="w-[85%] md:w-auto flex-shrink-0 snap-center md:snap-align-none">
-              <VideoCard video={video} />
+              <VideoCard video={video} index={index} />
             </div>
           ))}
 
@@ -58,7 +58,7 @@ export default function HappyClients() {
   );
 }
 
-function VideoCard({ video }: { video: string }) {
+function VideoCard({ video, index }: { video: string; index: number }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -73,6 +73,11 @@ function VideoCard({ video }: { video: string }) {
       }
     }
   };
+
+  const ringColor =
+    index === 0 ? "border-[#FF9933]" :
+    index === 1 ? "border-white" :
+    "border-[#138808]";
 
   return (
     <div
@@ -116,15 +121,16 @@ function VideoCard({ video }: { video: string }) {
         >
 
           <div
-            className="
+            className={`
               w-[50px] h-[50px] md:w-[70px] md:h-[70px]
               rounded-full
               bg-white/10
-              border border-white/30
+              border-2
               flex items-center justify-center
               hover:scale-110
               transition duration-300
-            "
+              ${ringColor}
+            `}
           >
             <span className="text-white text-xl md:text-3xl ml-1">
               ▶

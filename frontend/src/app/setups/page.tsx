@@ -7,26 +7,14 @@ import { sendGAEvent } from "@/lib/gtag";
 import ShareButton from "@/app/components/ShareButton";
 
 // 👇 DIRECT CONTROL: Complete Setups list — apna path/data yahan edit karo
+// Price ke hisaab se LOW → HIGH order mein rakha gaya hai
 const COMPLETE_SETUPS = [
   {
-    id: "setup-01",
-    name: "The Essential Studio Setup",
-    tagline: "Everything a single-chair salon needs, ready to run from day one.",
-    image: "/setups/s1.jpeg", // 👈 apna path yahan daalo
-    price: 110000,
-    includes: [
-      "2 x Salon Styling Chair",
-      "1 x Shampoo Station",
-      "1 x Facial Bed",
-      "1 x Manicure Chair",
-    ],
-  },
-  {
-    id: "setup-02",
-    name: "The Twin Chair Setup",
-    tagline: "Built for salons running two stylists side by side without compromise.",
-    image: "/setups/s2.jpeg", // 👈 apna path yahan daalo
-    price: 52000,
+    id: "setup-03",
+    name: "The Complete Salon Setup",
+    tagline: "A full working salon — hair, facial, and manicure — in one package.",
+    image: "/setups/s3.jpeg",
+    price: 46000,
     includes: [
       "2 x Salon Styling Chairs",
       "1 x Shampoo Station",
@@ -37,11 +25,11 @@ const COMPLETE_SETUPS = [
     ],
   },
   {
-    id: "setup-03",
-    name: "The Complete Salon Setup",
-    tagline: "A full working salon — hair, facial, and manicure — in one package.",
-    image: "/setups/s3.jpeg", // 👈 apna path yahan daalo
-    price: 46000,
+    id: "setup-02",
+    name: "The Twin Chair Setup",
+    tagline: "Built for salons running two stylists side by side without compromise.",
+    image: "/setups/s2.jpeg",
+    price: 52000,
     includes: [
       "2 x Salon Styling Chairs",
       "1 x Shampoo Station",
@@ -55,7 +43,7 @@ const COMPLETE_SETUPS = [
     id: "setup-04",
     name: "The Premium Salon Setup",
     tagline: "The ultimate luxury experience for discerning salon owners.",
-    image: "/setups/s4.jpeg", // 👈 apna path yahan daalo
+    image: "/setups/s4.jpeg",
     price: 52000,
     includes: [
       "2 x Salon Styling Chairs",
@@ -64,6 +52,32 @@ const COMPLETE_SETUPS = [
       "1 x Trolleys",
       "1 x Cutting Stool",
       "1 x Hot and Cold Steamer",
+    ],
+  },
+  {
+    id: "setup-01",
+    name: "The Essential Studio Setup",
+    tagline: "Everything a single-chair salon needs, ready to run from day one.",
+    image: "/setups/s1.jpeg",
+    price: 110000,
+    includes: [
+      "2 x Salon Styling Chair",
+      "1 x Shampoo Station",
+      "1 x Facial Bed",
+      "1 x Manicure Chair",
+    ],
+  },
+  {
+    id: "setup-05",
+    name: "The Luxury Studio Setup",
+    tagline: "Premium finishes and added comfort — for salons that want to stand out.",
+    image: "/setups/s5.jpeg", // 👈 apna path yahan daalo
+    price: 110000,
+    includes: [
+      "2 x Salon Styling Chairs",
+      "1 x Shampoo Station with Movable Basin",
+      "1 x Facial Bed with Added Storage",
+      "1 x Manicure Pedicure Chair with Integrated Jacuzzi",
     ],
   },
 ];
@@ -89,10 +103,10 @@ export default function SetupsPage() {
       <section className="relative bg-gradient-to-b from-amber-50/60 via-white to-white pt-24 pb-16 sm:pt-32 sm:pb-20 overflow-hidden">
         <div className="max-w-5xl mx-auto px-6 text-center relative">
           <p className="text-red-900 font-semibold uppercase tracking-[0.35em] text-xs">
-            Complete Setups
+            Walk In, Start Working.
           </p>
           <h1 className="text-4xl sm:text-6xl font-bold mt-4 tracking-tight font-elegant text-gray-950">
-            Walk In. Start Working.
+            Complete Setups
           </h1>
           <p className="text-gray-500 mt-5 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
             Fully assembled salon setups — chairs, stations, and furniture — bundled

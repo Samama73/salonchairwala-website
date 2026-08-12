@@ -14,13 +14,15 @@ export default function Categories() {
   const looped = [...categories, ...categories];
 
   return (
-    <section className="py-16 bg-amber-50/40 overflow-hidden">
+    <section className="py-16 bg-gradient-to-r from-[#FF9933] via-white to-[#138808] overflow-hidden">
 
       {/* Heading */}
       <div className="text-center mb-10">
-        <p className="text-red-900 font-semibold uppercase tracking-widest text-sm">
-          
-        </p>
+        <div className="flex justify-center gap-1.5 mb-3">
+          <span className="w-8 h-1 rounded-full bg-[#FF9933]" />
+          <span className="w-8 h-1 rounded-full bg-gray-300" />
+          <span className="w-8 h-1 rounded-full bg-[#138808]" />
+        </div>
 
         <h2 className="text-3xl md:text-4xl font-bold text-red-900 mt-2 font-elegant">
           Explore Our Collections
@@ -35,7 +37,7 @@ export default function Categories() {
           {looped.map((category, index) => (
             <div
               key={index}
-              className="whitespace-nowrap px-5 py-3 bg-gray-100 rounded-full text-sm md:text-base font-medium shadow-sm hover:bg-red-900 hover:text-white transition"
+              className="whitespace-nowrap px-5 py-3 bg-gray-100 rounded-full text-sm md:text-base font-medium shadow-sm hover:bg-gradient-to-r hover:from-[#FF9933] hover:to-[#138808] hover:text-white transition"
             >
               {category}
             </div>
@@ -64,4 +66,3 @@ export default function Categories() {
     </section>
   );
 }
-

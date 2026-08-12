@@ -37,9 +37,10 @@ export default function FeaturesSection() {
             Why Choose Us?
           </h2>
 
-          <p className="mt-3 md:mt-4 text-gray-600 max-w-2xl mx-auto text-sm md:text-lg">
-            Premium salon furniture crafted to elevate comfort, style and
-            client experience.
+          <p className="mt-3 md:mt-4 max-w-2xl mx-auto text-sm md:text-lg">
+            <span className="text-[#FF9933] font-medium">Premium salon furniture crafted</span>{" "}
+            <span className="text-gray-400 font-medium">to elevate comfort, style</span>{" "}
+            <span className="text-[#138808] font-medium">and client experience.</span>
           </p>
         </div>
 
@@ -49,14 +50,22 @@ export default function FeaturesSection() {
           {features.map((item, index) => (
             <div
               key={index}
-              className={`group bg-white rounded-2xl md:rounded-3xl p-4 md:p-8 text-center border border-gray-100 shadow-sm hover:shadow-2xl hover:-translate-y-1 md:hover:-translate-y-3 transition-all duration-500 animate-fade-up float-${index + 1}`}
+              className={`group bg-white rounded-2xl md:rounded-3xl p-4 md:p-8 text-center border-t-4 shadow-sm hover:shadow-2xl hover:-translate-y-1 md:hover:-translate-y-3 transition-all duration-500 animate-fade-up float-${index + 1} ${
+                index % 3 === 0 ? "border-t-[#FF9933]" :
+                index % 3 === 1 ? "border-t-[#0d47a1]" :
+                "border-t-[#138808]"
+              }`}
               style={{
                 animationDelay: `${index * 150}ms`,
                 animationFillMode: "both",
               }}
             >
               {/* Icon Container */}
-              <div className="w-12 h-12 md:w-16 md:h-16 mx-auto flex items-center justify-center rounded-full bg-gray-100 text-gray-800 mb-3 md:mb-6 pulse-icon group-hover:scale-110 transition-all duration-500">
+              <div className={`w-12 h-12 md:w-16 md:h-16 mx-auto flex items-center justify-center rounded-full mb-3 md:mb-6 pulse-icon group-hover:scale-110 transition-all duration-500 text-white shadow-md ${
+                index % 3 === 0 ? "bg-[#FF9933]" :
+                index % 3 === 1 ? "bg-[#0d47a1]" :
+                "bg-[#138808]"
+              }`}>
                 {/* Original icon rendering */}
                 <div className="scale-75 md:scale-100 flex items-center justify-center">
                    {item.icon}

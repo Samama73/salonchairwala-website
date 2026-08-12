@@ -7,6 +7,59 @@ export type Product = {
   dispatch?: boolean;
 };
 
+// ============ CATEGORY HELPERS ============
+// 👉 Yahan se saari categories aur unke slugs (URL-friendly names) manage hote hain
+export const categoryList = [
+  "Salon Chairs",
+  "Shampoo Chairs",
+  "Manicure & Pedicure",
+  "Facial Beds",
+  "Furnishings",
+] as const;
+
+export type CategoryName = (typeof categoryList)[number];
+
+// Har category ke liye chhota tagline (category page pe dikhega)
+export const categoryInfo: Record<CategoryName, { tagline: string; image: string }> = {
+  "Salon Chairs": {
+    tagline: "Hydraulic styling chairs built for daily professional use.",
+    image: "/products/bubbly.webp",
+  },
+  "Shampoo Chairs": {
+    tagline: "Premium backwash units with reclining comfort & ceramic basins.",
+    image: "/products/wave.webp",
+  },
+  "Manicure & Pedicure": {
+    tagline: "Dedicated stations for nail care and pedicure services.",
+    image: "/products/luxa.webp",
+  },
+  "Facial Beds": {
+    tagline: "Comfortable beds designed for facials and spa treatments.",
+    image: "/products/steamr.webp",
+  },
+  "Furnishings": {
+    tagline: "Trolleys, steamers & dryers to complete your salon.",
+    image: "/products/kostech.webp",
+  },
+};
+
+// "Manicure & Pedicure" -> "manicure-and-pedicure"
+export function slugifyCategory(category: string): string {
+  return category
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+export function getCategoryBySlug(slug: string): CategoryName | undefined {
+  return categoryList.find((c) => slugifyCategory(c) === slug);
+}
+
+export function getProductsByCategory(category: CategoryName): Product[] {
+  return allProducts.filter((p) => p.category === category);
+}
+
 export const allProducts: Product[] = [
   // ============ SALON CHAIRS (Styling Chairs) ============
   { name: "BUBBLY", price: 18000, description: "Hydraulic salon chair engineered for daily professional use with ergonomic seating support.", image: "/products/bubbly.webp", category: "Salon Chairs" },
