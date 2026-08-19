@@ -19,7 +19,7 @@ const reels = [
 
 export default function InstagramSection() {
   return (
-    <section className="py-16 md:py-24 bg-white overflow-hidden">
+    <section className="py-16 md:py-24 bg-[#FEFCF7] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
 
         {/* Heading */}

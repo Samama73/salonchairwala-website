@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useWhatsappPopup } from "@/context/WhatsappPopupContext";
 
 export default function Hero() {
   const images = [
@@ -16,6 +17,7 @@ export default function Hero() {
 
   const n = images.length;
   const [activeIndex, setActiveIndex] = useState(0);
+  const { openPopup } = useWhatsappPopup();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -99,14 +101,13 @@ export default function Hero() {
           <span>→</span> Explore Collection
         </a>
 
-        <a
-          href="https://wa.me/919403891146"
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          type="button"
+          onClick={openPopup}
           className="border border-black/20 bg-black/5 backdrop-blur-xl text-black px-4 py-2.5 md:px-8 md:py-4 rounded-xl font-medium transition-all duration-300 hover:bg-black hover:text-white hover:border-black hover:scale-105 hover:-translate-y-1 shadow-[0_10px_30px_rgba(0,0,0,0.1)] text-[13px] md:text-base whitespace-nowrap flex items-center justify-center gap-1.5"
         >
           <span>💬</span> WhatsApp Us
-        </a>
+        </button>
       </div>
 
       <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 z-20 flex gap-3">

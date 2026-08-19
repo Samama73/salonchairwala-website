@@ -68,17 +68,17 @@ export default function FeaturedProducts() {
   return (
     <section
       id="products"
-      className="py-28 bg-[linear-gradient(180deg,#FF993380_0%,white_35%,white_65%,#13880880_100%)] overflow-hidden relative"
+      className="py-28 bg-[#FEFCF7] overflow-hidden relative"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
         {/* HEADER */}
         <div className="text-center mb-10 sm:mb-16">
-          <p className="font-semibold uppercase tracking-[0.35em] text-xs bg-[linear-gradient(90deg,#FF9933_0%,#FF9933_33%,#0d47a1_50%,#138808_67%,#138808_100%)] bg-clip-text text-transparent">
+          <p className="font-semibold uppercase tracking-[0.35em] text-xs text-[#82181A]">
             Featured Collection
           </p>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mt-3 sm:mt-4 tracking-tight bg-[linear-gradient(90deg,#FF9933_0%,#FF9933_33%,#0d47a1_50%,#138808_67%,#138808_100%)] bg-clip-text text-transparent font-elegant">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mt-3 sm:mt-4 tracking-tight text-[#82181A] font-elegant">
             Crafted for Professionals
           </h2>
 

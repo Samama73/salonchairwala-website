@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer id="contact" className="bg-black text-white py-16 relative">
@@ -72,8 +74,18 @@ export default function Footer() {
 
         </div>
 
+        {/* Policy Links */}
+        <div className="border-t border-gray-800 mt-10 pt-6 flex flex-wrap justify-center gap-x-6 gap-y-2 text-gray-400 text-sm">
+          <Link href="/return-refund-policy" className="hover:text-white hover:underline">
+            Return &amp; Refund Policy
+          </Link>
+          <Link href="/return-refund-policy/terms-and-conditions" className="hover:text-white hover:underline">
+            Terms &amp; Conditions
+          </Link>
+        </div>
+
         {/* Bottom */}
-        <div className="border-t border-gray-800 mt-10 pt-6 text-center text-gray-500 text-sm">
+        <div className="mt-6 pt-6 text-center text-gray-500 text-sm">
           © 2026 Salon Chair Wala. All Rights Reserved.
         </div>
 

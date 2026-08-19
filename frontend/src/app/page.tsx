@@ -22,15 +22,14 @@ export default function Home() {
       <Hero />
       <Categories />
 
-    {/* 🚀 READY TO ORDER CTA BLOCK - Independence Day Tricolor */}
-        <section className="flex justify-center bg-amber-50/40 px-4 py-6 md:py-8">
-          <Link 
-            href="/readytomove" 
-            className="w-full max-w-2xl bg-gradient-to-r from-[#FF9933] via-white via-50% to-[#138808] text-[#0d47a1] py-3 md:py-4 rounded-xl text-center font-bold text-lg md:text-xl shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
-          >
-            Ready to Order?Click Here
-          </Link>
-        </section>
+    <section className="flex justify-center bg-[#FEFCF7] px-4 py-6 md:py-8">
+      <Link 
+        href="/readytomove" 
+        className="w-full max-w-2xl bg-[#82181A] text-white py-3 md:py-4 rounded-xl text-center font-bold text-lg md:text-xl shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
+      >
+        Ready to Order? Click Here
+      </Link>
+    </section>
 
       {/* 📸 FULL WIDTH BANNER */}
       <section className="w-full">

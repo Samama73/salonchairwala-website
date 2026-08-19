@@ -6,6 +6,8 @@ import Link from "next/link";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import FloatingWhatsapp from "../../components/FloatingWhatsapp";
+import FAQAccordion from "../../components/FAQAccordion";
+import { getFaqsForCategory } from "@/lib/faqData";
 import ShareButton from "../../components/ShareButton";
 import { useCart } from "@/context/CartContext";
 import { sendGAEvent } from "@/lib/gtag";
@@ -174,6 +176,8 @@ export default function CategoryClient({ slug }: { slug: string }) {
           )}
         </div>
       </section>
+
+      <FAQAccordion faqs={getFaqsForCategory(category)} />
 
       <Footer />
       <FloatingWhatsapp />

@@ -54,7 +54,7 @@ export default function BestSellers() {
         
         {/* Heading */}
         <div className="text-center mb-10 lg:mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold uppercase tracking-wide bg-[linear-gradient(90deg,#FF9933_0%,#FF9933_33%,#0d47a1_50%,#138808_67%,#138808_100%)] bg-clip-text text-transparent font-elegant">
+          <h2 className="text-3xl lg:text-4xl font-bold uppercase tracking-wide text-[#82181A] font-elegant">
             Our Best Sellers
           </h2>
         </div>
@@ -124,11 +124,7 @@ export default function BestSellers() {
               }}
               className="bg-white rounded-3xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300 h-full p-6 cursor-pointer flex flex-col overflow-hidden"
             >
-              <div className="h-1.5 w-full flex -mt-6 -mx-6 mb-4">
-                <div className="flex-1 bg-[#FF9933]" />
-                <div className="flex-1 bg-white" />
-                <div className="flex-1 bg-[#138808]" />
-              </div>
+    
               <div className="flex-1 min-h-[400px] w-full rounded-2xl overflow-hidden flex items-center justify-center bg-gray-50/50">
                 {products[0].video ? (
                   <video
@@ -148,11 +144,6 @@ export default function BestSellers() {
                 )}
               </div>
 
-              <div className="h-1.5 w-full flex mt-6">
-                <div className="flex-1 bg-[#FF9933]" />
-                <div className="flex-1 bg-white" />
-                <div className="flex-1 bg-[#138808]" />
-              </div>
               <h3 className="mt-3 text-center text-2xl font-bold pb-2">
                 {products[0].name}
               </h3>
@@ -175,11 +166,7 @@ export default function BestSellers() {
               }}
                 className="bg-white rounded-3xl shadow-md hover:shadow-lg hover:-translate-y-2 transition duration-300 p-4 cursor-pointer flex flex-col overflow-hidden"
               >
-                <div className="h-1.5 w-full flex -mt-4 -mx-4 mb-4">
-                  <div className="flex-1 bg-[#FF9933]" />
-                  <div className="flex-1 bg-white" />
-                  <div className="flex-1 bg-[#138808]" />
-                </div>
+
                 <div className="h-48 w-full rounded-xl overflow-hidden flex items-center justify-center bg-gray-50/50">
                   <img
                     src={product.image}
@@ -188,11 +175,7 @@ export default function BestSellers() {
                   />
                 </div>
 
-                <div className="h-1.5 w-full flex mt-4">
-                  <div className="flex-1 bg-[#FF9933]" />
-                  <div className="flex-1 bg-white" />
-                  <div className="flex-1 bg-[#138808]" />
-                </div>
+            
                 <h3 className="mt-3 text-center font-semibold">
                   {product.name}
                 </h3>
@@ -210,11 +193,7 @@ export default function BestSellers() {
               }}
               className="col-span-2 bg-white rounded-3xl shadow-md hover:shadow-lg hover:-translate-y-2 transition duration-300 p-5 cursor-pointer flex flex-col overflow-hidden"
             >
-              <div className="h-1.5 w-full flex -mt-5 -mx-5 mb-4">
-                <div className="flex-1 bg-[#FF9933]" />
-                <div className="flex-1 bg-white" />
-                <div className="flex-1 bg-[#138808]" />
-              </div>
+          
               <div className="h-56 w-full rounded-2xl overflow-hidden flex items-center justify-center bg-gray-50/50">
                 {products[5].video ? (
                   <video
@@ -234,11 +213,7 @@ export default function BestSellers() {
                 )}
               </div>
 
-              <div className="h-1.5 w-full flex mt-4">
-                <div className="flex-1 bg-[#FF9933]" />
-                <div className="flex-1 bg-white" />
-                <div className="flex-1 bg-[#138808]" />
-              </div>
+              
               <h3 className="mt-3 text-center text-lg font-semibold">
                 {products[5].name}
               </h3>

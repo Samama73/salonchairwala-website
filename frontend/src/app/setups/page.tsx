@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useCart } from "@/context/CartContext";
 import { sendGAEvent } from "@/lib/gtag";
 import ShareButton from "@/app/components/ShareButton";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 
 // 👇 DIRECT CONTROL: Complete Setups list — apna path/data yahan edit karo
 // Price ke hisaab se LOW → HIGH order mein rakha gaya hai
@@ -71,7 +72,7 @@ const COMPLETE_SETUPS = [
     id: "setup-05",
     name: "The Luxury Studio Setup",
     tagline: "Premium finishes and added comfort — for salons that want to stand out.",
-    image: "/setups/s5.jpeg", // 👈 apna path yahan daalo
+    image: "/setups/s5.jpeg",
     price: 110000,
     includes: [
       "2 x Salon Styling Chairs",
@@ -99,6 +100,13 @@ export default function SetupsPage() {
 
   return (
     <main className="bg-white">
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "https://salonchairwala.com" },
+          { name: "Complete Setups", url: "https://salonchairwala.com/setups" },
+        ]}
+      />
+
       {/* HERO */}
       <section className="relative bg-gradient-to-b from-amber-50/60 via-white to-white pt-24 pb-16 sm:pt-32 sm:pb-20 overflow-hidden">
         <div className="max-w-5xl mx-auto px-6 text-center relative">
