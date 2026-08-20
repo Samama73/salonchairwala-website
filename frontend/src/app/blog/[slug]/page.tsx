@@ -7,7 +7,7 @@ import Footer from "../../components/Footer";
 import FloatingWhatsapp from "../../components/FloatingWhatsapp";
 import { blogPosts, getBlogPostBySlug } from "@/lib/blogData";
 
-// ✅ Static export ke liye required — batata hai kaunse blog slugs pre-build hone hain
+// ✅ Static export ke liye required
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));
 }
@@ -48,7 +48,7 @@ export default async function BlogPostPage({
 
   if (!post) notFound();
 
-  // 🏷️ Article Schema (JSON-LD) — helps Google understand this is a blog article
+  // 🏷️ Article Schema (JSON-LD)
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -70,6 +70,12 @@ export default async function BlogPostPage({
     },
   };
 
+  const formattedDate = new Date(post.publishedDate).toLocaleDateString("en-IN", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
   return (
     <>
       <script
@@ -79,47 +85,86 @@ export default async function BlogPostPage({
 
       <Navbar />
 
-      <article className="min-h-screen bg-amber-50/30 py-16 font-sans">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6">
-          <Link href="/blog" className="text-sm text-red-900 font-semibold hover:underline">
-            ← Back to Blog
+      <main className="bg-white font-sans selection:bg-red-900 selection:text-white pb-24">
+        
+        {/* TOP GRADIENT BACKGROUND */}
+        <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-amber-50/80 via-amber-50/20 to-white pointer-events-none -z-10"></div>
+
+        <article className="max-w-3xl mx-auto px-6 pt-32 sm:pt-40">
+          
+          {/* Back Button */}
+          <Link 
+            href="/blog" 
+            className="group inline-flex items-center text-xs font-bold uppercase tracking-widest text-red-900/70 hover:text-red-900 transition-colors mb-10"
+          >
+            <span className="mr-3 transition-transform group-hover:-translate-x-2">
+              ←
+            </span> 
+            Back to Guides
           </Link>
 
-          <p className="text-xs text-gray-400 mt-6">
-            {new Date(post.publishedDate).toLocaleDateString("en-IN", {
-              day: "numeric",
-              month: "long",
-              year: "numeric",
-            })}
-          </p>
+          {/* Article Header */}
+          <header className="mb-12">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black font-elegant text-gray-950 tracking-tight leading-[1.1] mb-6">
+              {post.title}
+            </h1>
+          </header>
 
-          <h1 className="text-3xl md:text-4xl font-extrabold mt-2 text-gray-900 tracking-tight">
-            {post.title}
-          </h1>
-
-          <div className="relative w-full h-72 md:h-96 rounded-2xl overflow-hidden my-8 bg-gray-50">
-            <Image src={post.coverImage} alt={post.title} fill className="object-contain" priority />
+          {/* Premium Image Container */}
+          <div className="relative w-full aspect-[4/3] md:aspect-video rounded-[2rem] overflow-hidden mb-16 bg-gradient-to-tr from-amber-50/50 to-slate-50 border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.03)] group">
+            <Image 
+              src={post.coverImage} 
+              alt={post.title} 
+              fill 
+              className="object-contain p-4 sm:p-8 group-hover:scale-105 transition-transform duration-700 ease-in-out drop-shadow-xl" 
+              priority 
+            />
+            {/* Glassmorphism Date Badge */}
+            <div className="absolute top-4 right-4 sm:top-6 sm:right-6 bg-white/90 backdrop-blur-md shadow-sm text-red-900 text-[10px] sm:text-xs font-bold px-4 py-2 rounded-full uppercase tracking-widest z-10 border border-white/20">
+              {formattedDate}
+            </div>
           </div>
 
-          <div className="prose prose-gray max-w-none">
+          {/* Editorial Content */}
+          <div className="prose prose-lg max-w-none">
             {post.content.map((para, i) => (
-              <p key={i} className="text-gray-700 leading-relaxed mb-5 text-base">
+              <p 
+                key={i} 
+                className={`text-gray-600 leading-relaxed mb-8 ${
+                  i === 0 
+                    ? "text-xl sm:text-2xl font-medium text-gray-900 leading-snug" // First paragraph is styled like a magazine intro
+                    : "text-base sm:text-lg"
+                }`}
+              >
                 {para}
               </p>
             ))}
           </div>
 
-          <div className="mt-12 p-6 rounded-2xl bg-white border border-gray-100 text-center">
-            <p className="text-gray-700 font-semibold mb-3">Looking for the right salon furniture?</p>
-            <Link
-              href="/categories"
-              className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-red-900 to-red-800 px-6 py-3 text-sm font-semibold text-white shadow-lg hover:shadow-red-900/30 transition"
-            >
-              Browse Our Collection
-            </Link>
+          {/* Luxury CTA Block */}
+          <div className="mt-20 relative overflow-hidden rounded-[2rem] bg-red-900 px-8 py-14 sm:p-16 text-center shadow-2xl">
+            {/* Background Glow */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-amber-200/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3"></div>
+            
+            <div className="relative z-10">
+              <p className="text-amber-200 font-bold uppercase tracking-[0.2em] text-xs mb-4">
+                Upgrade Your Space
+              </p>
+              <h3 className="text-3xl sm:text-4xl font-elegant font-bold text-white mb-6">
+                Looking for the right <br className="hidden sm:block" /> salon furniture?
+              </h3>
+              <Link
+                href="/categories"
+                className="inline-flex items-center justify-center rounded-xl bg-white text-red-900 px-8 py-4 text-sm font-bold uppercase tracking-widest hover:bg-amber-50 hover:shadow-lg transition-all duration-300 w-full sm:w-auto"
+              >
+                Browse Our Collection
+              </Link>
+            </div>
           </div>
-        </div>
-      </article>
+
+        </article>
+      </main>
 
       <Footer />
       <FloatingWhatsapp />

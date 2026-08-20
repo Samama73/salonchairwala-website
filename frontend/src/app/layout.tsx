@@ -4,6 +4,7 @@ import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import { WhatsappPopupProvider } from "@/context/WhatsappPopupContext";
 import JsonLd from '@/components/JsonLd'
+import ChatBot from "./components/ChatBot";
 
 const poppins = Poppins({
     subsets: ["latin"],
@@ -58,6 +59,7 @@ export default function RootLayout({
         <CartProvider>
           <WhatsappPopupProvider>
             {children}
+            <ChatBot />
           </WhatsappPopupProvider>
         </CartProvider>
       </body>

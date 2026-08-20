@@ -39,6 +39,22 @@ export const blogPosts: BlogPost[] = [
       "Budget matters too — but the cheapest option often costs more in the long run due to frequent repairs. Look for manufacturers offering genuine warranty coverage and local (Mumbai-based) after-sales support, so replacement parts and servicing are quick and hassle-free.",
     ],
   },
+  {
+  slug: "barber-chair-buying-guide",
+  title: "Barber Chair Buying Guide: What to Check Before You Buy (2026)",
+  excerpt:
+    "Buying a barber chair for your shop? Here's what actually matters — hydraulics, recline mechanism, upholstery, and warranty — before you spend your money.",
+  coverImage: "/products/gmayur.webp",
+  publishedDate: "2026-08-19",
+  content: [
+    "A barber chair isn't just seating — it's the centerpiece of your shop and the one piece of furniture your client sits in for the longest stretch of time. Getting it wrong means daily complaints about comfort, or worse, a chair that breaks down within a year of heavy use.",
+    "Start with the hydraulic pump. This is the single most common point of failure in cheap barber chairs. Look for a heavy-duty pump rated for continuous daily use, not the lighter pumps used in home or occasional-use furniture. Our Golden Mayur barber chair, for instance, is built around a heavy-duty pump specifically rated for all-day shop use — ask any manufacturer directly what pump rating they use, and a serious one will have a straight answer.",
+    "Next, check the recline mechanism. A good barber chair should recline smoothly for shaves and neck-tilt services without feeling loose or wobbly. Test this in person if you can, or ask for a video demo before ordering — recline mechanisms are hard to judge from photos alone.",
+    "Upholstery matters more than it looks. Barber chairs see constant contact with hair clippings, water, and cleaning chemicals throughout the day. PU leather or vinyl with reinforced stitching holds up far better than fabric or low-grade synthetic leather, which tends to crack and peel within months.",
+    "Base and footrest stability is often overlooked. A wide, weighted base prevents tipping when clients get in and out repeatedly through the day, and a footrest that doesn't wobble adds to the perceived quality of your shop, not just the chair itself.",
+    "Finally, ask about warranty specifics — not just 'warranty included,' but exactly what's covered: the hydraulic pump, the frame, or just the upholstery. Chairs like the Golden Mayur, manufactured in-house rather than resold from someone else's stock, tend to come with clearer, longer warranty terms because the maker controls the build quality end to end.",
+  ],
+},
 ];
 
 export function getBlogPostBySlug(slug: string): BlogPost | undefined {

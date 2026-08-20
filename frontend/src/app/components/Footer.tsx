@@ -76,11 +76,23 @@ export default function Footer() {
 
         {/* Policy Links */}
         <div className="border-t border-gray-800 mt-10 pt-6 flex flex-wrap justify-center gap-x-6 gap-y-2 text-gray-400 text-sm">
+          <Link href="/about" className="hover:text-white hover:underline">
+            About Us
+          </Link>
+          <Link href="/contact" className="hover:text-white hover:underline">
+            Contact
+          </Link>
           <Link href="/return-refund-policy" className="hover:text-white hover:underline">
             Return &amp; Refund Policy
           </Link>
           <Link href="/return-refund-policy/terms-and-conditions" className="hover:text-white hover:underline">
             Terms &amp; Conditions
+          </Link>
+          <Link href="/privacy-policy" className="hover:text-white hover:underline">
+            Privacy Policy
+          </Link>
+          <Link href="/shipping-policy" className="hover:text-white hover:underline">
+            Shipping Policy
           </Link>
         </div>
 
