@@ -1,9 +1,11 @@
+const isStaticExport = process.env.BUILD_TARGET === "static";
+
 const nextConfig = {
-  output: 'export',
-  images: {
-    unoptimized: true
-  },
-  trailingSlash: true
+  ...(isStaticExport && {
+    output: "export",
+    images: { unoptimized: true },
+  }),
+  trailingSlash: true,
 };
 
 module.exports = nextConfig;
