@@ -32,7 +32,8 @@ export default function ChatBot() {
     setLoading(true);
 
     try {
-      const res = await fetch('/api/chat', {
+      const res = await fetch('https://salonchairwala-website-production.up.railway.app/api/chat', 
+      {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: newMessages }),

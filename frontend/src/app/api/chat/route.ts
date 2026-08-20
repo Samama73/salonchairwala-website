@@ -1,10 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
 import { allProducts } from "@/lib/productData";
 
-const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY; // Ya process.env.OPENAI_API_KEY agar .env me wahi naam rakha hai
-const MODEL = "gpt-oss-20b"; 
+const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
+const MODEL = "gpt-oss-20b";
 
 const SHEET_WEBHOOK_URL = process.env.CHATBOT_SHEET_WEBHOOK_URL;
+
+// CORS headers — GoDaddy (alag domain) se request accept karne ke liye
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*", // production mein isse apne exact domain se replace kar sakta hai, jaise "https://salonchairwala.com"
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type",
+};
+
+// Browser pehle ek OPTIONS request bhejta hai check karne ke liye — isko handle karna zaroori hai
+export async function OPTIONS() {
+  return new NextResponse(null, { status: 200, headers: corsHeaders });
+}
 
 function logToSheet(userMessage: string, botReply: string) {
   if (!SHEET_WEBHOOK_URL) return;
@@ -40,14 +52,17 @@ export async function POST(req: NextRequest) {
     if (!OPENROUTER_API_KEY) {
       return NextResponse.json(
         { error: "Server config missing API KEY" },
-        { status: 500 }
+        { status: 500, headers: corsHeaders }
       );
     }
 
     const { messages } = await req.json();
 
     if (!Array.isArray(messages) || messages.length === 0) {
-      return NextResponse.json({ error: "messages required" }, { status: 400 });
+      return NextResponse.json(
+        { error: "messages required" },
+        { status: 400, headers: corsHeaders }
+      );
     }
 
     const formattedMessages = [
@@ -58,14 +73,13 @@ export async function POST(req: NextRequest) {
       })),
     ];
 
-    // OpenRouter ka endpoint
     const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${OPENROUTER_API_KEY}`,
-        "HTTP-Referer": "http://localhost:3000", // Optional: Aapki website ka URL (OpenRouter ranking ke liye)
-        "X-Title": "Salon Chair Wala", // Optional: Aapki app ka naam
+        "HTTP-Referer": "https://salonchairwala.com", // apna asli domain daal de
+        "X-Title": "Salon Chair Wala",
       },
       body: JSON.stringify({
         model: MODEL,
@@ -81,7 +95,7 @@ export async function POST(req: NextRequest) {
       console.error("OpenRouter error:", data);
       return NextResponse.json(
         { error: data?.error?.message || "OpenRouter API error" },
-        { status: res.status }
+        { status: res.status, headers: corsHeaders }
       );
     }
 
@@ -90,10 +104,14 @@ export async function POST(req: NextRequest) {
       "Sorry, mujhe samajh nahi aaya. Dobara try karein?";
 
     const lastUserMessage = messages[messages.length - 1]?.text ?? "";
-    logToSheet(lastUserMessage, reply);  
-    return NextResponse.json({ reply });
+    logToSheet(lastUserMessage, reply);
+
+    return NextResponse.json({ reply }, { headers: corsHeaders });
   } catch (err) {
     console.error("Chat route error:", err);
-    return NextResponse.json({ error: "Internal error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal error" },
+      { status: 500, headers: corsHeaders }
+    );
   }
 }
