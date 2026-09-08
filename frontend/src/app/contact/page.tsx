@@ -7,8 +7,8 @@ export const metadata: Metadata = {
     "Get in touch with Salon Chair Wala — visit our showroom in Bhiwandi, call, email, or message us on WhatsApp for salon furniture enquiries.",
 };
 
-const PHONE_DISPLAY = "+91 98349 56238";
-const PHONE_RAW = "919834956238";
+const PHONE_DISPLAY = "+91 91450 97466";
+const PHONE_RAW = "919145097466";
 const EMAIL = "redwalenterprises@gmail.com";
 const ADDRESS_LINE_1 = "206, F4 Building, Bhumi World"; 
 const ADDRESS_LINE_2 = "Bhiwandi-Kalyan Bypass, Kalyan, Maharashtra";

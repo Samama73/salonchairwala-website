@@ -31,6 +31,7 @@ export default function Home() {
       </Link>
     </section>
 
+
       {/* 📸 FULL WIDTH BANNER */}
       <section className="w-full">
         <Image 

@@ -64,7 +64,7 @@ export default function Footer() {
             </p>
 
             <p className="text-gray-400 mt-4">
-              📞 +91 9403891146
+              📞 +91 91450 97466
             </p>
 
             <p className="text-gray-400">
@@ -93,6 +93,20 @@ export default function Footer() {
           </Link>
           <Link href="/shipping-policy" className="hover:text-white hover:underline">
             Shipping Policy
+          </Link>
+        </div>
+
+        {/* Locations Served */}
+        <div className="border-t border-gray-800 mt-6 pt-6 flex flex-wrap justify-center items-center gap-x-3 gap-y-2 text-gray-400 text-sm">
+          <span className="text-gray-500 uppercase tracking-wide text-xs mr-1">
+            We Deliver To:
+          </span>
+          <Link href="/salon-furniture-bangalore" className="hover:text-white hover:underline">
+            Salon Furniture in Bangalore
+          </Link>
+          <span className="text-gray-700">|</span>
+          <Link href="/salon-furniture-hyderabad" className="hover:text-white hover:underline">
+            Salon Furniture in Hyderabad
           </Link>
         </div>
 

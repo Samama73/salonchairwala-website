@@ -14,6 +14,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/setups/`, lastModified: new Date(), priority: 0.8 },
     { url: `${baseUrl}/readytomove/`, lastModified: new Date(), priority: 0.8 },
     { url: `${baseUrl}/blog/`, lastModified: new Date(), priority: 0.8 },
+    { url: `${baseUrl}/salon-furniture-bangalore/`, lastModified: new Date(), priority: 0.9 },
+    { url: `${baseUrl}/salon-furniture-hyderabad/`, lastModified: new Date(), priority: 0.9 },
   ];
 
   // Category pages
@@ -29,6 +31,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(post.publishedDate),
     priority: 0.7,
   }));
+
+  
 
   return [...staticPages, ...categoryPages, ...blogPages];
 }

@@ -84,7 +84,7 @@ export default function FeaturesSection() {
           </p>
 
           <p className="text-xs md:text-base text-gray-600 mt-2 md:mt-3">
-            Delivering quality, comfort and trust to salons across India.
+            Delivering quality, comfort and trust to salons across India — from Mumbai and Pune to Bangalore and Hyderabad.
           </p>
         </div>
 

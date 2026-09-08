@@ -88,6 +88,7 @@ export default async function ProductPage({
         <img
           src={product.image}
           alt={product.name}
+          loading="lazy"
           className="w-full rounded-xl object-cover"
         />
 
@@ -104,7 +105,7 @@ export default async function ProductPage({
           )}
 
           <a
-            href={`https://wa.me/919403891146?text=${encodeURIComponent(
+            href={`https://wa.me/919145097466?text=${encodeURIComponent(
               `Hi, I'm interested in ${product.name} (₹${product.price})`
             )}`}
             className="inline-block bg-black text-white px-6 py-3 rounded-lg font-medium"

@@ -27,7 +27,7 @@ const products = [
   },
   {
     name: "Royal Diamond",
-    image: "/products/royaldiamond.webp",
+    image: "/products/rdiamnondnew.webp",
     description:
       "Crafted for modern salons, Royal Diamond delivers a sleek appearance, superior comfort, and reliable performance, making it an ideal choice for everyday professional use.",
   },
@@ -93,6 +93,7 @@ export default function BestSellers() {
                   <img
                     src={product.image}
                     alt={product.name}
+                    loading="lazy"
                     className="h-full w-full object-contain hover:scale-105 transition duration-500"
                   />
                 )}
@@ -139,6 +140,7 @@ export default function BestSellers() {
                   <img
                     src={products[0].image}
                     alt={products[0].name}
+                    loading="lazy"
                     className="h-full w-full object-contain hover:scale-105 transition duration-500"
                   />
                 )}
@@ -171,6 +173,7 @@ export default function BestSellers() {
                   <img
                     src={product.image}
                     alt={product.name}
+                    loading="lazy"
                     className="h-full w-full object-contain hover:scale-105 transition duration-500"
                   />
                 </div>
@@ -208,6 +211,7 @@ export default function BestSellers() {
                   <img
                     src={products[5].image}
                     alt={products[5].name}
+                    loading="lazy"
                     className="h-full w-full object-contain hover:scale-105 transition duration-500"
                   />
                 )}

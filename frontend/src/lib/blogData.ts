@@ -8,6 +8,8 @@ export type BlogPost = {
   content: string[];     // har string ek paragraph hai
   coverImage: string;    // /public folder ka path
   publishedDate: string; // "2026-08-14"
+  ctaLink?: string;      // optional: end-of-post CTA button link (default "/categories")
+  ctaText?: string;      // optional: end-of-post CTA button text
 };
 
 export const blogPosts: BlogPost[] = [
@@ -55,6 +57,59 @@ export const blogPosts: BlogPost[] = [
     "Finally, ask about warranty specifics — not just 'warranty included,' but exactly what's covered: the hydraulic pump, the frame, or just the upholstery. Chairs like the Golden Mayur, manufactured in-house rather than resold from someone else's stock, tend to come with clearer, longer warranty terms because the maker controls the build quality end to end.",
   ],
 },
+  {
+    slug: "salon-setup-cost-india",
+    title: "Salon Setup Cost in India (2026): Complete Furniture Budget Breakdown",
+    excerpt:
+      "Planning to open a salon in India? Get a realistic breakdown of furniture costs — chairs, backwash units, manicure stations & more — for small, mid-size and premium salons.",
+    coverImage: "/setups/s1.jpeg",
+    publishedDate: "2026-09-02",
+    content: [
+      "One of the first questions every new salon owner asks is: what will my furniture budget look like? The answer depends on the size of your salon, the number of stations you need, and the quality of furniture you choose.",
+      "At Salon Chair Wala, we've worked with salon owners across India — from single-chair studios to premium salons with 10+ stations. Here's a realistic, transparent breakdown to help you plan your budget, based on our own product range.",
+      "Every salon setup typically includes styling chairs for haircuts and coloring, shampoo or backwash chairs with reclining ceramic basins for hair washing, manicure and pedicure stations for nail care, trolleys for tools and mobility, and steamers for facial or hair treatments.",
+      "For a small salon with 2-3 chairs — ideal for a solo stylist or a small neighborhood setup — expect around 2 styling chairs (₹28,000–₹36,000), 1 shampoo chair (₹18,000–₹28,000), 1 trolley (₹5,200), and 1 facial steamer (₹3,600). Estimated total: ₹55,000 – ₹75,000.",
+      "For a mid-size salon with 5-8 chairs — the most common setup for a full-service neighborhood or suburban salon — budget for 5 styling chairs (₹70,000–₹1,10,000), 2 shampoo chairs (₹36,000–₹56,000), 1 manicure/pedicure station (₹18,000), 2 trolleys (₹10,400), and a facial plus hair steamer (₹8,100). Estimated total: ₹1,45,000 – ₹2,05,000.",
+      "For a premium or franchise salon with 10+ chairs — built for a luxury client experience or multi-branch setups — plan for 10+ premium styling chairs (₹2,20,000–₹4,50,000+), 3-4 shampoo chairs (₹70,000–₹1,10,000), a dedicated pedicure spa chair (₹65,000), and multiple trolleys and steamers (₹25,000+). Estimated total: ₹3,80,000 – ₹6,50,000+.",
+      "Several factors affect your final cost. Upholstery finish and stitching quality — like diamond-quilting or chrome accents — add to the price of leatherette chairs. A hydraulic mechanism is standard on professional styling chairs and essential for adjustable height. Frame material and foam density affect how long a chair lasts under daily 150kg+ use. And buying pre-matched combo bundles, like a styling plus backwash combo, typically costs less than buying each piece separately.",
+      "A few tips to stretch your budget further: buy in combos wherever your layout allows it, since bundled pricing is usually lower than piece-by-piece purchases. Invest in durable materials upfront — a cheaper chair that wears out within a year usually ends up costing more in replacements. And plan for slightly more capacity than you think you need today, since most salons grow into extra chairs faster than expected.",
+      "Every salon is different, and the most accurate number comes from a setup tailored to your actual space and vision. Reach out to us on WhatsApp with your salon size, and we'll help you plan the right furniture mix within your budget.",
+    ],
+  },
+    {
+    slug: "salon-furniture-buying-guide-bangalore",
+    title: "Salon Furniture Buying Guide for Bangalore Salon Owners (2026)",
+    excerpt:
+      "Rents are high and space is tight in Bangalore's salon hubs. Here's how to pick furniture that fits the space, the budget, and the daily grind.",
+    coverImage: "/products/bubbly.webp",
+    publishedDate: "2026-09-01",
+    ctaLink: "/salon-furniture-bangalore",
+    ctaText: "See Our Bangalore Delivery Page",
+    content: [
+      "Bangalore's salon scene has grown fast over the last few years, especially in areas like Koramangala, Indiranagar and Whitefield, where new salons open almost every month. But with that growth comes a real constraint: commercial rent in these areas is expensive, which means most salon owners are working with tighter floor plans than they'd like.",
+      "That changes what 'good' furniture looks like. In a large-format salon, a bulky chair with a wide base isn't a problem. In a 400-500 sq ft Bangalore salon, it eats into walking space and makes the place feel cramped. Look for chairs with a compact footprint and a stable hydraulic base — you want stability without the chair taking up more floor than it needs to.",
+      "Traffic and daily usage matter too. A salon in a high-footfall area like HSR Layout or Jayanagar might see a chair used 15-20 times a day. That kind of use wears down cheap upholstery and weak hydraulic pumps within months. Spending slightly more upfront on commercial-grade components almost always works out cheaper over a year or two than repeatedly replacing budget furniture.",
+      "Since most salon furniture isn't manufactured in Bangalore itself, shipping and after-sales support become part of the decision too. Ask any supplier directly: what's the delivery timeline to your area, and what happens if a part needs replacing six months in? A manufacturer who ships pan-India regularly will have clear answers to both — a reseller often won't.",
+      "Finally, don't underestimate interior matching. Salons in areas like Indiranagar and Koramangala tend to lean into a specific aesthetic — muted tones, warm lighting, minimal clutter. Furniture available only in stock colors can clash with that. Ask whether custom upholstery colors are an option before you commit to an order.",
+    ],
+  },
+  {
+    slug: "new-salon-setup-checklist-hyderabad",
+    title: "New Salon Setup in Hyderabad: The Furniture Checklist",
+    excerpt:
+      "Opening a salon in Hyderabad? Here's a practical checklist for the furniture you'll actually need, in the order you should be thinking about it.",
+    coverImage: "/products/wave.webp",
+    publishedDate: "2026-09-03",
+    ctaLink: "/salon-furniture-hyderabad",
+    ctaText: "See Our Hyderabad Delivery Page",
+    content: [
+      "Hyderabad's beauty and wellness industry has expanded quickly across Banjara Hills, Jubilee Hills, Madhapur and Gachibowli, and a lot of first-time salon owners end up buying furniture piece by piece, reactively, instead of planning it out. That usually costs more in the long run and leads to a mismatched interior.",
+      "Start with your styling stations. This is the core of any salon and the first thing clients notice. Decide on the number of chairs based on your floor plan and expected staff count, not the other way around — buying too many chairs for a small space is one of the most common early mistakes.",
+      "Next, plan your shampoo/backwash area. This needs plumbing access, so it should be finalized early, ideally before your interior work is complete, not after. A reclining shampoo chair with a ceramic basin holds up better over years of daily washing than cheaper plastic-basin alternatives.",
+      "If you're offering manicure, pedicure or facial services, budget for dedicated stations rather than repurposing styling chairs for these — it looks more professional and is easier on your staff during a full day of bookings.",
+      "Lastly, think about ordering as a set rather than individually. Salons in Hyderabad ordering chairs, shampoo units and stations together from one supplier typically get a single delivery timeline and a bulk price, instead of managing multiple vendors with different lead times and mismatched finishes.",
+    ],
+  },
 ];
 
 export function getBlogPostBySlug(slug: string): BlogPost | undefined {

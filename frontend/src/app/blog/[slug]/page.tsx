@@ -155,10 +155,10 @@ export default async function BlogPostPage({
                 Looking for the right <br className="hidden sm:block" /> salon furniture?
               </h3>
               <Link
-                href="/categories"
+                href={post.ctaLink ?? "/categories"}
                 className="inline-flex items-center justify-center rounded-xl bg-white text-red-900 px-8 py-4 text-sm font-bold uppercase tracking-widest hover:bg-amber-50 hover:shadow-lg transition-all duration-300 w-full sm:w-auto"
               >
-                Browse Our Collection
+                {post.ctaText ?? "Browse Our Collection"}
               </Link>
             </div>
           </div>

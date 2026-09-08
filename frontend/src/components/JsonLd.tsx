@@ -14,7 +14,7 @@ export default function JsonLd() {
         },
         "image": "https://salonchairwala.com/products/logo.webp",
         "email": "redwalenterprises@gmail.com",
-        "telephone": "+91-9834956238",
+        "telephone": "+91-9145097466",
         "sameAs": [
           "https://www.instagram.com/salonchairwala",
           "https://www.facebook.com/salonchairwala"
@@ -26,7 +26,7 @@ export default function JsonLd() {
         "name": "Salon Chair Wala",
         "image": "https://salonchairwala.com/products/logo.webp",
         "url": "https://salonchairwala.com",
-        "telephone": "+91-9834956238",
+        "telephone": "+91-9145097466",
         "email": "redwalenterprises@gmail.com",
         "priceRange": "₹₹",
         "address": {
