@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import FloatingWhatsapp from "../components/FloatingWhatsapp";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import FAQAccordion from "../components/FAQAccordion";
-import TestimonialVideo from "../components/TestimonialVideo";
+import CaseStudyVideo from "../components/CaseStudyVideo";
 import { categoryList, categoryInfo, slugifyCategory } from "@/lib/productData";
 
 // ============ SEO METADATA ============
@@ -70,11 +70,27 @@ export default function SalonFurnitureHyderabadPage() {
     })),
   };
 
+  const dkVideoSchema = {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: "DK Makeup Academy Salon Furniture Installation — Warangal, Telangana",
+    description:
+      "Salon furniture setup by Salon Chair Wala for DK Makeup Academy in Warangal, Telangana — salon chairs, shampoo units, and workstations manufactured and installed on-site.",
+    thumbnailUrl: ["https://www.salonchairwala.com/videos/dk.jpg"],
+    uploadDate: "2026-09-11",
+    contentUrl: "https://www.salonchairwala.com/videos/dk.mp4",
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(dkVideoSchema) }}
       />
 
       <BreadcrumbJsonLd
@@ -107,7 +123,7 @@ export default function SalonFurnitureHyderabadPage() {
               and facial beds — with custom colours built to order.
             </p>
             <div className="mt-8">
-              
+
             <a    href={whatsappHref}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -262,12 +278,62 @@ export default function SalonFurnitureHyderabadPage() {
           </div>
         </section>
 
-        {/* 5B. TESTIMONIAL */}
-        <section className="max-w-3xl mx-auto px-6 py-16">
-          <h2 className="text-2xl sm:text-3xl font-black text-gray-950 text-center mb-10 font-elegant">
-            What Hyderabad Salons Say About Us
-          </h2>
-          <TestimonialVideo />
+        {/* 5B. CASE STUDY VIDEO — DK Makeup Academy, Warangal */}
+        <section className="bg-white border-y border-gray-100 py-16">
+          <div className="max-w-5xl mx-auto px-6">
+            <p className="text-red-900 font-bold uppercase tracking-[0.2em] text-xs text-center mb-4">
+              Case Study
+            </p>
+            <h2 className="text-2xl sm:text-3xl font-black text-gray-950 text-center mb-10 font-elegant">
+              DK Makeup Academy — Warangal, Telangana
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-10 items-center bg-slate-50 border border-gray-200 rounded-3xl p-6 sm:p-10">
+              <div className="md:col-span-2 order-2 md:order-1">
+                <span className="inline-block bg-red-50 text-red-900 text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full mb-4">
+                  Warangal, Telangana
+                </span>
+                <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
+                  A look at the salon furniture setup we completed for DK
+                  Makeup Academy in Warangal, Telangana — salon chairs,
+                  shampoo units and workstations manufactured and installed
+                  on-site.
+                </p>
+                <ul className="mt-6 space-y-3">
+                  {[
+                    "Salon chairs & workstations",
+                    "Shampoo units",
+                    "On-site installation support",
+                  ].map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-center gap-3 text-gray-700 text-sm sm:text-base"
+                    >
+                      <span className="w-5 h-5 rounded-full bg-[#82181A] text-white flex items-center justify-center text-xs shrink-0">
+                        ✓
+                      </span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block mt-8 bg-[#82181A] text-white py-2.5 px-6 rounded-xl font-bold text-sm shadow-md transition-all duration-300 hover:scale-105 active:scale-95"
+                >
+                  Get a Similar Setup
+                </a>
+              </div>
+
+              <div className="md:col-span-3 order-1 md:order-2">
+                <CaseStudyVideo
+                  video="/videos/dk.mp4"
+                  ariaLabel="DK Makeup Academy salon furniture installation in Warangal, Telangana"
+                />
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* 6. FAQs */}
@@ -284,7 +350,7 @@ export default function SalonFurnitureHyderabadPage() {
               — chairs, shampoo units, stations, and more, delivered to your
               door.
             </p>
-            
+
             <a  href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"

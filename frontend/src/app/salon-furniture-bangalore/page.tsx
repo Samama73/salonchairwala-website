@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import FloatingWhatsapp from "../components/FloatingWhatsapp";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import FAQAccordion from "../components/FAQAccordion";
+import CaseStudyVideo from "../components/CaseStudyVideo";
 import { categoryList, categoryInfo, slugifyCategory } from "@/lib/productData";
 
 // ============ SEO METADATA ============
@@ -69,11 +70,48 @@ export default function SalonFurnitureBangalorePage() {
     })),
   };
 
+  const karigariVideoSchema = {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: "Karigari Salon Furniture Installation — Ayyappa Nagar, Bangalore",
+    description:
+      "Complete salon furniture setup by Salon Chair Wala for Karigari salon in Ayyappa Nagar, Bangalore — salon chairs, shampoo units, and workstations manufactured and installed on-site.",
+    thumbnailUrl: [
+      "https://www.salonchairwala.com/videos/ayyappa-nagar-salon-setup.jpg",
+    ],
+    uploadDate: "2026-09-11",
+    contentUrl:
+      "https://www.salonchairwala.com/videos/karigari.mp4",
+  };
+
+  const sskovoVideoSchema = {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: "SS Kovo Lounge Salon Furniture Installation — Palace Road, Bangalore",
+    description:
+      "Complete salon furniture setup by Salon Chair Wala for SS Kovo Lounge on Palace Road, Bangalore — salon chairs, shampoo units, and workstations manufactured and installed on-site.",
+    thumbnailUrl: [
+      "https://www.salonchairwala.com/videos/sskovolounge.jpg",
+    ],
+    uploadDate: "2026-09-11",
+    contentUrl: "https://www.salonchairwala.com/videos/sskovolounge.mp4",
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(karigariVideoSchema) }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(sskovoVideoSchema) }}
       />
 
       <BreadcrumbJsonLd
@@ -174,6 +212,92 @@ export default function SalonFurnitureBangalorePage() {
             Wherever your salon is located in the city, we can get your
             furniture delivered to your doorstep.
           </p>
+        </section>
+
+        {/* 4.5 CASE STUDY VIDEOS */}
+        <section className="max-w-6xl mx-auto px-6 py-16">
+          <h2 className="text-2xl sm:text-3xl font-black text-gray-950 text-center mb-4 font-elegant">
+            Salon Furniture Installations Across Bangalore
+          </h2>
+          <p className="text-gray-600 text-base sm:text-lg leading-relaxed text-center max-w-2xl mx-auto mb-10">
+            A look at real salon furniture setups we've completed for salons
+            in Bangalore — manufactured and delivered directly from our
+            factory, with on-site installation support from our team.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+            {/* Karigari — Ayyappa Nagar */}
+            <div>
+              <CaseStudyVideo
+                video="/videos/karigari.mp4"
+                ariaLabel="Karigari salon furniture installation in Ayyappa Nagar, Bangalore"
+              />
+              <h3 className="text-lg sm:text-xl font-bold text-gray-950 text-center mt-4">
+                Karigari — Ayyappa Nagar, Bangalore
+              </h3>
+              <p className="text-gray-500 text-sm sm:text-base text-center mt-1">
+                Salon chairs, shampoo units and workstations manufactured and
+                installed on-site for Karigari.
+              </p>
+            </div>
+
+            {/* SS Kovo Lounge — Palace Road */}
+            <div>
+              <CaseStudyVideo
+                video="/videos/sskovolounge.mp4"
+                ariaLabel="SS Kovo Lounge salon furniture installation on Palace Road, Bangalore"
+              />
+              <h3 className="text-lg sm:text-xl font-bold text-gray-950 text-center mt-4">
+                SS Kovo Lounge — Palace Road, Bangalore
+              </h3>
+              <p className="text-gray-500 text-sm sm:text-base text-center mt-1">
+                Salon chairs, shampoo units and workstations manufactured and
+                installed on-site for SS Kovo Lounge.
+              </p>
+            </div>
+          </div>
+
+          {/* Testimonial — between the two videos */}
+          <div className="max-w-2xl mx-auto mt-10 relative bg-gradient-to-br from-white to-red-50/40 border border-red-100 rounded-3xl p-8 sm:p-10 shadow-lg">
+            <div className="absolute -top-5 left-8 sm:left-10 w-10 h-10 rounded-full bg-[#82181A] flex items-center justify-center text-white text-2xl font-serif shadow-md">
+              &quot;
+            </div>
+
+            <div className="flex gap-1 mb-5 justify-center sm:justify-start">
+              {[...Array(5)].map((_, i) => (
+                <span key={i} className="text-yellow-500 text-lg">
+                  ★
+                </span>
+              ))}
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start text-center sm:text-left">
+              <img
+                src="/testimonials/owner.jpg"
+                alt="Owner, Karigari salon"
+                className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover shrink-0 border-4 border-white shadow-lg ring-2 ring-[#82181A]/20"
+              />
+              <div>
+                <p className="text-gray-700 text-base sm:text-lg leading-relaxed font-elegant italic">
+                  When we were setting up Karigari, we didn&apos;t want to
+                  deal with five different vendors for chairs, shampoo
+                  units, and stations. Salon Chair Wala handled everything
+                  in one go, matched the colours to our interior, and their
+                  team came down to install it themselves. Honestly, for
+                  the turnaround time they gave us, I wasn&apos;t expecting
+                  this level of finish.
+                </p>
+                <div className="mt-5 pt-5 border-t border-red-100">
+                  <p className="text-gray-950 font-bold text-base">
+                    Suresh Kumar
+                  </p>
+                  <p className="text-red-900 text-sm font-semibold uppercase tracking-wide">
+                    Owner, Karigari
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* 5. FAQs */}

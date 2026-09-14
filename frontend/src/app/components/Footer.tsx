@@ -108,6 +108,10 @@ export default function Footer() {
           <Link href="/salon-furniture-hyderabad" className="hover:text-white hover:underline">
             Salon Furniture in Hyderabad
           </Link>
+          <span className="text-gray-700">|</span>
+          <Link href="/salon-furniture-kerala" className="hover:text-white hover:underline">
+            Salon Furniture in Kerala
+          </Link>
         </div>
 
         {/* Bottom */}
