@@ -46,7 +46,10 @@ export default function ChatBot() {
     } catch {
       setMessages((prev) => [
         ...prev,
-        { role: 'assistant', text: 'Network error, dobara try karein.' },
+        {
+          role: 'assistant',
+          text: 'Abhi thoda technical issue aa raha hai. Seedha WhatsApp pe baat karein: https://wa.me/919145097466',
+        },
       ]);
     } finally {
       setLoading(false);
