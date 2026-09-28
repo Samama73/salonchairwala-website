@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { allProducts } from "@/lib/productData";
 
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
-const MODEL = "gpt-oss-20b";
+const MODEL = "openai/gpt-oss-20b";
 
 const SHEET_WEBHOOK_URL = process.env.CHATBOT_SHEET_WEBHOOK_URL;
 
@@ -33,8 +33,8 @@ function buildSystemInstruction() {
     .map(p => `- ${p.name} (${p.category}): ₹${p.price} — ${p.description}`)
     .join("\n");
 
-  return `Tum "Salon Chair Wala" (Redwal Furniture OPC Pvt Ltd.) ke website assistant ho.
-Company salon chairs, shampoo chairs, manicure/pedicure stations, facial beds aur salon furniture banati hai, Mumbai based hai, pan-India delivery karti hai.
+    return `Tum "Salon Chair Wala" ke website assistant ho.
+Company salon chairs, shampoo chairs, manicure/pedicure stations, facial beds aur salon furniture banati hai aur pan-India delivery karti hai.
 
 Apne jawaab plain, simple text mein do. Markdown formatting (jaise *, **, #, bullets) bilkul use mat karo. Agar list dikhani ho to naye line pe likho, sirf hyphen (-) ya numbering use kar sakte ho.
 
@@ -42,13 +42,25 @@ User ke sawaalon ka friendly, short aur helpful jawab do (Hindi/English/Hinglish
 Agar order, pricing, ya custom requirement ki baat ho to unhe WhatsApp button ya contact form use karne ka suggest karo.
 
 SHOWROOM/LOCATION:
-Hamara koi walk-in showroom nahi hai — hum Mumbai-based manufacturer hain aur poore India mein delivery karte hain. Agar customer address/showroom/location ke baare mein poochein, ye bolo: "Hum Mumbai se operate karte hain aur pan-India delivery karte hain. Physical showroom visit available nahi hai, lekin WhatsApp pe photos/videos dekh sakte hain."
+Address: Bhumi World, Bhiwandi Kalyan Bypass, Kalyan.
+Showroom pe direct visit kar sakte hain. Timing: subah 10 baje se shaam 6 baje tak, hafte ke saaton din (Sunday ko bhi khula hai).
+Agar customer location, address ya showroom poochhe to sirf yahi facts batao. Chahe to WhatsApp pe photos/videos bhi dekh sakte hain: https://wa.me/919145097466
+
+DELIVERY:
+- Bina customization ke order: 7 se 10 din mein delivery.
+- Customization wale order: 30 se 35 din lagte hain.
+Delivery ka exact time order pe depend karta hai. Charges ya kisi specific city ke baare mein poochhe to team se WhatsApp pe confirm karne ko bolo.
+
+STRICT RULES:
+- Sirf is prompt ki jankari aur catalog se jawab do, andaza mat lagao.
+- Discount, stock, warranty, GST, installation, payment terms, custom size jaisi cheezon ke baare mein haan/na mat bolo. Bolo "Iski confirm jankari ke liye WhatsApp pe team se baat karein: https://wa.me/919145097466"
+- "Nahi hai" ya "available nahi" tabhi bolo jab wo is prompt mein likha ho.
+- Price sirf catalog wala batao.
 
 UNCLEAR/TYPO MESSAGES:
 Agar user ka message broken ya typo-laden ho aur intent clear na ho (jaise garbled Hinglish), seedha guess karke jawab mat do. Pehle politely clarify karo ki user kya jaanna chahta hai (product, price, ya location).
 
-ORDER INTENT:
-Jab user kisi specific product mein order/interest dikhaye, WhatsApp link is format mein do: https://wa.me/919145097466?text=Hi%2C%20mujhe%20[PRODUCT_NAME]%20order%20karna%20hai (PRODUCT_NAME ko actual product naam se replace karo, spaces ko %20 se). Agar product clear na ho to generic link do: https://wa.me/919145097466?text=Hi%2C%20mujhe%20product%20details%20chahiye
+ORDER INTENT: Jab user kisi product mein interest ya order dikhaye, ye link do: https://wa.me/919145097466 aur bolo ki product ka naam WhatsApp pe bata dein.
 
 Yahan company ka pura product catalog hai — sirf isi data se answer do, kuch bhi khud se mat banao:
 ${catalog}
@@ -74,6 +86,16 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const lastMsg = (messages[messages.length - 1]?.text ?? "").toLowerCase();
+    const locationRegex = /\b(kahan|kaha pe|kaha par|kaha ho|kaha hai|kidhar|located|location|showroom|factory|visit|where are you|aapka address|apka address|your address|shop address)\b/i;
+
+    if (locationRegex.test(lastMsg)) {
+      const reply =
+        "Hamara showroom Bhumi World, Bhiwandi Kalyan Bypass, Kalyan mein hai. Aap seedha visit kar sakte hain, roz subah 10 baje se shaam 6 baje tak (Sunday ko bhi). Photos/videos ke liye WhatsApp pe bhi baat kar sakte hain: https://wa.me/919145097466";
+      logToSheet(messages[messages.length - 1]?.text ?? "", reply);
+      return NextResponse.json({ reply }, { headers: corsHeaders });
+    }
+
     const formattedMessages = [
       { role: "system", content: buildSystemInstruction() },
       ...messages.map((m: { role: string; text: string }) => ({
@@ -93,8 +115,8 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         model: MODEL,
         messages: formattedMessages,
-        temperature: 0.7,
-        max_tokens: 512,
+        temperature: 0.2,
+        max_tokens: 1024,
       }),
     });
 
@@ -109,8 +131,8 @@ export async function POST(req: NextRequest) {
     }
 
     const reply =
-      data?.choices?.[0]?.message?.content ??
-      "Sorry, mujhe samajh nahi aaya. Dobara try karein?";
+      data?.choices?.[0]?.message?.content?.trim() ||
+      "Sorry, mujhe samajh nahi aaya. Seedha WhatsApp pe baat karein: https://wa.me/919145097466";
 
     const lastUserMessage = messages[messages.length - 1]?.text ?? "";
     logToSheet(lastUserMessage, reply);

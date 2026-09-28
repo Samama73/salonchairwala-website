@@ -1,7 +1,7 @@
 "use client";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
@@ -38,6 +38,11 @@ const furnishings = allProducts.filter((p) => p.category === "Furnishings");
 export default function ReadyToMovePage() {
   const { addToCart, removeFromCart, cart } = useCart();
 
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const [selectedColors, setSelectedColors] = useState<{ [key: string]: number }>(
     colorSetups.reduce((acc, setup) => ({ ...acc, [setup.name]: 0 }), {})
   );
@@ -67,7 +72,7 @@ export default function ReadyToMovePage() {
   );
 
   return (
-    <section className="min-h-screen bg-amber-50/30 py-12 font-sans">
+    <section className="min-h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-100/40 via-amber-50/30 to-white py-12 font-sans">
       {/* 🎟 PERFECT INFINITE COUPON TICKER */}
       <div className="overflow-hidden bg-red-900 text-white py-2.5 mb-12 shadow-sm">
         <div className="ticker">
@@ -93,20 +98,20 @@ export default function ReadyToMovePage() {
       {/* 🛒 FLOATING CART */}
       <Link href="/cart">
         <div className="fixed bottom-6 right-6 bg-red-900 text-white px-6 py-3.5 rounded-full shadow-2xl hover:scale-105 hover:bg-red-950 transition-all z-50 font-semibold tracking-wide flex items-center gap-2 border border-red-800">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
             <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
           </svg>
-          Cart ({totalItems})
+          Cart ({mounted ? totalItems : 0})
         </div>
       </Link>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* HERO */}
         <div className="text-center mb-16">
-          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold tracking-wide bg-red-900 text-white uppercase ring-1 ring-inset ring-red-800">
+          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold tracking-widest bg-red-900 text-white uppercase shadow-sm">
             • Ready To Ship •
           </span>
-          <h1 className="text-4xl md:text-5xl font-extrabold mt-6 text-gray-900 tracking-tight">
+          <h1 className="text-4xl md:text-6xl font-extrabold mt-6 text-gray-900 tracking-tight">
             Ready To Order Products
           </h1>
           <p className="text-gray-600 mt-4 text-base md:text-lg max-w-2xl mx-auto font-medium">
@@ -137,16 +142,16 @@ export default function ReadyToMovePage() {
                     items: [{ item_name: itemName }],
                   })
                 }
-                className="group bg-white border border-gray-200/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
+                className="group bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
               >
-                <div className="w-full bg-[#f4f5f7] flex flex-col items-center relative">
+                <div className="w-full bg-[#f8f9fa] flex flex-col items-center relative">
                   <div className="h-32 sm:h-80 md:h-[28rem] w-full flex items-center justify-center p-3 overflow-hidden relative">
                     <Image
                       src={currentColor.images[currentImgIdx]}
                       alt={itemName}
                       width={600}
                       height={600}
-                      className="object-contain w-full h-full scale-110 drop-shadow-lg group-hover:scale-115 transition-transform duration-700 ease-out"
+                      className="object-contain w-full h-full scale-100 drop-shadow-md group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
                   </div>
 
@@ -155,10 +160,13 @@ export default function ReadyToMovePage() {
                       {currentColor.images.map((img, idx) => (
                         <button
                           key={idx}
-                          onClick={() => setSelectedImageIndices((prev) => ({ ...prev, [setup.name]: idx }))}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedImageIndices((prev) => ({ ...prev, [setup.name]: idx }));
+                          }}
                           className={`relative w-9 h-9 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl bg-white overflow-hidden transition-all duration-200 ${
                             currentImgIdx === idx
-                              ? "ring-2 ring-black ring-offset-2 shadow-md"
+                              ? "ring-2 ring-gray-900 ring-offset-2 shadow-md"
                               : "ring-1 ring-gray-200 hover:ring-gray-300 hover:shadow-sm"
                           }`}
                         >
@@ -169,22 +177,22 @@ export default function ReadyToMovePage() {
                   )}
                 </div>
 
-                <div className="p-3 sm:p-6 md:p-8 flex flex-col gap-2 sm:gap-4 bg-white">
+                <div className="p-4 sm:p-6 md:p-8 flex flex-col gap-3 sm:gap-4 bg-white flex-grow">
                   <div className="flex justify-between items-start gap-4">
-                    <h2 className="text-sm sm:text-2xl font-bold text-gray-900 leading-tight">{setup.name}</h2>
-                    <span className="hidden sm:inline-flex items-center rounded-md bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700 ring-1 ring-inset ring-emerald-600/20 whitespace-nowrap uppercase tracking-wide">
+                    <h2 className="text-base sm:text-2xl font-bold text-gray-900 leading-tight">{setup.name}</h2>
+                    <span className="hidden sm:inline-flex items-center rounded-md bg-gray-100 px-2.5 py-1 text-xs font-bold text-gray-800 ring-1 ring-inset ring-gray-200 whitespace-nowrap uppercase tracking-wide">
                       In Stock
                     </span>
                   </div>
 
-                  <p className="hidden sm:block text-gray-700 text-sm md:text-base leading-relaxed">{setup.description}</p>
+                  <p className="hidden sm:block text-gray-500 text-sm md:text-base leading-relaxed">{setup.description}</p>
 
                   {setup.name === "Salon Setup" && (
-                    <div className="hidden sm:block rounded-2xl border border-gray-200 bg-gray-50 p-5">
-                      <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4">
+                    <div className="hidden sm:block rounded-2xl border border-gray-100 bg-gray-50/50 p-5 mt-2">
+                      <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">
                         Included in this Setup
                       </h3>
-                      <div className="space-y-3">
+                      <div className="space-y-3 text-sm">
                         <div className="flex justify-between items-center">
                           <span className="text-gray-700 font-medium">Royal Diamond Chair</span>
                           <span className="font-bold text-gray-900">₹15,000</span>
@@ -194,28 +202,29 @@ export default function ReadyToMovePage() {
                           <span className="font-bold text-gray-900">₹22,000</span>
                         </div>
                       </div>
-                      <div className="mt-4 pt-4 border-t border-gray-200">
-                        <p className="text-sm text-gray-600">
+                      <div className="mt-4 pt-4 border-t border-gray-200/60">
+                        <p className="text-xs text-gray-400">
                           ✓ All products are available for individual purchase also.
                         </p>
                       </div>
                     </div>
                   )}
 
-                  <div className="flex items-center gap-2 sm:gap-4 mt-1">
-                    <span className="text-sm font-semibold text-gray-900 uppercase tracking-wide">Color:</span>
+                  <div className="flex items-center gap-2 sm:gap-4 mt-2">
+                    <span className="text-xs sm:text-sm font-bold text-gray-400 uppercase tracking-wide">Color:</span>
                     <div className="flex gap-3 items-center">
                       {setup.colors.map((c, idx) => (
                         <button
                           key={c.name}
-                          onClick={() => {
+                          onClick={(e) => {
+                            e.stopPropagation();
                             setSelectedColors((prev) => ({ ...prev, [setup.name]: idx }));
                             setSelectedImageIndices((prev) => ({ ...prev, [setup.name]: 0 }));
                           }}
                           title={c.name}
-                          className={`w-5 h-5 sm:w-7 sm:h-7 rounded-full transition-all duration-200 ${
+                          className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full transition-all duration-200 ${
                             selectedIndex === idx
-                              ? "ring-2 ring-black ring-offset-2 shadow-sm scale-110"
+                              ? "ring-2 ring-gray-900 ring-offset-2 shadow-sm scale-110"
                               : "ring-1 ring-gray-200 hover:scale-110"
                           }`}
                           style={{
@@ -228,41 +237,41 @@ export default function ReadyToMovePage() {
                           }}
                         />
                       ))}
-                      <span className="text-sm font-medium text-gray-700 ml-1">{currentColor.name}</span>
+                      <span className="text-sm font-semibold text-gray-800 ml-1">{currentColor.name}</span>
                     </div>
                   </div>
 
-                  <div className="flex justify-end">
+                  <div className="flex justify-end mt-2">
                     <ShareButton title={setup.name} text={`Check out ${setup.name} at Salon Chair Wala`} />
                   </div>
 
-                  <div className="mt-auto pt-2 sm:pt-4 flex items-end justify-between">
+                  <div className="mt-auto pt-4 sm:pt-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                     <div>
-                      <p className="text-[10px] sm:text-sm text-gray-400 font-medium mb-0.5 sm:mb-1">Price</p>
+                      <p className="text-[10px] sm:text-xs text-gray-400 font-bold uppercase tracking-wider mb-0.5 sm:mb-1">Price</p>
                       <div className="flex items-baseline gap-2">
                         <p className="hidden sm:block text-lg md:text-xl font-medium text-gray-400 line-through">
                           ₹{setup.originalPrice.toLocaleString("en-IN")}
                         </p>
-                        <p className="text-base sm:text-3xl font-extrabold text-gray-900 tracking-tight">
+                        <p className="text-xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
                           ₹{setup.price.toLocaleString("en-IN")}
                         </p>
                       </div>
                     </div>
 
                     {cartItem ? (
-                      <div className="flex items-center gap-4 bg-gray-50 p-1.5 rounded-xl border border-gray-200/60 shadow-inner">
+                      <div className="flex items-center justify-between w-full sm:w-auto gap-4 bg-gray-50 p-1.5 rounded-xl border border-gray-200 shadow-inner">
                         <button
-                          onClick={() => removeFromCart(itemName)}
-                          className="w-7 h-7 sm:w-11 sm:h-11 flex items-center justify-center bg-white rounded-lg shadow-sm text-gray-900 hover:bg-gray-100 transition-all active:scale-95"
+                          onClick={(e) => { e.stopPropagation(); removeFromCart(itemName); }}
+                          className="w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center bg-white rounded-lg shadow-sm text-gray-900 hover:bg-gray-100 transition-all active:scale-95"
                         >
                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15" />
                           </svg>
                         </button>
-                        <span className="font-extrabold w-4 text-center text-lg">{cartItem.quantity}</span>
+                        <span className="font-extrabold w-6 text-center text-lg">{cartItem.quantity}</span>
                         <button
-                          onClick={() => addToCart({ name: itemName, price: setup.price })}
-                          className="w-7 h-7 sm:w-11 sm:h-11 flex items-center justify-center bg-white rounded-lg shadow-sm text-gray-900 hover:bg-gray-100 transition-all active:scale-95"
+                          onClick={(e) => { e.stopPropagation(); addToCart({ name: itemName, price: setup.price }); }}
+                          className="w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center bg-white rounded-lg shadow-sm text-gray-900 hover:bg-gray-100 transition-all active:scale-95"
                         >
                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -271,8 +280,8 @@ export default function ReadyToMovePage() {
                       </div>
                     ) : (
                       <button
-                        onClick={() => addToCart({ name: itemName, price: setup.price })}
-                        className="bg-red-900 text-white px-3 py-1.5 text-xs sm:px-8 sm:py-3.5 sm:text-base rounded-lg sm:rounded-xl font-bold hover:bg-red-950 hover:shadow-lg transition-all duration-200 active:scale-95"
+                        onClick={(e) => { e.stopPropagation(); addToCart({ name: itemName, price: setup.price }); }}
+                        className="w-full sm:w-auto bg-red-900 text-white px-4 py-3 sm:px-8 sm:py-3.5 text-sm sm:text-base rounded-xl font-bold hover:bg-red-950 hover:shadow-lg transition-all duration-200 active:scale-95"
                       >
                         Add to Cart
                       </button>
@@ -284,7 +293,7 @@ export default function ReadyToMovePage() {
           })}
         </div>
 
-        {/* 🟣 COMBO SETUPS — single custom image per combo */}
+        {/* 🟣 COMBO SETUPS */}
         {comboSetups.length > 0 && (
           <div className="mb-24">
             <div className="flex items-center justify-between mb-8">
@@ -305,69 +314,70 @@ export default function ReadyToMovePage() {
                         items: [{ item_name: combo.name }],
                       })
                     }
-                    className="group bg-white border border-gray-200/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
+                    className="group bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
                   >
-                    {/* SINGLE CUSTOM COMBO IMAGE */}
-                    <div className="h-32 sm:h-80 md:h-[28rem] w-full bg-[#f4f5f7] flex items-center justify-center p-3 overflow-hidden relative">
+                    <div className="h-32 sm:h-80 md:h-[28rem] w-full bg-[#f8f9fa] flex items-center justify-center p-3 overflow-hidden relative">
                       <Image
                         src={combo.image}
                         alt={combo.name}
                         width={600}
                         height={600}
-                        className="object-contain w-full h-full scale-110 drop-shadow-lg group-hover:scale-115 transition-transform duration-700 ease-out"
+                        className="object-contain w-full h-full scale-100 drop-shadow-md group-hover:scale-105 transition-transform duration-700 ease-out"
                       />
                     </div>
 
-                    <div className="p-3 sm:p-6 md:p-8 flex flex-col gap-2 sm:gap-4 bg-white">
+                    <div className="p-4 sm:p-6 md:p-8 flex flex-col gap-3 sm:gap-4 bg-white flex-grow">
                       <div className="flex justify-between items-start gap-4">
-                        <h2 className="text-sm sm:text-2xl font-bold text-gray-900 leading-tight">{combo.name}</h2>
-                        <span className="hidden sm:inline-flex items-center rounded-md bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700 ring-1 ring-inset ring-emerald-600/20 whitespace-nowrap uppercase tracking-wide">
+                        <h2 className="text-base sm:text-2xl font-bold text-gray-900 leading-tight">{combo.name}</h2>
+                        <span className="hidden sm:inline-flex items-center rounded-md bg-gray-100 px-2.5 py-1 text-xs font-bold text-gray-800 ring-1 ring-inset ring-gray-200 whitespace-nowrap uppercase tracking-wide">
                           In Stock
                         </span>
                       </div>
 
-                      <p className="hidden sm:block text-gray-700 text-sm md:text-base leading-relaxed">{combo.description}</p>
+                      <p className="hidden sm:block text-gray-500 text-sm md:text-base leading-relaxed">{combo.description}</p>
 
-                      <div className="hidden sm:block rounded-2xl border border-gray-200 bg-gray-50 p-4">
-                        <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wider mb-2">Includes</h3>
-                        <ul className="text-sm text-gray-700 space-y-1">
+                      <div className="hidden sm:block rounded-2xl border border-gray-100 bg-gray-50/50 p-5 mt-2">
+                        <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Includes</h3>
+                        <ul className="text-sm text-gray-700 space-y-1.5 font-medium">
                           {combo.items.map((itemName) => (
-                            <li key={itemName}>• {itemName}</li>
+                            <li key={itemName} className="flex items-center gap-2">
+                              <span className="text-gray-400">•</span> {itemName}
+                            </li>
                           ))}
                         </ul>
                       </div>
 
-                      <div className="flex justify-end">
+                      <div className="flex justify-end mt-2">
                         <ShareButton title={combo.name} text={`Check out ${combo.name} at Salon Chair Wala`} />
                       </div>
 
-                      <div className="mt-auto pt-2 sm:pt-4 flex items-end justify-between">
+                      <div className="mt-auto pt-4 sm:pt-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                         <div>
-                          <p className="text-[10px] sm:text-sm text-gray-400 font-medium mb-0.5 sm:mb-1">Combo Price</p>
+                          <p className="text-[10px] sm:text-xs text-gray-400 font-bold uppercase tracking-wider mb-0.5 sm:mb-1">Combo Price</p>
                           <div className="flex items-baseline gap-2">
                             <p className="hidden sm:block text-lg md:text-xl font-medium text-gray-400 line-through">
                               ₹{originalPrice.toLocaleString("en-IN")}
                             </p>
-                            <p className="text-base sm:text-3xl font-extrabold text-gray-900 tracking-tight">
+                            <p className="text-xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
                               ₹{combo.bundlePrice.toLocaleString("en-IN")}
                             </p>
                           </div>
                         </div>
 
                         {cartItem ? (
-                          <div className="flex items-center gap-4 bg-gray-50 p-1.5 rounded-xl border border-gray-200/60 shadow-inner">
+                          <div className="flex items-center justify-between w-full sm:w-auto gap-4 bg-gray-50 p-1.5 rounded-xl border border-gray-200 shadow-inner">
                             <button
-                              onClick={() => removeFromCart(combo.name)}
-                              className="w-7 h-7 sm:w-11 sm:h-11 flex items-center justify-center bg-white rounded-lg shadow-sm text-gray-900 hover:bg-gray-100 transition-all active:scale-95"
+                              onClick={(e) => { e.stopPropagation(); removeFromCart(combo.name); }}
+                              className="w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center bg-white rounded-lg shadow-sm text-gray-900 hover:bg-gray-100 transition-all active:scale-95"
                             >
                               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15" />
                               </svg>
                             </button>
-                            <span className="font-extrabold w-4 text-center text-lg">{cartItem.quantity}</span>
+                            <span className="font-extrabold w-6 text-center text-lg">{cartItem.quantity}</span>
                             <button
-                              onClick={() => addToCart({ name: combo.name, price: combo.bundlePrice })}
-                              className="w-7 h-7 sm:w-11 sm:h-11 flex items-center justify-center bg-white rounded-lg shadow-sm text-gray-900 hover:bg-gray-100 transition-all active:scale-95"
+                              onClick={(e) => { e.stopPropagation(); addToCart({ name: combo.name, price: combo.bundlePrice }); }}
+                              className="w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center bg-white rounded-lg shadow-sm text-gray-900 hover:bg-gray-100 transition-all active:scale-95"
                             >
                               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -376,8 +386,8 @@ export default function ReadyToMovePage() {
                           </div>
                         ) : (
                           <button
-                            onClick={() => addToCart({ name: combo.name, price: combo.bundlePrice })}
-                            className="bg-red-900 text-white px-3 py-1.5 text-xs sm:px-8 sm:py-3.5 sm:text-base rounded-lg sm:rounded-xl font-bold hover:bg-red-950 hover:shadow-lg transition-all duration-200 active:scale-95"
+                            onClick={(e) => { e.stopPropagation(); addToCart({ name: combo.name, price: combo.bundlePrice }); }}
+                            className="w-full sm:w-auto bg-red-900 text-white px-4 py-3 sm:px-8 sm:py-3.5 text-sm sm:text-base rounded-xl font-bold hover:bg-red-950 hover:shadow-lg transition-all duration-200 active:scale-95"
                           >
                             Add to Cart
                           </button>
@@ -391,7 +401,7 @@ export default function ReadyToMovePage() {
           </div>
         )}
 
-        {/* 🔵 FURNISHINGS — compact tiles in a row */}
+        {/* 🔵 FURNISHINGS */}
         {furnishings.length > 0 && (
           <div className="mb-24">
             <div className="flex items-center justify-between mb-8">
@@ -411,59 +421,63 @@ export default function ReadyToMovePage() {
                         items: [{ item_name: p.name }],
                       })
                     }
-                    className="group bg-white border border-gray-200/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col"
+                    className="group bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
                   >
-                    <div className="h-40 sm:h-48 w-full bg-[#f4f5f7] flex items-center justify-center p-2 relative">
+                    <div className="h-40 sm:h-56 w-full bg-[#f8f9fa] flex items-center justify-center p-4 relative">
                       <Image
                         src={p.image}
                         alt={p.name}
                         width={200}
                         height={200}
-                        className="object-contain w-full h-full drop-shadow-md group-hover:scale-105 transition-transform duration-500"
+                        className="object-contain w-full h-full scale-100 drop-shadow-md group-hover:scale-110 transition-transform duration-500"
                       />
                       {p.dispatch && (
-                        <span className="absolute top-2 left-2 inline-flex items-center rounded-full bg-red-900/85 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-white">
+                        <span className="absolute top-2 left-2 inline-flex items-center rounded-full bg-red-900/90 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-white">
                           Dispatch Ready
                         </span>
                       )}
                     </div>
 
-                    <div className="p-4 flex flex-col gap-2">
-                      <h3 className="text-sm font-bold text-gray-900 leading-snug truncate">{p.name}</h3>
-                      <p className="text-lg font-extrabold text-gray-900">₹{p.price.toLocaleString("en-IN")}</p>
+                    <div className="p-4 flex flex-col gap-3">
+                      <div>
+                        <h3 className="text-sm font-bold text-gray-900 leading-snug line-clamp-1">{p.name}</h3>
+                        <p className="text-lg font-extrabold text-gray-900 mt-1">₹{p.price.toLocaleString("en-IN")}</p>
+                      </div>
 
-                      <div className="flex justify-end -mt-1">
+                      <div className="flex justify-end -mt-6 mb-2">
                         <ShareButton title={p.name} text={`Check out ${p.name} at Salon Chair Wala`} />
                       </div>
 
-                      {cartItem ? (
-                        <div className="flex items-center justify-between gap-2 bg-gray-50 p-1 rounded-lg border border-gray-200">
+                      <div className="mt-auto pt-2">
+                        {cartItem ? (
+                          <div className="flex items-center justify-between gap-2 bg-gray-50 p-1.5 rounded-xl border border-gray-200 w-full">
+                            <button
+                              onClick={(e) => { e.stopPropagation(); removeFromCart(p.name); }}
+                              className="w-8 h-8 flex items-center justify-center bg-white rounded-lg shadow-sm hover:bg-gray-100 transition active:scale-95 text-gray-900"
+                            >
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15" />
+                              </svg>
+                            </button>
+                            <span className="font-extrabold text-sm">{cartItem.quantity}</span>
+                            <button
+                              onClick={(e) => { e.stopPropagation(); addToCart({ name: p.name, price: p.price }); }}
+                              className="w-8 h-8 flex items-center justify-center bg-white rounded-lg shadow-sm hover:bg-gray-100 transition active:scale-95 text-gray-900"
+                            >
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                              </svg>
+                            </button>
+                          </div>
+                        ) : (
                           <button
-                            onClick={() => removeFromCart(p.name)}
-                            className="w-7 h-7 flex items-center justify-center bg-white rounded-md shadow-sm hover:bg-gray-100 transition active:scale-95 text-gray-700"
+                            onClick={(e) => { e.stopPropagation(); addToCart({ name: p.name, price: p.price }); }}
+                            className="w-full bg-red-900 text-white py-2.5 rounded-xl font-bold text-xs hover:bg-red-950 transition-all active:scale-95"
                           >
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-3 h-3">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15" />
-                            </svg>
+                            Add to Cart
                           </button>
-                          <span className="font-bold text-xs">{cartItem.quantity}</span>
-                          <button
-                            onClick={() => addToCart({ name: p.name, price: p.price })}
-                            className="w-7 h-7 flex items-center justify-center bg-white rounded-md shadow-sm hover:bg-gray-100 transition active:scale-95 text-gray-700"
-                          >
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-3 h-3">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                            </svg>
-                          </button>
-                        </div>
-                      ) : (
-                        <button
-                          onClick={() => addToCart({ name: p.name, price: p.price })}
-                          className="bg-red-900 text-white py-2 rounded-lg font-semibold text-xs hover:bg-red-950 transition-all active:scale-95"
-                        >
-                          Add to Cart
-                        </button>
-                      )}
+                        )}
+                      </div>
                     </div>
                   </div>
                 );
@@ -472,19 +486,19 @@ export default function ReadyToMovePage() {
           </div>
         )}
 
-        {/* 🧾 MINI BILL / CART SUMMARY */}
-        <div className="mt-24 max-w-lg mx-auto bg-white border border-gray-200/80 rounded-3xl p-8 shadow-2xl shadow-gray-200/50 relative overflow-hidden">
+        {/* 🧾 MINI BILL / CART SUMMARY (Restored) */}
+        <div className="mt-24 max-w-lg mx-auto bg-white border border-gray-100 rounded-3xl p-8 shadow-2xl shadow-gray-200/50 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-gray-900 via-gray-700 to-black"></div>
 
           <h3 className="text-2xl font-extrabold mb-6 text-gray-900 tracking-tight">Order Summary</h3>
 
           <div className="flex justify-between text-gray-500 font-medium mb-6 text-sm">
             <span>Total Items in Cart</span>
-            <span className="bg-gray-100 text-gray-900 px-2 py-0.5 rounded-full font-bold">{totalItems}</span>
+            <span className="bg-gray-100 text-gray-900 px-2 py-0.5 rounded-full font-bold">{mounted ? totalItems : 0}</span>
           </div>
 
           <div className="space-y-3 text-sm font-medium">
-            {cart.length === 0 ? (
+            {!mounted || cart.length === 0 ? (
               <p className="text-gray-400 text-center py-8 bg-gray-50/50 rounded-2xl border border-dashed border-gray-200">Your cart is feeling a bit empty</p>
             ) : (
               cart.map((item: any, i: number) => (
@@ -516,14 +530,14 @@ export default function ReadyToMovePage() {
 
           <div className="flex justify-between items-center">
             <span className="font-semibold text-gray-500 uppercase tracking-wider text-sm">Subtotal</span>
-            <span className="font-black text-2xl text-gray-900">₹{productTotal.toLocaleString("en-IN")}</span>
+            <span className="font-black text-2xl text-gray-900">₹{(mounted ? productTotal : 0).toLocaleString("en-IN")}</span>
           </div>
 
           <Link href="/cart">
             <button
-              disabled={cart.length === 0}
+              disabled={!mounted || cart.length === 0}
               className={`mt-8 w-full py-4 rounded-xl font-bold text-lg transition-all duration-300 flex justify-center items-center gap-2
-                ${cart.length === 0
+                ${!mounted || cart.length === 0
                   ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
                   : 'bg-black text-white hover:bg-gray-900 hover:shadow-xl hover:shadow-gray-900/20 active:scale-95'
                 }`}
@@ -535,41 +549,41 @@ export default function ReadyToMovePage() {
             </button>
           </Link>
 
-          {hasSalonProduct && !trolleyInCart && (
-            <div className="mt-10 mb-10 rounded-3xl border border-gray-200 bg-white p-8 shadow-lg">
+          {mounted && hasSalonProduct && !trolleyInCart && (
+            <div className="mt-10 mb-10 rounded-3xl border border-gray-100 bg-gray-50/50 p-6 sm:p-8 shadow-sm">
               <div className="flex flex-col gap-6">
                 <div>
-                  <span className="inline-flex items-center rounded-full bg-red-900 px-4 py-1 text-xs font-bold uppercase tracking-widest text-white">
+                  <span className="inline-flex items-center rounded-full bg-red-900 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white">
                     Recommended Add-On
                   </span>
                 </div>
 
-                <h3 className="text-2xl font-bold text-gray-900">Complete Your Salon Setup</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900">Complete Your Salon Setup</h3>
 
-                <p className="text-[15px] leading-7 text-gray-600 max-w-2xl">
+                <p className="text-sm sm:text-[15px] leading-6 text-gray-600 max-w-2xl">
                   Enhance your workspace with our <span className="font-semibold text-gray-900">Premium Glass Trolley</span>.
                   It keeps styling tools neatly organized, improves workflow, and complements every salon interior with a clean, premium finish.
                 </p>
 
-                <div className="grid grid-cols-2 gap-3 text-sm font-medium text-gray-700">
-                  <div className="flex items-center gap-2 bg-gray-50 px-3 py-2 rounded-lg border">✓ Premium Glass</div>
-                  <div className="flex items-center gap-2 bg-gray-50 px-3 py-2 rounded-lg border">✓ Heavy Duty Wheels</div>
-                  <div className="flex items-center gap-2 bg-gray-50 px-3 py-2 rounded-lg border">✓ Professional Finish</div>
-                  <div className="flex items-center gap-2 bg-gray-50 px-3 py-2 rounded-lg border">✓ Easy Mobility</div>
+                <div className="grid grid-cols-2 gap-3 text-xs sm:text-sm font-medium text-gray-700">
+                  <div className="flex items-center gap-2 bg-white px-3 py-2 rounded-lg border border-gray-100 shadow-sm">✓ Premium Glass</div>
+                  <div className="flex items-center gap-2 bg-white px-3 py-2 rounded-lg border border-gray-100 shadow-sm">✓ Heavy Duty Wheels</div>
+                  <div className="flex items-center gap-2 bg-white px-3 py-2 rounded-lg border border-gray-100 shadow-sm">✓ Professional Finish</div>
+                  <div className="flex items-center gap-2 bg-white px-3 py-2 rounded-lg border border-gray-100 shadow-sm">✓ Easy Mobility</div>
                 </div>
 
-                <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between pt-4 border-t border-gray-200/60 gap-4 sm:gap-0">
                   <div>
-                    <p className="text-xs uppercase tracking-wider text-gray-400 font-semibold">Add-On Price</p>
+                    <p className="text-[10px] sm:text-xs uppercase tracking-wider text-gray-400 font-bold">Add-On Price</p>
                     <div className="mt-1">
                       <span className="text-gray-400 line-through mr-2 text-sm">₹6,500</span>
-                      <span className="text-3xl font-extrabold text-gray-900">₹5,200</span>
+                      <span className="text-2xl sm:text-3xl font-extrabold text-gray-900">₹5,200</span>
                     </div>
                   </div>
 
                   <button
                     onClick={() => addToCart({ name: "Glass Trolley - Black", price: 5200 })}
-                    className="rounded-xl bg-red-900 px-8 py-3.5 font-bold text-white transition-all duration-300 hover:bg-red-950 hover:scale-[1.02] active:scale-95"
+                    className="w-full sm:w-auto rounded-xl bg-red-900 px-6 py-3.5 text-sm sm:text-base font-bold text-white transition-all duration-300 hover:bg-red-950 hover:shadow-lg active:scale-95"
                   >
                     + Add Glass Trolley
                   </button>
@@ -578,7 +592,7 @@ export default function ReadyToMovePage() {
             </div>
           )}
 
-          <p className="text-xs text-center text-gray-400 mt-4 flex items-center justify-center gap-1.5">
+          <p className="text-xs text-center text-gray-400 mt-4 flex items-center justify-center gap-1.5 font-medium">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
               <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
             </svg>
