@@ -28,7 +28,7 @@ export default function CategoriesPage() {
               Shop by Category
             </h1>
             <p className="text-gray-600 mt-4 text-base md:text-lg max-w-2xl mx-auto font-medium">
-              Find exactly what you need — from styling chairs to salon furnishings, organized for easy browsing.
+              Find exactly what you need from styling chairs to salon furnishings, organized for easy browsing.
             </p>
           </div>
 
@@ -45,18 +45,18 @@ export default function CategoriesPage() {
                   href={`/categories/${slug}`}
                   className="group bg-white border border-gray-200/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
                 >
-                  <div className="relative h-60 w-full bg-white flex items-center justify-center overflow-hidden p-2">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-100">
                     <Image
-                        src={info.image}
-                        alt={category}
-                        width={500}
-                        height={500}
-                        className="object-contain w-full h-full group-hover:scale-105 transition-transform duration-500 ease-out"
+                      src={info.image}
+                      alt={category}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                     />
-                    <span className="absolute top-3 right-3 bg-gray-100 px-3 py-1 rounded-full text-xs font-bold text-gray-700">
-                        {count} {count === 1 ? "item" : "items"}
+                    <span className="absolute top-3 right-3 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-gray-700 shadow-sm">
+                      {count} {count === 1 ? "item" : "items"}
                     </span>
-                    </div>
+                  </div>
 
                   <div className="p-6 flex flex-col flex-1">
                     <h2 className="text-xl font-bold text-gray-900 group-hover:text-red-900 transition-colors duration-200">

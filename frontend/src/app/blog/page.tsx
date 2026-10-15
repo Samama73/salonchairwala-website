@@ -56,12 +56,13 @@ export default function BlogListPage() {
                   className="group flex flex-col bg-white rounded-[2rem] border border-gray-100 overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_50px_rgba(153,27,27,0.08)] hover:-translate-y-2 hover:border-red-900/20 transition-all duration-500"
                 >
                   {/* Image Wrapper */}
-                  <div className="relative h-56 w-full bg-gradient-to-tr from-amber-50/50 to-slate-50 overflow-hidden">
+                  <div className="relative aspect-[3/2] w-full bg-gradient-to-tr from-amber-50/50 to-slate-50 overflow-hidden">
                     <Image
                       src={post.coverImage}
                       alt={post.title}
                       fill
-                      className="object-contain p-6 group-hover:scale-110 transition-transform duration-700 ease-in-out drop-shadow-xl"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
                     />
                     {/* Glassmorphism Date Badge */}
                     <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md shadow-sm text-red-900 text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest z-10 border border-white/20">

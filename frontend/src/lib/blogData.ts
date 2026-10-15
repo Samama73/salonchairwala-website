@@ -18,7 +18,7 @@ export const blogPosts: BlogPost[] = [
     title: "Best Salon Chairs for Small Salons in Mumbai (2026 Guide)",
     excerpt:
       "Setting up a small salon? Here's how to choose the right hydraulic salon chairs that save space without compromising comfort or durability.",
-    coverImage: "/products/bubbly.webp",
+    coverImage: "/products/4.webp",
     publishedDate: "2026-08-01",
     content: [
       "Setting up a salon in a compact space doesn't mean you have to compromise on quality or client comfort. The right salon chair can make all the difference between a cramped-feeling salon and one that feels professional and welcoming.",
@@ -32,7 +32,7 @@ export const blogPosts: BlogPost[] = [
     title: "How to Choose the Right Salon Furniture in Mumbai",
     excerpt:
       "A practical guide for salon owners in Mumbai on choosing chairs, shampoo stations and furnishings that balance cost, durability and style.",
-    coverImage: "/products/wave.webp",
+    coverImage: "/products/setup2.2.webp",
     publishedDate: "2026-08-05",
     content: [
       "Choosing salon furniture is one of the most important decisions a salon owner makes — it directly affects client experience, staff efficiency, and your salon's overall brand image.",
@@ -81,7 +81,7 @@ export const blogPosts: BlogPost[] = [
     title: "Salon Furniture Buying Guide for Bangalore Salon Owners (2026)",
     excerpt:
       "Rents are high and space is tight in Bangalore's salon hubs. Here's how to pick furniture that fits the space, the budget, and the daily grind.",
-    coverImage: "/products/bubbly.webp",
+    coverImage: "/products/slideshow3.webp",
     publishedDate: "2026-09-01",
     ctaLink: "/salon-furniture-bangalore",
     ctaText: "See Our Bangalore Delivery Page",
@@ -98,7 +98,7 @@ export const blogPosts: BlogPost[] = [
     title: "New Salon Setup in Hyderabad: The Furniture Checklist",
     excerpt:
       "Opening a salon in Hyderabad? Here's a practical checklist for the furniture you'll actually need, in the order you should be thinking about it.",
-    coverImage: "/products/wave.webp",
+    coverImage: "/setups/s5.jpeg",
     publishedDate: "2026-09-03",
     ctaLink: "/salon-furniture-hyderabad",
     ctaText: "See Our Hyderabad Delivery Page",
@@ -115,7 +115,7 @@ export const blogPosts: BlogPost[] = [
     title: "Salon Chair Prices in Bangalore: What You'll Actually Pay in 2026",
     excerpt:
       "Real price ranges for salon chairs and shampoo stations in Bangalore — plus what drives the difference between a ₹15,000 chair and a ₹45,000 one.",
-    coverImage: "/products/gmayur.webp",
+    coverImage: "/products/goldenmayur.webp",
     publishedDate: "2026-09-10",
     ctaLink: "/salon-furniture-bangalore",
     ctaText: "Get a Bangalore Delivery Quote",
@@ -145,6 +145,31 @@ export const blogPosts: BlogPost[] = [
       "Older salons often have a patchwork of chairs bought from different vendors over the years — mismatched colors, inconsistent recline mechanisms. A single-supplier furniture refresh fixes that in one order instead of years of piecemeal additions.",
       "If you're weighing a refresh versus a full new setup, the honest advice is: don't replace everything at once unless you're relocating or expanding. Start with your most client-facing stations — styling and shampoo chairs — since that's what clients interact with directly, and phase in the rest as budget allows.",
       "Common questions we get: when should a salon replace its chairs? Usually every 4-6 years of heavy daily use, sooner if the pump or upholstery is visibly failing. Do we deliver to Hyderabad? Yes, pan-India including Hyderabad. And ordering everything — chairs, shampoo units, stations — from one supplier usually gets a single delivery timeline and bulk pricing instead of managing multiple vendors.",
+    ],
+  },
+    {
+    slug: "facial-bed-buying-guide",
+    title: "Facial Bed Buying Guide for Salons & Spas: How to Choose the Right One (2026)",
+    excerpt:
+      "A facial bed is where your client spends the longest hour of their visit. Compare our Facial Bed, Facial Bed with Storage and Korean Bed, and learn what to check before you buy.",
+    coverImage: "/products/storagebed.webp",
+    publishedDate: "2026-10-01",
+    ctaLink: "/categories/facial-beds",
+    ctaText: "Browse Our Facial Beds",
+    content: [
+      "Most clients will never comment on your facial bed. But they will remember if it was uncomfortable, if it creaked when they turned, or if the cushion felt hard after twenty minutes. In a 60 to 90 minute treatment, the bed is the product, and the facial is only as good as the experience of lying on it.",
+      "Before comparing models, answer one question: what will this bed actually be used for? A bed for facials and skincare only needs comfort and a good headrest. If you also do massages, waxing, threading or scalp treatments, you need firmer support, a stronger frame and easier cleaning. Buying for your real service menu saves you from replacing it in a year.",
+      "Cushioning comes first. Firm but not hard is the goal. Very soft foam feels luxurious for five minutes and then sinks, which tires the client's back and forces you to bend awkwardly while working. Ask the supplier what foam density is used, and if you can visit a showroom, lie on the bed yourself for a few minutes.",
+      "Upholstery takes more punishment than people expect. Oils, serums, water, cleaning sprays and daily wiping all wear it down. Smooth PU leather or leatherette with neat, reinforced stitching wipes clean in seconds and lasts far longer than fabric. Always check the seams, because that's where cracking and peeling begin.",
+      "The frame decides how long the bed lasts. A good frame stays silent and stable when a client sits, lies down, turns over or gets up. A hollow or lightweight frame starts wobbling within months, and a wobbly bed makes clients feel unsafe even when it isn't. Heavier, reinforced frames are worth the extra cost for a bed that sees daily use.",
+      "Adjustability is where good beds separate from average ones. A backrest that tilts up lets you move a client from lying to sitting for consultations, neck work or product demos without asking them to get off. Check that every angle locks firmly and doesn't slip under weight.",
+      "Our Facial Bed is the straightforward choice for skincare and facial treatments. It's built for ergonomic comfort, with adjustable positioning so you can switch between lying and reclined angles easily, and an open lower shelf that gives you a place to keep towels or products within reach. If you have a dedicated treatment room with a trolley or cabinet already, this is the simplest and most affordable option.",
+      "Storage matters more in small treatment rooms, and that's where our Facial Bed with Storage fits in. The built-in storage keeps towels, creams and tools inside the bed itself, off your counters and out of sight. In a compact room, that can save you a separate trolley or cabinet and keeps the space looking clean and professional.",
+      "If you offer a mix of hair and skin services, look at our Korean Bed. It combines a padded treatment bed with a built-in wash basin, so one station handles hair washing, scalp treatments, head steam therapy, facials and massages. It costs more than a standard facial bed, but it can replace two or three separate pieces of furniture, which is a big advantage when floor space is limited.",
+      "Think about your room before you think about the bed. Leave enough space on both sides so you can walk around the client comfortably and reach everything without squeezing past furniture. A bed that looks perfect in a photo can feel huge in a small room, so measure the space and mark it on the floor before ordering.",
+      "A few mistakes we see often: buying the cheapest bed and replacing it within a year, ignoring the frame because the cushion looked good, ordering without measuring the room, and choosing a color that clashes with the interior. If your salon has a specific color theme, ask about custom upholstery before you confirm the order, since custom orders take longer than ready stock.",
+      "Quick guide to choosing between our three beds: pick the Facial Bed if you only do facials and skincare and want the most affordable option (it starts at ₹18,000). Pick the Facial Bed with Storage if your treatment room is small and you want towels and products stored inside the bed. Pick the Korean Bed if your salon mixes hair and skin services and you want one workstation to handle hair wash, scalp care, facials and massages.",
+      "Common questions: How long does a good facial bed last? With daily use and regular cleaning, a well-built bed should last for years, but the frame and upholstery quality decide that. Can I get a custom color? Yes, custom upholstery is possible, with a longer delivery time than ready stock. Do we deliver across India? Yes, pan-India. Message us on WhatsApp with your room size and the services you offer, and we'll help you pick the right bed.",
     ],
   },
 ];

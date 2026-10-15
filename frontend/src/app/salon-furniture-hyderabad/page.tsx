@@ -121,7 +121,7 @@ export default function SalonFurnitureHyderabadPage() {
               straight to Hyderabad. One supplier for your entire salon —
               styling chairs, shampoo units, manicure &amp; pedicure stations
               and facial beds — with custom colours built to order.
-            </p>
+            </p>  
             <div className="mt-8">
 
             <a    href={whatsappHref}

@@ -22,26 +22,29 @@ export const categoryList = [
 export type CategoryName = (typeof categoryList)[number];
 
 // Har category ke liye chhota tagline (category page pe dikhega)
-export const categoryInfo: Record<CategoryName, { tagline: string; image: string }> = {
+export const categoryInfo: Record<CategoryName, { tagline: string; image: string; position?: string }> = {
   "Salon Chairs": {
     tagline: "Hydraulic styling chairs built for daily professional use.",
-    image: "/products/bubbly.webp",
+    image: "/products/goldencombo.webp",
+    position: "50% 50%",
   },
   "Shampoo Chairs": {
     tagline: "Premium backwash units with reclining comfort & ceramic basins.",
-    image: "/products/wave.webp",
+    image: "/products/shampoo chair website.webp",
+    position: "50% 50%",
   },
   "Manicure & Pedicure": {
     tagline: "Dedicated stations for nail care and pedicure services.",
-    image: "/products/luxa.webp",
+    image: "/products/manicure and pedicure.webp",
+    position: "50% 50%",
   },
   "Facial Beds": {
     tagline: "Comfortable beds designed for facials and spa treatments.",
-    image: "/products/steamr.webp",
+    image: "/products/website bed.webp",
   },
   "Furnishings": {
     tagline: "Trolleys, steamers & dryers to complete your salon.",
-    image: "/products/kostech.webp",
+    image: "/products/btrolley.webp",
   },
 };
 
@@ -65,7 +68,7 @@ export function getProductsByCategory(category: CategoryName): Product[] {
 export const allProducts: Product[] = [
   // ============ SALON CHAIRS (Styling Chairs) ============
   { name: "BUBBLY", price: 18000, description: "Hydraulic salon chair engineered for daily professional use with ergonomic seating support. Leatherette upholstery, wooden ply frame, high-density foam, 150kg capacity.", image: "/products/bubbly.webp", category: "Salon Chairs", seoTitle: "BUBBLY Hydraulic Salon Styling Chair", googleCategoryId: 7241 },
-  { name: "ROYAL DIAMOND", price: 18000, description: "Precision-built styling chair with balanced comfort and long-term structural durability. Leatherette upholstery, wooden ply frame, high-density foam, 150kg capacity.", image: "/products/royaldiamond.webp", category: "Salon Chairs", dispatch: true, seoTitle: "ROYAL DIAMOND Professional Salon Styling Chair", googleCategoryId: 7241 },
+  { name: "ROYAL DIAMOND", price: 22000, description: "Precision-built styling chair with balanced comfort and long-term structural durability. Leatherette upholstery, wooden ply frame, high-density foam, 150kg capacity.", image: "/products/koreanrexinechair.webp", category: "Salon Chairs", dispatch: true, seoTitle: "ROYAL DIAMOND Professional Salon Styling Chair", googleCategoryId: 7241 },
   { name: "DIAMOND", price: 14000, description: "Warm DIAMOND brown upholstery with subtle sparkle button accents and a comfortable, adjustable headrest. Leatherette, high-density foam, hydraulic, 150kg capacity.", image: "/products/diamond.webp", category: "Salon Chairs", seoTitle: "DIAMOND Brown Upholstered Salon Styling Chair", googleCategoryId: 7241 },
   { name: "GOLDEN MAYUR", price: 22000, description: "High-grade salon chair featuring reinforced frame and premium finish for luxury setups. Leatherette upholstery, wooden ply, high-density foam, 150kg capacity.", image: "/products/mayur.webp", category: "Salon Chairs", dispatch: true, seoTitle: "GOLDEN MAYUR Premium Salon Styling Chair", googleCategoryId: 7241 },
   { name: "BRIDAL", price: 45000, description: "Creamy ivory upholstery with gold accents, full recline, and integrated footrest for a true masterpiece barbershop chair. Leatherette, high-density foam, hydraulic, 150kg capacity.", image: "/products/seller3.webp", category: "Salon Chairs", seoTitle: "BRIDAL Ivory Gold Barbershop Styling Chair", googleCategoryId: 7241 },
@@ -74,16 +77,17 @@ export const allProducts: Product[] = [
   { name: "SLIXA I", price: 18000, description: "Vivid lime green styling chair with sleek club silhouette and signature chrome accent. Leatherette upholstery, high-density foam, hydraulic, 150kg capacity.", image: "/products/slixai.webp", category: "Salon Chairs", seoTitle: "SLIXA I Lime Green Salon Styling Chair", googleCategoryId: 7241 },
   { name: "QUEEN", price: 18000, description: "Comfort-focused salon chair designed for extended usage with stable hydraulic mechanism. Leatherette, high-density foam, 150kg capacity.", image: "/products/queen.webp", category: "Salon Chairs", seoTitle: "QUEEN Hydraulic Salon Styling Chair", googleCategoryId: 7241 },
   { name: "SOFA", price: 22000, description: "Designed for modern salons with sleek design and enhanced client comfort support. Leatherette upholstery, wooden ply frame, high-density foam, hydraulic, 150kg capacity.", image: "/products/sofa.webp", category: "Salon Chairs", seoTitle: "SOFA Modern Salon Styling Chair", googleCategoryId: 7241 },
-  { name: "ULTIMATE MAHARAJA", price: 24000, description: "Vibrant blue upholstery, diamond-quilted stitching, and a chrome round hydraulic base for a bold statement chair. Leatherette, high-density foam, 150kg capacity.", image: "/products/maharaja.webp", category: "Salon Chairs", seoTitle: "ULTIMATE MAHARAJA Blue Diamond Salon Chair", googleCategoryId: 7241 },
+  { name: "ULTIMATE MAHARAJA", price: 24000, description: "Vibrant blue upholstery, diamond-quilted stitching, and a chrome round hydraulic base for a bold statement chair. Leatherette, high-density foam, 150kg capacity.", image: "/products/ultimatemaharaja.webp", category: "Salon Chairs", seoTitle: "ULTIMATE MAHARAJA Blue Diamond Salon Chair", googleCategoryId: 7241 },
   { name: "GOLDEN D", price: 18000, description: "Top-tier salon chair offering maximum durability, comfort, and premium professional finish. Leatherette, wooden ply frame, high-density foam, 150kg capacity.", image: "/products/goldend.webp", category: "Salon Chairs", seoTitle: "GOLDEN D Premium Salon Styling Chair", googleCategoryId: 7241 },
   { name: "BUEATY", price: 18000, description: "Sky blue upholstery with bold gold accents and a chevron-stitched backrest for a calming, contemporary look. Leatherette, high-density foam, hydraulic, 150kg capacity.", image: "/products/seller4.webp", category: "Salon Chairs", seoTitle: "BUEATY Sky Blue Salon Styling Chair", googleCategoryId: 7241 },
 
   // ============ SHAMPOO CHAIRS (Backwash Units) ============
+  { name: "M SLIXA", price: 28000, description: "Elevate your salon's wash station experience with this premium luxury shampoo station chair, crafted for optimal client comfort and effortless functionality duringhair treatments and hair washes.", image: "/products/mslixa.webp", category: "Shampoo Chairs", seoTitle: "M SLIXA Shampoo Backwash Chair", googleCategoryId: 7241 },
   { name: "DIAMOND DUCK", price: 28000, description: "Futuristic white shell backwash unit with quilted crystal-stud upholstery and a tilting ceramic basin. Leatherette, high-density foam padding.", image: "/products/seller5.webp", category: "Shampoo Chairs", seoTitle: "DIAMOND DUCK White Shampoo Backwash Chair", googleCategoryId: 7241 },
   { name: "SLIXA BUBBLY", price: 28000, description: "Premium backwash unit combined with a spa-style reclining lounger and electronically controlled footrest. Leatherette, high-density foam.", image: "/products/slixabubbly.webp", category: "Shampoo Chairs", seoTitle: "SLIXA BUBBLY Reclining Shampoo Backwash Chair", googleCategoryId: 7241 },
   { name: "MAHARAJA", price: 28000, description: "Vibrant orange backwash station with electronic reclining footrest and diamond-quilted stitching. Leatherette, high-density foam padding.", image: "/products/maharaja.webp", category: "Shampoo Chairs", seoTitle: "MAHARAJA Orange Shampoo Backwash Chair", googleCategoryId: 7241 },
   { name: "EDEN", price: 28000, description: "Calming beige backwash station with electronic reclining footrest and premium ceramic basin. Leatherette, high-density foam padding.", image: "/products/eden.webp", category: "Shampoo Chairs", seoTitle: "EDEN Beige Shampoo Backwash Chair", googleCategoryId: 7241 },
-  { name: "GOLDEN MAYURR", price: 28000, description: "Emerald green backwash unit with polished gold details and a deep tilting ceramic basin. Leatherette, high-density foam padding.", image: "/products/mayur.webp", category: "Shampoo Chairs", seoTitle: "GOLDEN MAYURR Emerald Shampoo Backwash Chair", googleCategoryId: 7241 },
+  { name: "GOLDEN MAYUR", price: 28000, description: "Emerald green backwash unit with polished gold details and a deep tilting ceramic basin. Leatherette, high-density foam padding.", image: "/products/goldenmayurshampoo.webp", category: "Shampoo Chairs", seoTitle: "GOLDEN MAYURR Emerald Shampoo Backwash Chair", googleCategoryId: 7241 },
   { name: "ROYAL DELUXE", price: 23000, description: "Jade green backwash unit with polished chrome open-frame armrests and a deep tilting ceramic basin. Leatherette, high-density foam padding.", image: "/products/royaldeluxe.webp", category: "Shampoo Chairs", seoTitle: "ROYAL DELUXE Jade Green Shampoo Backwash Chair", googleCategoryId: 7241 },
   { name: "LUXURY LAYER", price: 23000, description: "Sapphire blue backwash unit with diamond-quilted stitching and a premium tilting ceramic basin. Leatherette, high-density foam padding.", image: "/products/luxurylayer.webp", category: "Shampoo Chairs", seoTitle: "LUXURY LAYER Sapphire Shampoo Backwash Chair", googleCategoryId: 7241 },
   { name: "FULL DUCK WHITE", price: 18000, description: "Futuristic one-piece fiberglass backwash lounger in white with mustard cushioning for a zero-gravity feel. Leatherette, high-density foam.", image: "/products/fullduck.webp", category: "Shampoo Chairs", seoTitle: "FULL DUCK WHITE Fiberglass Backwash Chair", googleCategoryId: 7241 },
@@ -93,9 +97,14 @@ export const allProducts: Product[] = [
   // ============ MANICURE & PEDICURE ESSENTIALS ============
   { name: "BEAST ROBUST", price: 65000, description: "Heavy-duty pedicure spa chair engineered for high-usage environments with maximum stability. Leatherette, wooden ply frame, high-density foam, hydraulic, 150kg capacity.", image: "/products/beast.webp", category: "Manicure & Pedicure", seoTitle: "BEAST ROBUST Heavy-Duty Pedicure Spa Chair", googleCategoryId: 7242 },
   { name: "LUXA", price: 18000, description: "Minimalist chair with integrated manicure trays, ideal as a manicure station, pedicure chair, or waiting lounger. Leatherette, high-density foam, hydraulic, 150kg capacity.", image: "/products/luxa.webp", category: "Manicure & Pedicure", dispatch: true, seoTitle: "LUXA Minimalist Manicure & Pedicure Chair", googleCategoryId: 7241 },
+  { name: "MINI ROBUST", price: 18000, description: "Minimalist chair with integrated manicure trays, ideal as a manicure station, pedicure chair, or waiting lounger. Leatherette, high-density foam, hydraulic, 150kg capacity.", image: "/products/minirobust.webp", category: "Manicure & Pedicure", dispatch: true, seoTitle: "LUXA Minimalist Manicure & Pedicure Chair", googleCategoryId: 7241 },
   { name: "LOTUS", price: 6500, description: "Scallop-back accent chair in teal velvet, perfect for waiting areas or styling stations. Leatherette detailing, high-density foam, hydraulic, 150kg capacity.", image: "/products/lotus.webp", category: "Manicure & Pedicure", seoTitle: "LOTUS Teal Velvet Accent Salon Chair", googleCategoryId: 7241 },
   { name: "GOLDEN NEST", price: 18000, description: "Architectural wireframe chair with gold-plated base and vibrant blue upholstery, a striking accent piece. Leatherette, high-density foam, hydraulic, 150kg capacity.", image: "/products/goldennest.webp", category: "Manicure & Pedicure", seoTitle: "GOLDEN NEST Gold Wireframe Accent Chair", googleCategoryId: 7241 },
 
+    // ============ FACIAL BEDS ============
+  { name: "KOREAN BED", price: 45000, description: " Luxury, all-in-one salon workstation built to support hair washing, head steam therapy, scalp treatments, facials, and massages", image: "/products/KoreanBed.webp", category: "Facial Beds", seoTitle: "Korean Facial Bed" },
+  { name: "FACIAL BED", price: 18000, description: "Specialized ergonomic salon and spa furniture designed to keep clients comfortable during skincare treatments while giving estheticians easy access and adjustable positioning", image: "/products/bedwithoutstorage.webp", category: "Facial Beds", seoTitle: "Facial Bed" },
+  { name: "FACIAL BED WITH STORAGE", price: 18500, description: "Multifunctional bed frame with integrated compartments underneath the mattress designed to maximize bedroom space efficiency", image: "/products/storagebed.webp", category: "Facial Beds", seoTitle: "Korean Facial Bed" },
   // ============ FURNISHINGS (Trolleys, Steamers, Dryers) ============
   { name: "BLACK TROLLEY", price: 5200, description: "Durable multi-tier salon trolley designed for effortless mobility and smart storage.", image: "/products/kostech.webp", category: "Furnishings", dispatch: true, seoTitle: "BLACK TROLLEY Multi-Tier Salon Trolley", googleCategoryId: 436 },
   { name: "WHITE TROLLEY", price: 5200, description: "Stylish multi-tier salon trolley offering smooth mobility and optimized storage.", image: "/products/white.webp", category: "Furnishings", dispatch: true, seoTitle: "WHITE TROLLEY Multi-Tier Salon Trolley", googleCategoryId: 436 },
@@ -188,3 +197,4 @@ export function getComboProducts(combo: ComboSetup): Product[] {
 export function getComboOriginalPrice(combo: ComboSetup): number {
   return getComboProducts(combo).reduce((sum, p) => sum + p.price, 0);
 }
+
