@@ -32,8 +32,14 @@ export async function generateMetadata({
   const product = allProducts.find((p) => slugify(p.name) === slug);
   if (!product) return {};
   return {
-    title: `${product.name} | Salon Chair Wala`,
+    title: product.name,
     description: product.description,
+    openGraph: {
+      title: product.name,
+      description: product.description,
+      url: `${SITE_URL}/products/${slug}/`,
+      images: [`${SITE_URL}${product.image}`],
+    },
   };
 }
 
@@ -77,6 +83,12 @@ export default async function ProductPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
       />
+
+      <meta property="og:type" content="product" />
+      <meta property="product:price:amount" content={String(product.price)} />
+      <meta property="product:price:currency" content="INR" />
+      <meta property="product:availability" content={product.dispatch ? "in stock" : "available for order"} />
+      <meta property="product:brand" content="Salon Chair Wala" />
 
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/">Home</Link> {" / "}

@@ -15,19 +15,19 @@ const products = [
   },
   {
     name: "Golden Nest",
-    image: "/products/goldennest.webp",
+    image: "/products/golden nest new.webp",
     description:
       "A perfect blend of sophistication and durability. Golden Nest offers exceptional comfort, premium finishing, and a modern aesthetic that enhances the overall salon experience.",
   },
   {
     name: "Golden Mayur",
-    image: "/products/mayur.webp",
+    image: "/products/goldenmayur.webp",
     description:
       "Inspired by timeless luxury, Golden Mayur combines elegant styling with ergonomic comfort. Designed to elevate both client satisfaction and salon interiors.",
   },
   {
     name: "Royal Diamond",
-    image: "/products/rdiamnondnew.webp",
+    image: "/products/royaldiamondnew.webp",
     description:
       "Crafted for modern salons, Royal Diamond delivers a sleek appearance, superior comfort, and reliable performance, making it an ideal choice for everyday professional use.",
   },
@@ -169,7 +169,7 @@ export default function BestSellers() {
                 className="bg-white rounded-3xl shadow-md hover:shadow-lg hover:-translate-y-2 transition duration-300 p-4 cursor-pointer flex flex-col overflow-hidden"
               >
 
-                <div className="h-48 w-full rounded-xl overflow-hidden flex items-center justify-center bg-gray-50/50">
+                <div className="aspect-square w-full rounded-xl overflow-hidden flex items-center justify-center bg-gray-50/50">
                   <img
                     src={product.image}
                     alt={product.name}
@@ -197,7 +197,7 @@ export default function BestSellers() {
               className="col-span-2 bg-white rounded-3xl shadow-md hover:shadow-lg hover:-translate-y-2 transition duration-300 p-5 cursor-pointer flex flex-col overflow-hidden"
             >
           
-              <div className="h-56 w-full rounded-2xl overflow-hidden flex items-center justify-center bg-gray-50/50">
+              <div className="h-72 w-full rounded-2xl overflow-hidden flex items-center justify-center bg-gray-50/50">
                 {products[5].video ? (
                   <video
                     src={products[5].video}

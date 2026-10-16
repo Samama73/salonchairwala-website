@@ -2,6 +2,22 @@
 
 import { useState } from "react";
 import { sendGAEvent } from "@/lib/gtag";
+import { allProducts } from "@/lib/productData";
+
+const SITE_URL = "https://www.salonchairwala.com";
+
+function slugify(str: string): string {
+  return str
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+function getProductUrl(title: string): string | null {
+  const product = allProducts.find((p) => p.name === title);
+  return product ? `${SITE_URL}/products/${slugify(product.name)}/` : null;
+}
 
 type Props = {
   title: string;
@@ -13,7 +29,7 @@ export default function ShareButton({ title, text, url }: Props) {
   const [copied, setCopied] = useState(false);
 
   const handleShare = async () => {
-    const shareUrl = url || window.location.href;
+    const shareUrl = url || getProductUrl(title) || window.location.href;
 
     // 📊 GA4 EVENT — track karega kitni baar share button dabaya
     sendGAEvent("share", {
