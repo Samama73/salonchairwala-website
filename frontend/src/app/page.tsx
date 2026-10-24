@@ -9,6 +9,7 @@ import Testimonials from "./components/Testimonials";
 import Footer from "./components/Footer";
 import FloatingWhatsapp from "./components/FloatingWhatsapp";
 import FeaturesSection from "./components/FeaturesSection";
+import InteractiveBanner from "./components/InteractiveBanner";
 
 // 👉 Next.js ka Image component import kiya hai fast loading ke liye
 import Image from "next/image";
@@ -31,18 +32,7 @@ export default function Home() {
       </Link>
     </section>
 
-
-      {/* 📸 FULL WIDTH BANNER */}
-      <section className="w-full">
-        <Image 
-          src="/setups/s1.jpeg" 
-          alt="Premium Salon Furniture Collection" 
-          width={1920} 
-          height={800} 
-          className="w-full h-auto object-cover" // <-- rounded-xl aur shadow hata diya hai taaki edges flush rahein
-          priority 
-        />
-      </section>
+      <InteractiveBanner />
 
       <BestSellers />
       <FeaturedProducts />

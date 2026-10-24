@@ -15,7 +15,7 @@ const products = [
   },
   {
     name: "Golden Nest",
-    image: "/products/golden nest new.webp",
+    image: "/products/goldennest.webp",
     description:
       "A perfect blend of sophistication and durability. Golden Nest offers exceptional comfort, premium finishing, and a modern aesthetic that enhances the overall salon experience.",
   },
@@ -27,13 +27,13 @@ const products = [
   },
   {
     name: "Royal Diamond",
-    image: "/products/royaldiamondnew.webp",
+    image: "/products/rdiamond.webp",
     description:
       "Crafted for modern salons, Royal Diamond delivers a sleek appearance, superior comfort, and reliable performance, making it an ideal choice for everyday professional use.",
   },
   {
     name: "Luxury Layer",
-    image: "/products/luxurylayer.webp",
+    image: "/products/luxurylayer (1).webp",
     description:
       "Built with precision and premium materials, Luxury Layer offers a refined look, exceptional durability, and a comfortable seating experience for clients and professionals alike.",
   },

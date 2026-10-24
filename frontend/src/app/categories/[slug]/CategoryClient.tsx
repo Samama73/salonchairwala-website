@@ -11,6 +11,7 @@ import { getFaqsForCategory } from "@/lib/faqData";
 import ShareButton from "../../components/ShareButton";
 import { useCart } from "@/context/CartContext";
 import { sendGAEvent } from "@/lib/gtag";
+import { useState } from "react";
 import {
   categoryList,
   categoryInfo,
@@ -24,6 +25,7 @@ export default function CategoryClient({ slug }: { slug: string }) {
   const category = getCategoryBySlug(slug);
 
   const { cart, addToCart, removeFromCart } = useCart();
+  const [zoomedCard, setZoomedCard] = useState<string | null>(null);
 
   // 🚫 Agar galat/unknown category slug ho
   if (!category) {
@@ -98,6 +100,8 @@ export default function CategoryClient({ slug }: { slug: string }) {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-9">
               {products.map((product) => {
                 const cartItem = cart.find((item: any) => item.name === product.name);
+                const focus = product.focus ?? "50% 65%";
+
 
                 return (
                   <div
@@ -110,7 +114,14 @@ export default function CategoryClient({ slug }: { slug: string }) {
                     }
                     className="group relative rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-[0_8px_25px_rgba(0,0,0,0.05)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.12)] hover:border-red-900/30 transition-all duration-300 ease-out hover:-translate-y-3 flex flex-col h-full"
                   >
-                    <div className="relative h-44 sm:h-64 lg:h-80 flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden p-3 sm:p-4 border-b border-gray-50">
+                    <div
+                      onClick={() => {
+                        if (window.matchMedia("(hover: none)").matches) {
+                          setZoomedCard((prev) => (prev === product.image ? null : product.image));
+                        }
+                      }}
+                      className="relative h-44 sm:h-64 lg:h-80 flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden p-3 sm:p-4 border-b border-gray-50"
+                    >
                       {product.dispatch && (
                         <div className="absolute top-2 right-2 sm:top-4 sm:right-4 z-10 flex items-center gap-1 rounded-full bg-gradient-to-r from-red-900 to-red-800 px-2 py-1 sm:px-3 sm:py-1 text-[8px] sm:text-[10px] font-semibold tracking-wide text-white shadow-md">
                           <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
@@ -118,13 +129,29 @@ export default function CategoryClient({ slug }: { slug: string }) {
                           <span className="inline sm:hidden">DISPATCH</span>
                         </div>
                       )}
-                      <Image
-                        src={product.image}
-                        alt={product.name}
-                        width={420}
-                        height={420}
-                        className="object-scale-down h-full w-full transition-transform duration-500 ease-out group-hover:scale-110"
-                      />
+                      <div className="relative h-full w-full">
+                        <Image
+                          src={product.cutout && product.plate ? product.plate : product.image}
+                          alt={product.name}
+                          width={420}
+                          height={420}
+                          style={{ transformOrigin: focus }}
+                          className="object-scale-down h-full w-full"
+                        />
+                        {product.cutout && (
+                          <Image
+                            src={product.cutout}
+                            alt=""
+                            aria-hidden
+                            width={420}
+                            height={420}
+                            style={{ transformOrigin: focus }}
+                            className={`pointer-events-none absolute inset-0 h-full w-full object-scale-down transition-transform duration-500 ease-out group-hover:scale-125 ${
+                              zoomedCard === product.image ? "scale-125" : ""
+                            }`}
+                          />
+                        )}
+                      </div>
                     </div>
 
                     <div className="p-4 sm:p-6 flex flex-col flex-1">

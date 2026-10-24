@@ -29,7 +29,7 @@ export default function Navbar() {
         {/* Logo + Brand */}
         <Link href="/" className="flex items-center gap-3">
           <img
-            src="/products/logo.webp"
+            src="/products/newlogo.png"
             alt="Salon Chair Wala Logo"
             className="h-14 w-auto drop-shadow-sm"
           />

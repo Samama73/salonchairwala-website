@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import { allProducts } from "@/lib/productData";
+import { allProducts, comboSetups } from "@/lib/productData";
+import { COMPLETE_SETUPS } from "@/lib/setupsData";;
 
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
 const MODEL = "openai/gpt-oss-20b";
 
 const SHEET_WEBHOOK_URL = process.env.CHATBOT_SHEET_WEBHOOK_URL;
+const LEAD_SCRIPT_URL = process.env.LEAD_SCRIPT_URL;
 
 // CORS headers — GoDaddy (alag domain) se request accept karne ke liye
 const corsHeaders = {
@@ -32,6 +34,11 @@ function buildSystemInstruction() {
   const catalog = allProducts
     .map(p => `- ${p.name} (${p.category}): ₹${p.price} — ${p.description}`)
     .join("\n");
+  
+  const setups = COMPLETE_SETUPS
+    .map((s, i) => `- Setup No. ${i + 1}: ${s.name} — ₹${s.price} — includes: ${s.includes.join(", ")}`)
+    .join("\n");
+  const combos = comboSetups.map((c) => `- ${c.name}: ${c.description}`).join("\n");
 
     return `Tum "Salon Chair Wala" ke website assistant ho.
 Company salon chairs, shampoo chairs, manicure/pedicure stations, facial beds aur salon furniture banati hai aur pan-India delivery karti hai.
@@ -56,6 +63,9 @@ STRICT RULES:
 - Discount, stock, warranty, GST, installation, payment terms, custom size jaisi cheezon ke baare mein haan/na mat bolo. Bolo "Iski confirm jankari ke liye WhatsApp pe team se baat karein: https://wa.me/919145097466"
 - "Nahi hai" ya "available nahi" tabhi bolo jab wo is prompt mein likha ho.
 - Price sirf catalog wala batao.
+- Tum khud WhatsApp team se connect nahi kar sakte, na call laga sakte ho. "Sure, connect kar deta hoon" kabhi mat bolo. Bolo: "Is link pe click karke seedha team se baat kar sakte hain: https://wa.me/919145097466"
+- User jis language/style mein likhe (Hinglish/Hindi/English) usi mein jawab do. Hinglish ko English mein mat badlo.
+- Agar customer ek setup mein dusre setup jaisa chair/design maange (jaise Setup 5 mein Setup 4 wala chair), to haan/na mat bolo. Bolo ki ye customization hai, WhatsApp pe team confirm karegi (customization mein 30 se 35 din lagte hain).
 
 UNCLEAR/TYPO MESSAGES:
 Agar user ka message broken ya typo-laden ho aur intent clear na ho (jaise garbled Hinglish), seedha guess karke jawab mat do. Pehle politely clarify karo ki user kya jaanna chahta hai (product, price, ya location).
@@ -65,7 +75,13 @@ ORDER INTENT: Jab user kisi product mein interest ya order dikhaye, ye link do: 
 Yahan company ka pura product catalog hai — sirf isi data se answer do, kuch bhi khud se mat banao:
 ${catalog}
 
-Agar poocha gaya product isme na mile to bol do "ye product abhi humare paas nahi hai" ya team se confirm karne ko bolo.`;
+COMPLETE SETUPS (site pe jis number se dikhte hain wahi number use karo; "parlour/salon combo" ya "full setup" ka price poochhe to yahan se batao):
+${setups}
+
+COMBOS (chair pairing):
+${combos}
+
+Agar poocha gaya product, combo ya setup upar na mile to "nahi hai" bilkul mat bolo. Closest category/setup batao aur bolo: "Iski confirm jankari ke liye WhatsApp pe team se baat karein: https://wa.me/919145097466"`;
 }
 
 export async function POST(req: NextRequest) {
@@ -88,6 +104,28 @@ export async function POST(req: NextRequest) {
 
     const lastMsg = (messages[messages.length - 1]?.text ?? "").toLowerCase();
     const locationRegex = /\b(kahan|kaha pe|kaha par|kaha ho|kaha hai|kidhar|located|location|showroom|factory|visit|where are you|aapka address|apka address|your address|shop address)\b/i;
+
+    const compact = lastMsg.replace(/[\s-]/g, "");
+    const phoneMatch = compact.match(/(?:\+?91)?([6-9]\d{9})/);
+    if (phoneMatch && compact.replace(phoneMatch[0], "").length <= 25) {
+      if (LEAD_SCRIPT_URL) {
+        fetch(LEAD_SCRIPT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            action: "whatsapp_lead",
+            date: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
+            customerName: "Chatbot callback",
+            phone: phoneMatch[1],
+            source: "Website Chatbot",
+          }),
+        }).catch((err) => console.error("Lead save failed:", err));
+      }
+      const reply =
+        "Aapka number note kar liya hai, team aapse contact karegi. Jaldi baat karni ho to yahan WhatsApp karein: https://wa.me/919145097466";
+      logToSheet(messages[messages.length - 1]?.text ?? "", reply);
+      return NextResponse.json({ reply }, { headers: corsHeaders });
+    }
 
     if (locationRegex.test(lastMsg)) {
       const reply =
