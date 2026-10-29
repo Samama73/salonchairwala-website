@@ -235,7 +235,7 @@ export default function InteractiveBanner() {
               rel="noopener noreferrer"
               className="mt-3 inline-flex w-full items-center justify-center rounded-lg bg-emerald-600 px-4 py-2.5 text-xs font-semibold text-white"
             >
-              WhatsApp pe poochho
+              WhatsApp us for more details
             </a>
           </div>
         ) : (

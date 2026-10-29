@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import FoundersSection from "@/components/FoundersSection";
+import Navbar from "@/app/components/Navbar";
 
 export const metadata: Metadata = {
   title: "About Us | Salon Chair Wala",
@@ -50,7 +51,9 @@ const STATS = [
 
 export default function AboutPage() {
   return (
-    <main className="bg-slate-50 overflow-hidden font-sans selection:bg-red-900 selection:text-white">
+    <>
+      <Navbar />
+      <main className="bg-slate-50 overflow-hidden font-sans selection:bg-red-900 selection:text-white">
       <BreadcrumbJsonLd
         items={[
           { name: "Home", url: "https://salonchairwala.com" },
@@ -300,7 +303,8 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-      </section>
+     </section>
     </main>
+    </>
   );
 }

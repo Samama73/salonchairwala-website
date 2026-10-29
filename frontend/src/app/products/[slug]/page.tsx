@@ -32,10 +32,10 @@ export async function generateMetadata({
   const product = allProducts.find((p) => slugify(p.name) === slug);
   if (!product) return {};
   return {
-    title: product.name,
+    title: product.seoTitle || `${product.name} ${product.category.replace(/s$/, "")} – Price & Buy Online`,
     description: product.description,
     openGraph: {
-      title: product.name,
+      title: product.seoTitle || `${product.name} ${product.category.replace(/s$/, "")} – Price & Buy Online`,
       description: product.description,
       url: `${SITE_URL}/products/${slug}/`,
       images: [`${SITE_URL}${product.image}`],

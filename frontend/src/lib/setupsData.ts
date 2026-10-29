@@ -7,7 +7,7 @@ export const COMPLETE_SETUPS = [
     id: "setup-03",
     name: "The Complete Salon Setup",
     tagline: "A full working salon — hair, facial, and manicure — in one package.",
-    image: "/setups/s3.jpeg",
+    image: "/setups/s3.webp",
     price: 46000,
     badge: "Best Value",
     includes: [
@@ -23,7 +23,7 @@ export const COMPLETE_SETUPS = [
     id: "setup-02",
     name: "The Twin Chair Setup",
     tagline: "Built for salons running two stylists side by side without compromise.",
-    image: "/setups/s2.jpeg",
+    image: "/setups/s2.webp",
     price: 52000,
     badge: "Popular Choice",
     includes: [
@@ -39,7 +39,7 @@ export const COMPLETE_SETUPS = [
     id: "setup-04",
     name: "The Premium Salon Setup",
     tagline: "The ultimate luxury experience for discerning salon owners.",
-    image: "/setups/s4.jpeg",
+    image: "/setups/s4.webp",
     price: 52000,
     badge: "Premium Quality",
     includes: [
@@ -55,7 +55,7 @@ export const COMPLETE_SETUPS = [
     id: "setup-01",
     name: "The Essential Studio Setup",
     tagline: "Everything a single-chair salon needs, ready to run from day one.",
-    image: "/setups/s1.jpeg",
+    image: "/setups/s1.webp",
     price: 110000,
     badge: "Full Heavy Duty",
     includes: [
@@ -69,7 +69,7 @@ export const COMPLETE_SETUPS = [
     id: "setup-05",
     name: "The Luxury Studio Setup",
     tagline: "Premium finishes and added comfort — for salons that want to stand out.",
-    image: "/setups/s5.jpeg",
+    image: "/setups/s5.webp",
     price: 110000,
     badge: "Ultimate Luxury",
     includes: [

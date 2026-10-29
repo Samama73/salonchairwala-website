@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
+import Navbar from "@/app/components/Navbar";
 
 export const metadata: Metadata = {
   title: "Contact Us | Salon Chair Wala",
@@ -49,7 +50,9 @@ const CONTACT_CARDS = [
 
 export default function ContactPage() {
   return (
-    <main className="bg-white font-sans selection:bg-red-900 selection:text-white pb-20">
+    <>
+      <Navbar />
+      <main className="bg-white font-sans selection:bg-red-900 selection:text-white pb-20">
       <BreadcrumbJsonLd
         items={[
           { name: "Home", url: "https://salonchairwala.com" },
@@ -165,5 +168,6 @@ export default function ContactPage() {
         </div>
       </section>
     </main>
+    </>
   );
 }

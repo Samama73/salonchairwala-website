@@ -43,6 +43,7 @@ export default function FeaturedProducts() {
   // Drawer aur Recommendation ke liye states
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [recentlyAddedItem, setRecentlyAddedItem] = useState<any>(null);
+  const [selectedProduct, setSelectedProduct] = useState<any>(null); // product detail modal
 
   // BOSS LOGIC: Fixed accessories jo already cart mein NAHI hain
   const getAccessoriesRecommendations = () => {
@@ -96,13 +97,14 @@ export default function FeaturedProducts() {
             return (
               <div
                 key={product.name}
-                onClick={() =>
+                onClick={() => {
                   sendGAEvent("select_item", {
                     item_list_name: "Featured Products",
                     items: [{ item_name: product.name, price: product.price }],
-                  })
-                }
-                className="group relative rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-[0_8px_25px_rgba(0,0,0,0.05)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.12)] hover:border-red-900/30 transition-all duration-300 ease-out hover:-translate-y-3 flex flex-col h-full"
+                  });
+                  setSelectedProduct(product);
+                }}
+                className="group relative cursor-pointer rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-[0_8px_25px_rgba(0,0,0,0.05)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.12)] hover:border-red-900/30 transition-all duration-300 ease-out hover:-translate-y-3 flex flex-col h-full"
               >
                 {/* Red subtle glow overlay */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-red-900/[0.04] via-transparent to-transparent pointer-events-none" />
@@ -140,10 +142,11 @@ export default function FeaturedProducts() {
                   </p>
 
                   {/* Share Button Block */}
-                  <div className="mt-2 flex justify-end">
+                  <div className="mt-2 flex justify-end" onClick={(e) => e.stopPropagation()}>
                     <ShareButton title={product.name} text={`Check out ${product.name} at Salon Chair Wala`} />
                   </div>
 
+                  <div onClick={(e) => e.stopPropagation()}>
                   {cartItem ? (
                     <div className="mt-3 sm:mt-4 flex items-center justify-center gap-3 bg-gray-50 p-1.5 rounded-lg sm:rounded-xl border border-gray-200">
                       <button
@@ -168,6 +171,7 @@ export default function FeaturedProducts() {
                       Add to Cart
                     </button>
                   )}
+                  </div>
                 </div>
 
               </div>
@@ -303,6 +307,49 @@ export default function FeaturedProducts() {
         </>
       )}
 
+      {/* PRODUCT DETAIL MODAL (BestSellers jaisa) */}
+      {selectedProduct && (
+        <div
+          className="fixed inset-0 bg-black/60 flex items-center justify-center z-[80] px-4 backdrop-blur-sm"
+          onClick={() => setSelectedProduct(null)}
+        >
+          <div
+            className="bg-white rounded-3xl max-w-md w-full p-6 relative animate-modal"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setSelectedProduct(null)}
+              className="absolute top-4 right-4 text-3xl leading-none text-gray-400 hover:text-black transition-colors"
+            >
+              &times;
+            </button>
+
+            <div className="flex justify-center mb-6 w-full rounded-2xl overflow-hidden bg-gray-50">
+              <Image
+                src={selectedProduct.image}
+                alt={selectedProduct.name}
+                width={420}
+                height={420}
+                className="w-full max-h-[350px] object-contain"
+              />
+            </div>
+
+            <h3 className="text-2xl font-bold text-center mb-3">{selectedProduct.name}</h3>
+
+            <p className="text-gray-600 text-center leading-relaxed text-sm">
+              {selectedProduct.description}
+            </p>
+
+            <div className="mt-5 flex justify-center">
+              <ShareButton
+                title={selectedProduct.name}
+                text={`Check out ${selectedProduct.name} at Salon Chair Wala`}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Slide Animation CSS */}
       <style jsx>{`
         @keyframes drawerSlide {
@@ -311,6 +358,13 @@ export default function FeaturedProducts() {
         }
         .animate-drawer-slide {
           animation: drawerSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes modalPop {
+          0% { opacity: 0; transform: scale(0.9) translateY(20px); }
+          100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .animate-modal {
+          animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
       `}</style>
     </section>

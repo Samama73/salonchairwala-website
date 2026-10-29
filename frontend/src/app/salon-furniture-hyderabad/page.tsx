@@ -10,16 +10,16 @@ import { categoryList, categoryInfo, slugifyCategory } from "@/lib/productData";
 
 // ============ SEO METADATA ============
 export const metadata: Metadata = {
-  title: "Salon Furniture in Hyderabad | Chairs, Shampoo Units & More",
+  title: "Salon Furniture Manufacturer & Supplier in Hyderabad",
   description:
-    "Setting up or renovating a salon in Hyderabad? Salon Chair Wala ships hydraulic salon chairs, shampoo units, manicure stations and facial beds to Hyderabad with custom colors and warranty support.",
+    "Salon Chair Wala supplies premium salon chairs, shampoo chairs, manicure & pedicure stations, facial beds and salon furnishings in Hyderabad. Custom colors, warranty included, fast delivery across Hyderabad.",
   alternates: {
     canonical: "https://www.salonchairwala.com/salon-furniture-hyderabad/",
   },
   openGraph: {
-    title: "Salon Furniture in Hyderabad | Chairs, Shampoo Units & More",
+    title: "Salon Furniture Manufacturer & Supplier in Hyderabad",
     description:
-      "Hydraulic salon chairs, shampoo units, manicure stations and facial beds — shipped to Hyderabad with custom colors and warranty support.",
+      "Salon Chair Wala supplies premium salon chairs, shampoo chairs, manicure & pedicure stations, facial beds and salon furnishings in Hyderabad. Custom colors, warranty included, fast delivery across Hyderabad.",
     url: "https://www.salonchairwala.com/salon-furniture-hyderabad/",
     images: ["/products/wave.webp"],
   },
@@ -28,9 +28,9 @@ export const metadata: Metadata = {
 // ============ HYDERABAD-SPECIFIC FAQS ============
 const hyderabadFaqs = [
   {
-    question: "I'm opening a new salon in Hyderabad — where do I start?",
+    question: "I'm opening a new salon in Hyderabads where do I start?",
     answer:
-      "Message us on WhatsApp with your salon's size (number of chairs/stations) and interior theme. We'll suggest a furniture package — chairs, shampoo units, stations — and give you a single bulk quote with delivery timeline to Hyderabad.",
+      "Message us on WhatsApp with your salon's size (number of chairs/stations) and interior theme. We'll suggest a furniture package chairs, shampoo units, stations — and give you a single bulk quote with delivery timeline to Hyderabad.",
   },
   {
     question: "Can I match the furniture to my salon's colour theme?",
@@ -51,6 +51,16 @@ const hyderabadFaqs = [
     question: "Can I see the furniture before ordering in bulk?",
     answer:
       "We share detailed photos, videos and dimensions of every product on WhatsApp before you order. For large bulk orders, we can also arrange sample pieces on request.",
+  },
+    {
+    question: "Are you a salon furniture manufacturer or a dealer in Hyderabad?",
+    answer:
+      "Salon Chair Wala is a manufacturer, so you buy directly from us instead of through a middleman. We ship to Hyderabad and can customise colours and upholstery to your salon's theme.",
+  },
+  {
+    question: "Do you deliver to Gachibowli, Kukatpally, Jubilee Hills and other areas?",
+    answer:
+      "Yes, we deliver across Hyderabad including Banjara Hills, Jubilee Hills, Madhapur, Gachibowli, Kondapur, Kukatpally and Secunderabad.",
   },
 ];
 
@@ -73,9 +83,9 @@ export default function SalonFurnitureHyderabadPage() {
   const dkVideoSchema = {
     "@context": "https://schema.org",
     "@type": "VideoObject",
-    name: "DK Makeup Academy Salon Furniture Installation — Warangal, Telangana",
+    name: "DK Makeup Academy Salon Furniture Installation — Hyderabad, Telangana",
     description:
-      "Salon furniture setup by Salon Chair Wala for DK Makeup Academy in Warangal, Telangana — salon chairs, shampoo units, and workstations manufactured and installed on-site.",
+      "Salon furniture setup by Salon Chair Wala for DK Makeup Academy in Hyderabad, Telangana — salon chairs, shampoo units, and workstations manufactured and installed on-site.",
     thumbnailUrl: ["https://www.salonchairwala.com/videos/dk.jpg"],
     uploadDate: "2026-09-11",
     contentUrl: "https://www.salonchairwala.com/videos/dk.mp4",
@@ -98,14 +108,14 @@ export default function SalonFurnitureHyderabadPage() {
           { name: "Home", url: "https://www.salonchairwala.com" },
           {
             name: "Salon Furniture Hyderabad",
-            url: "https://www.salonchairwala.com/salon-furniture-hyderabad",
+            url: "https://www.salonchairwala.com/salon-furniture-hyderabad/",
           },
         ]}
       />
 
       <Navbar />
 
-      <main className="bg-slate-50 font-sans">
+      <main className="bg-slate-50 font-sans">s
         {/* 1. H1 + INTRO */}
         <section className="bg-white border-b border-gray-100 pt-16 pb-14 sm:pt-20 sm:pb-16">
           <div className="max-w-4xl mx-auto px-6 text-center">
@@ -113,14 +123,14 @@ export default function SalonFurnitureHyderabadPage() {
               Serving Hyderabad
             </p>
             <h1 className="text-3xl sm:text-5xl font-black text-gray-950 leading-tight font-elegant">
-              Salon Furniture in Hyderabad — Chairs, Shampoo Units &amp; Stations
+              Salon Furniture Manufacturer & Supplier in Hyderabad
             </h1>
             <p className="text-gray-600 mt-6 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
               Whether you&apos;re opening a new salon or replacing worn-out
               chairs, Salon Chair Wala manufactures and ships salon furniture
-              straight to Hyderabad. One supplier for your entire salon —
+              straight to Hyderabad. One supplier for your entire salon
               styling chairs, shampoo units, manicure &amp; pedicure stations
-              and facial beds — with custom colours built to order.
+              and facial beds with custom colours built to order.
             </p>  
             <div className="mt-8">
 
@@ -162,7 +172,7 @@ export default function SalonFurnitureHyderabadPage() {
                 Built To Your Theme
               </h3>
               <p className="text-gray-500 text-sm leading-relaxed">
-                Send your interior colours or mood board — we manufacture the
+                Send your interior colours or mood board we manufacture the
                 upholstery and finish to match, not the other way around.
               </p>
             </div>
@@ -175,7 +185,7 @@ export default function SalonFurnitureHyderabadPage() {
               </h3>
               <p className="text-gray-500 text-sm leading-relaxed">
                 Setting up multiple stations? Talk to the founders directly
-                on WhatsApp for a single bulk quote — no back-and-forth with
+                on WhatsApp for a single bulk quote no back-and-forth with
                 a sales team.
               </p>
             </div>
@@ -271,7 +281,7 @@ export default function SalonFurnitureHyderabadPage() {
             <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
               From salons in Banjara Hills and Jubilee Hills to newer setups
               in Madhapur, Gachibowli and Kondapur, or established chains
-              near Secunderabad and Kukatpally — we&apos;ve delivered salon
+              near Secunderabad and Kukatpally we&apos;ve delivered salon
               furniture across Hyderabad's beauty and wellness hubs.
               Wherever your salon is located, we'll get your order there.
             </p>
@@ -285,17 +295,17 @@ export default function SalonFurnitureHyderabadPage() {
               Case Study
             </p>
             <h2 className="text-2xl sm:text-3xl font-black text-gray-950 text-center mb-10 font-elegant">
-              DK Makeup Academy — Warangal, Telangana
+              DK Makeup Academy — Hyderabad, Telangana
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-10 items-center bg-slate-50 border border-gray-200 rounded-3xl p-6 sm:p-10">
               <div className="md:col-span-2 order-2 md:order-1">
                 <span className="inline-block bg-red-50 text-red-900 text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full mb-4">
-                  Warangal, Telangana
+                  Hyderabad, Telangana
                 </span>
                 <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
                   A look at the salon furniture setup we completed for DK
-                  Makeup Academy in Warangal, Telangana — salon chairs,
+                  Makeup Academy in Hyderabad, Telangana salon chairs,
                   shampoo units and workstations manufactured and installed
                   on-site.
                 </p>
@@ -329,10 +339,23 @@ export default function SalonFurnitureHyderabadPage() {
               <div className="md:col-span-3 order-1 md:order-2">
                 <CaseStudyVideo
                   video="/videos/dk.mp4"
-                  ariaLabel="DK Makeup Academy salon furniture installation in Warangal, Telangana"
+                  ariaLabel="DK Makeup Academy salon furniture installation in Hyderabad, Telangana"
                 />
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* 5C. HYDERABAD CLIENT TESTIMONIAL */}
+        <section className="max-w-3xl mx-auto px-6 py-16 text-center">
+          <h2 className="text-2xl sm:text-3xl font-black text-gray-950 mb-8 font-elegant">
+            What Our Hyderabad Clients Say
+          </h2>
+          <div className="max-w-sm mx-auto">
+            <CaseStudyVideo
+              video="/testimonials/hyderabad-testimonial.mp4"
+              ariaLabel="Hyderabad client testimonial for Salon Chair Wala salon furniture"
+            />
           </div>
         </section>
 

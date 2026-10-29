@@ -1,5 +1,6 @@
 "use client";
 
+import Navbar from "@/app/components/Navbar";
 import { useState } from "react";
 import Image from "next/image";
 import { useCart } from "@/context/CartContext";
@@ -24,7 +25,9 @@ export default function SetupsPage() {
   };
 
   return (
-    <main className="bg-slate-50/30 min-h-screen text-gray-900 overflow-x-hidden">
+    <>
+      <Navbar />
+      <main className="bg-slate-50/30 min-h-screen text-gray-900 overflow-x-hidden">
       <BreadcrumbJsonLd
         items={[
           { name: "Home", url: "https://salonchairwala.com" },
@@ -313,7 +316,8 @@ export default function SetupsPage() {
             />
           </div>
         </div>
-      )}
+       )}
     </main>
+  </>
   );
 }
