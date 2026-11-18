@@ -10,6 +10,11 @@ import Footer from "./components/Footer";
 import FloatingWhatsapp from "./components/FloatingWhatsapp";
 import FeaturesSection from "./components/FeaturesSection";
 import InteractiveBanner from "./components/InteractiveBanner";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "https://www.salonchairwala.com/" },
+};
 
 // 👉 Next.js ka Image component import kiya hai fast loading ke liye
 import Image from "next/image";
@@ -41,7 +46,7 @@ export default function Home() {
       <InstagramSection />
       <Testimonials />
 
-      <section className="bg-[#FEFCF7] border-t border-red-900/10 px-4 py-12 md:py-16">s
+      <section className="bg-[#FEFCF7] border-t border-red-900/10 px-4 py-12 md:py-16">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-red-900 font-semibold uppercase tracking-[0.2em] text-xs md:text-sm">
             Pan-India Delivery

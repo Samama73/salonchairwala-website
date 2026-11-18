@@ -34,6 +34,9 @@ export async function generateMetadata({
   return {
     title: product.seoTitle || `${product.name} ${product.category.replace(/s$/, "")} – Price & Buy Online`,
     description: product.description,
+    alternates: {
+      canonical: `${SITE_URL}/products/${slug}/`,
+    },
     openGraph: {
       title: product.seoTitle || `${product.name} ${product.category.replace(/s$/, "")} – Price & Buy Online`,
       description: product.description,

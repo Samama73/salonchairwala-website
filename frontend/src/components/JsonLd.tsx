@@ -4,15 +4,15 @@ export default function JsonLd() {
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://salonchairwala.com/#organization",
+        "@id": "https://www.salonchairwala.com/#organization",
         "name": "Redwal Furnitures OPC Pvt. Ltd.",
         "alternateName": "Salon Chair Wala",
-        "url": "https://salonchairwala.com",
+        "url": "https://www.salonchairwala.com",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://salonchairwala.com/products/logo.webp"
+          "url": "https://www.salonchairwala.com/products/logo.webp"
         },
-        "image": "https://salonchairwala.com/products/logo.webp",
+        "image": "https://www.salonchairwala.com/products/logo.webp",
         "email": "redwalenterprises@gmail.com",
         "telephone": "+91-9145097466",
         "sameAs": [
@@ -22,10 +22,10 @@ export default function JsonLd() {
       },
       {
         "@type": ["LocalBusiness", "Store", "HomeAndConstructionBusiness"],
-        "@id": "https://salonchairwala.com/#localbusiness",
+        "@id": "https://www.salonchairwala.com/#localbusiness",
         "name": "Salon Chair Wala",
-        "image": "https://salonchairwala.com/products/logo.webp",
-        "url": "https://salonchairwala.com",
+        "image": "https://www.salonchairwala.com/products/logo.webp",
+        "url": "https://www.salonchairwala.com",
         "telephone": "+91-9145097466",
         "email": "redwalenterprises@gmail.com",
         "priceRange": "₹₹",
@@ -48,25 +48,17 @@ export default function JsonLd() {
           "closes": "18:00"
         },
         "parentOrganization": {
-          "@id": "https://salonchairwala.com/#organization"
+          "@id": "https://www.salonchairwala.com/#organization"
         }
       },
       {
         "@type": "WebSite",
-        "@id": "https://salonchairwala.com/#website",
-        "url": "https://salonchairwala.com",
+        "@id": "https://www.salonchairwala.com/#website",
+        "url": "https://www.salonchairwala.com",
         "name": "Salon Chair Wala",
         "publisher": {
-          "@id": "https://salonchairwala.com/#organization"
+          "@id": "https://www.salonchairwala.com/#organization"
         },
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": {
-            "@type": "EntryPoint",
-            "urlTemplate": "https://salonchairwala.com/search?q={search_term_string}"
-          },
-          "query-input": "required name=search_term_string"
-        }
       }
     ]
   };

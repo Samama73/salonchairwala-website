@@ -28,8 +28,25 @@ export const metadata: Metadata = {
   },
   description:
     "Salon Chair Wala (Redwal Furniture OPC Pvt Ltd.) is a leading salon furniture manufacturer in India, offering premium salon chairs, shampoo chairs, manicure & pedicure stations, facial beds and salon furnishings with pan-India delivery to Mumbai, Pune, Bangalore, Hyderabad and beyond.",
-  metadataBase: new URL("https://www.salonchairwala.com"),
-};
+   metadataBase: new URL("https://www.salonchairwala.com"),
+    openGraph: {
+      type: "website",
+      siteName: "Salon Chair Wala",
+      locale: "en_IN",
+      url: "https://www.salonchairwala.com/",
+      images: [
+        {
+          url: "/products/goldencombo.webp",
+          width: 1376,
+          height: 768,
+          alt: "Salon Chair Wala - salon chairs, shampoo units and complete salon setups",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+    },
+  };
 
 export default function RootLayout({
   children,
@@ -37,7 +54,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${poppins.variable} ${playfair.variable}`} suppressHydrationWarning>
+    <html lang="en-IN" className={`${poppins.variable} ${playfair.variable}`} suppressHydrationWarning> 
       <head>
         <meta name="google-site-verification" content="ufVt9OgKY_OQx9EueCnK2PPJiJ0aZbIAZ1cRzO6Onro" />
       </head>

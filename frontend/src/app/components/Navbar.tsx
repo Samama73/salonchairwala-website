@@ -69,9 +69,9 @@ export default function Navbar() {
             className="h-14 w-auto drop-shadow-sm"
           />
           <div className="leading-tight">
-            <h1 className="text-2xl font-extrabold text-gray-900 tracking-tight">
+            <div className="text-2xl font-extrabold text-gray-900 tracking-tight">
               Salon Chair <span className="text-red-900">Wala</span>
-            </h1>
+            </div>
             <p className="text-[10px] uppercase font-bold text-gray-500 tracking-widest mt-0.5">
               Redwal Furniture
             </p>

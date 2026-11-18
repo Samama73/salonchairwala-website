@@ -122,9 +122,9 @@ export default function Hero() {
         <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/30 via-transparent to-black/50 pointer-events-none" />
 
         <div className="absolute top-4 z-20 w-full px-6 text-center pointer-events-none">
-          <p className="uppercase tracking-[0.3em] text-white text-xs font-semibold drop-shadow">
-            Salon Furniture That Defines Your Space
-          </p>
+          <h1 className="uppercase tracking-[0.3em] text-white text-xs font-semibold drop-shadow">
+            Salon Furniture Manufacturer in India
+          </h1>
         </div>
 
         <div className="absolute bottom-12 left-0 right-0 z-20 flex items-center justify-between px-3 w-full">

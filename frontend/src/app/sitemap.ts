@@ -3,7 +3,7 @@ import { categoryList, slugifyCategory, allProducts } from "@/lib/productData";
 import { blogPosts } from "@/lib/blogData";
 
 export const dynamic = "force-static";
-
+const LAST_UPDATED = new Date("2026-11-18");
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.salonchairwala.com";
 

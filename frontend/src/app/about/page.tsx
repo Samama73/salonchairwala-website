@@ -4,9 +4,12 @@ import FoundersSection from "@/components/FoundersSection";
 import Navbar from "@/app/components/Navbar";
 
 export const metadata: Metadata = {
-  title: "About Us | Salon Chair Wala",
+  title: "About Us",
   description:
     "From a small shop in Ulhasnagar in 2021 to our own manufacturing unit in Kalyan today — the Salon Chair Wala story of quality, trust, and pan-India delivery.",
+  alternates: {
+    canonical: "https://www.salonchairwala.com/about/",
+  },
 };
 
 const TIMELINE = [
@@ -56,8 +59,8 @@ export default function AboutPage() {
       <main className="bg-slate-50 overflow-hidden font-sans selection:bg-red-900 selection:text-white">
       <BreadcrumbJsonLd
         items={[
-          { name: "Home", url: "https://salonchairwala.com" },
-          { name: "About Us", url: "https://salonchairwala.com/about" },
+          { name: "Home", url: "https://www.salonchairwala.com" },
+          { name: "About Us", url: "https://www.salonchairwala.com/about" },
         ]}
       />
 

@@ -30,8 +30,8 @@ export default function SetupsPage() {
       <main className="bg-slate-50/30 min-h-screen text-gray-900 overflow-x-hidden">
       <BreadcrumbJsonLd
         items={[
-          { name: "Home", url: "https://salonchairwala.com" },
-          { name: "Complete Setups", url: "https://salonchairwala.com/setups" },
+          { name: "Home", url: "https://www.salonchairwala.com/" },
+          { name: "Complete Setups", url: "https://www.salonchairwala.com/setups/" },
         ]}
       />
 

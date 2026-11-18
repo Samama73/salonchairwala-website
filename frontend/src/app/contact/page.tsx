@@ -3,9 +3,12 @@ import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import Navbar from "@/app/components/Navbar";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Salon Chair Wala",
+  title: "Contact Us",
   description:
     "Get in touch with Salon Chair Wala — visit our showroom in Bhiwandi, call, email, or message us on WhatsApp for salon furniture enquiries.",
+  alternates: {
+    canonical: "https://www.salonchairwala.com/contact/",
+  },
 };
 
 const PHONE_DISPLAY = "+91 91450 97466";
@@ -55,8 +58,8 @@ export default function ContactPage() {
       <main className="bg-white font-sans selection:bg-red-900 selection:text-white pb-20">
       <BreadcrumbJsonLd
         items={[
-          { name: "Home", url: "https://salonchairwala.com" },
-          { name: "Contact Us", url: "https://salonchairwala.com/contact" },
+          { name: "Home", url: "https://www.salonchairwala.com/" },
+          { name: "Contact Us", url: "https://www.salonchairwala.com/contact/" },
         ]}
       />
 
